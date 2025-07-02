@@ -157,3 +157,5 @@ export class Results implements OnInit {
     this.selectedIssue = issue;
   }
 }
+
+

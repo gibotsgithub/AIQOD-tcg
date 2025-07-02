@@ -57,6 +57,14 @@ export class Chatbot implements AfterViewInit {
     }
 
     if (file) {
+      const isPDF = file.type === 'application/pdf';
+      if (!isPDF) {
+        console.warn('Only PDF files are allowed.');
+        alert('❌ Only PDF files are accepted. Please upload a .pdf file.');
+        input.value = '';
+        return;
+      }
+
       this.selectedFileName = file.name;
     }
   }
@@ -120,7 +128,10 @@ export class Chatbot implements AfterViewInit {
 
           // 🔁 Save MAS history to Node backend
           this.http
-            .post('https://tcg-node.onrender.com/api/mas-history/save', resultWithUser)
+            .post(
+              'https://tcg-node.onrender.com/api/mas-history/save',
+              resultWithUser
+            )
             .subscribe({
               next: () => console.log('✅ MAS history saved to DB'),
               error: (err) =>

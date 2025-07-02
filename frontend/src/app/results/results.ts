@@ -69,11 +69,6 @@ export class Results implements OnInit {
               Math.floor(Math.random() * (98 - 75 + 1)) + 75,
             pageSection: `Page ${
               violation.page_number ?? Math.floor(Math.random() * 10)
-            }, Section ${
-              violation.section ??
-              ['Section 4.2', 'section 6.3', 'Section 12.15'][
-                Math.floor(Math.random() * 3)
-              ]
             }`,
             regulatoryRef:
               violation.reference_document ??

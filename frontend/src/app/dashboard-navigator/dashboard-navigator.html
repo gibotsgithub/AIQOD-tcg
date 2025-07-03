@@ -1,0 +1,5 @@
+<ng-container [ngSwitch]="role">
+  <app-dashboard *ngSwitchCase="'Manager'"></app-dashboard>
+  <app-tran-intelligence *ngSwitchCase="'RM'"></app-tran-intelligence>
+  <p *ngSwitchDefault>dashboard works</p>
+</ng-container>

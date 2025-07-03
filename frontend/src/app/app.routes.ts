@@ -5,6 +5,7 @@ import { MasPolicyWatch } from './features/mas-policy-watch/mas-policy-watch';
 import { AnalysisResultsComponent } from './analysis-results/analysis-results';
 import { Dashboard } from './dashboard/dashboard';
 import { MasHistoryComponent } from './features/mas-history/mas-history';
+import { DashboardNavigator } from './dashboard-navigator/dashboard-navigator';
 
 // Add 'export' before const routes
 export const routes: Routes = [
@@ -22,9 +23,9 @@ export const routes: Routes = [
     component: Shell,
     children: [
       { path: 'mas-policy-watch', component: MasPolicyWatch },
-      { path: 'analysis-results/:id', component: AnalysisResultsComponent},
+      { path: 'analysis-results/:id', component: AnalysisResultsComponent },
       { path: 'analysis-results', component: AnalysisResultsComponent },
-      { path: 'dashboard', component: Dashboard },
+      { path: 'dashboard', component: DashboardNavigator },
       { path: 'mas-history', component: MasHistoryComponent },
       // add other protected routes here
     ],

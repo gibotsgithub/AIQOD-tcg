@@ -6,6 +6,7 @@ import { AnalysisResultsComponent } from './analysis-results/analysis-results';
 import { Dashboard } from './dashboard/dashboard';
 import { MasHistoryComponent } from './features/mas-history/mas-history';
 import { DashboardNavigator } from './dashboard-navigator/dashboard-navigator';
+import { WorkflowAgent } from './r-manager/workflow-agent/workflow-agent';
 
 // Add 'export' before const routes
 export const routes: Routes = [
@@ -27,6 +28,7 @@ export const routes: Routes = [
       { path: 'analysis-results', component: AnalysisResultsComponent },
       { path: 'dashboard', component: DashboardNavigator },
       { path: 'mas-history', component: MasHistoryComponent },
+      { path: 'workflow-agent', component: WorkflowAgent },
       // add other protected routes here
     ],
   },

@@ -279,3 +279,74 @@ body {
 .transaction-table tr:hover {
   background-color: #f0f9f9;
 }
+
+@media (max-width: 1024px) {
+  .dashboard-container {
+    margin-left: 0;
+    width: 100%;
+    padding: 24px 16px;
+  }
+
+  .dashboard-grid {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .dashboard-tab {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .activity-top {
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .activity-bottom {
+    padding: 16px;
+  }
+
+  .activity-metrics,
+  .activity-metrics.three-metrics {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .metric:not(:last-child) {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .metric {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .grid-item {
+    width: 100%;
+    min-height: 100px;
+    border-radius: 8px;
+  }
+
+  /* Remove transaction table */
+  .table-wrapper {
+    display: none;
+  }
+
+  /* Optional: Shrink header font on small screens */
+  .dashboard-heading {
+    font-size: 1.1rem;
+  }
+}

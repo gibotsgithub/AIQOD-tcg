@@ -129,7 +129,7 @@ export class Chatbot implements AfterViewInit {
           // 🔁 Save MAS history to Node backend
           this.http
             .post(
-              'https://tcg-node.onrender.com/api/mas-history//save',
+              'https://tcg-node.onrender.com/api/mas-history/save',
               resultWithUser
             )
             .subscribe({

@@ -117,7 +117,7 @@ export class Chatbot implements AfterViewInit {
     this.loading = true;
 
     this.http
-      .post<any>('http://13.235.223.80:8000/check-compliance', formData)
+      .post<any>('https://13.235.223.80:8000/check-compliance', formData)
       .subscribe({
         next: (response) => {
           this.loading = false;
@@ -129,7 +129,7 @@ export class Chatbot implements AfterViewInit {
           // 🔁 Save MAS history to Node backend
           this.http
             .post(
-              'http://13.235.223.80:8000/api/mas-history/save',
+              'https://13.235.223.80:8000/api/mas-history/save',
               resultWithUser
             )
             .subscribe({

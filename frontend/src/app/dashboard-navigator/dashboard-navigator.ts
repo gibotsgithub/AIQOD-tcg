@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Dashboard } from '../dashboard/dashboard';
 import { CommonModule } from '@angular/common';
-import { TIntelligence } from '../r-manager/transaction-intelligence/tran-intelligence';
+import { RmDashboard } from '../r-manager/rm-dashboard/rm-dashboard';
 
 @Component({
   selector: 'app-dashboard-navigator',
-  imports: [Dashboard, TIntelligence, CommonModule],
+  imports: [Dashboard, RmDashboard, CommonModule],
   templateUrl: './dashboard-navigator.html',
   styleUrl: './dashboard-navigator.css',
 })

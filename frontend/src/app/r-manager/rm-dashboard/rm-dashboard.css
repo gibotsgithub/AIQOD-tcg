@@ -1,0 +1,748 @@
+.dashboard-container {
+  background: var(--content-light);
+  min-height: 100%;
+  height: auto;
+  overflow-y: auto;
+  margin-top: 0; /* Removed to prevent gap */
+  margin-left: 70px;
+  width: calc(100% - 70px);
+  padding: 32px 32px;
+  position: relative;
+  font-family: var(--font-family);
+  background: linear-gradient(
+    180deg,
+    rgba(86, 86, 86, 0.1) 0%,
+    rgba(86, 86, 86, 0.1) 100%
+  );
+  color: var(--text-dark);
+}
+.section-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.dashboard-greeting {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 20px 28px;
+  min-width: 180px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.summary-label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.summary-sub {
+  font-size: 0.9rem;
+  color: #16a34a;
+  margin-top: 2px;
+}
+
+.dashboard-table-wrapper {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 0;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.dashboard-table th, .dashboard-table td {
+    padding: 10px 12px;
+  /* border-bottom: 1px solid #e5e7eb; */
+    border: 1px solid #e5e7eb;
+}
+
+.dashboard-table th {
+  background: #f4f5fa;
+  font-weight: 700;
+  color: #222;
+  text-align: left;
+}
+
+.dashboard-table thead th {
+  background: #f4f5fa;
+  font-weight: 700;
+  color: #222;
+}
+
+.dashboard-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+.client-sat-bar {
+  display: inline-block;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 4px 10px;
+  min-width: 36px;
+}
+.client-sat-cell {
+  font-weight: 600;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0;
+  min-width: 36px;
+  text-align: center;
+}
+
+/* Client Sat color classes */
+.client-sat-green {
+  background: #22c55e;
+}
+.client-sat-yellow {
+  background: #facc15;
+  color: #222;
+}
+.client-sat-red {
+  background: #F05224;
+}
+
+.dashboard-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 cards, full width */
+  gap: 32px; /* more space between cards */
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 28px 16px;
+  min-width: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-heading {
+  font-size: 0.95rem;       /* smaller heading */
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 8px;   /* more gap below heading */
+  letter-spacing: 0.01em;
+}
+
+.summary-value {
+  font-size: 1.7rem;     /* large, bold value */
+  font-weight: 800;
+  margin-bottom: 8px;   /* more gap below value */
+  line-height: 1.1;
+}
+
+.summary-sub {
+  font-size: 0.85rem;    /* smaller subtitle */
+  margin-top: 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.grand-total-row {
+  background: rgb(236, 236, 236);
+  font-weight: bold;
+  /* border-top: 2px solid; purple line as in your screenshot */
+}
+
+.grand-label {
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.grand-aum {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #222;
+  background: rgb(236, 236, 236);
+  border-radius: 2px;
+}
+
+.dashboard-secondary {
+  width: 100%;
+  margin-top: 32px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dashboard-tasks-market {
+  display: flex;
+  /* gap: 24px; */
+}
+
+.prioritized-tasks, .market-intel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 20px 18px 18px 18px; 
+  width :  calc(100% - 260px - 24px);
+  flex: 2;
+  min-width: 0;
+}
+
+.market-intel {
+  flex: 0 0 260px;
+    max-width: 260px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: #222;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: 40px 140px 110px 1.5fr 90px;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  padding: 18px 18px;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  gap: 0;
+}
+
+.task-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+.task-avatar svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+.task-name {
+  font-weight: 700;
+  color: #222;
+  padding: 4px;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-title {
+  font-weight: 700;
+  color: #111;
+  font-size: 15px;
+  margin-bottom: 2px;;
+  margin-left: 12px;
+}
+
+.task-insight {
+  color: #03BCA3;
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 12px;
+}
+.ai-insight {
+  color: #03BCA3;
+  font-weight: 700;
+  margin-right: 2px;
+}
+.highlight-blue {
+  color: #03BCA3;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.task-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.task-due {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 15px;
+  font-weight: 700;
+  gap: 2px;
+}
+.due-label {
+  color: #111;
+  font-weight: 700;
+}
+.due-value {
+  font-weight: 700;
+}
+.market-intel .section-title {
+  margin-bottom: 10px;
+}
+
+.intel-card {
+  background: #e8f3fb;
+  border-radius: 12px;
+  padding: 16px 14px 14px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.intel-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.intel-desc {
+  font-size: 0.97rem;
+  color: #444;
+}
+
+.intel-btn {
+  background: #03BCA3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background 0.18s;
+}
+.intel-btn:hover {
+  background: var(--cta-green-dark);
+}
+
+.todays-meetings-section {
+  margin-top: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 18px 18px 18px 18px;
+}
+
+
+.dashboard-secondary,
+.section-title,
+.tasks-table,
+.task-row,
+.market-intel{
+  font-size: 12px;
+}
+.tasks-table {
+  display: grid;
+  grid-template-rows: auto;
+  gap: 8px;
+}
+.tasks-header, .task-row {
+  display: grid;
+  grid-template-columns: 36px 110px 200px auto 70px;
+  align-items: center;
+  gap: 0;
+}
+.tasks-header {
+  font-weight: bold;
+  color: #222;
+  background: none;
+  font-size: 12px;
+}
+.task-avatar svg {
+  width: 22px; height: 22px;
+}
+.task-type.meeting { background: #e5e7eb; color: #444; }
+.task-type.compliance { background: #e5e7eb; color: #444; }
+.task-type.opportunity { background: #e5e7eb; color: #444; }
+.task-type {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 4px;
+  text-align: center;
+}
+.task-title { font-weight: 600; font-size: 13px; }
+.task-insight { color: #03BCA3; font-size: 12px; }
+.task-due { font-weight: 600; font-size: 12px; }
+.due-soon { color: #03BCA3; }
+.due-normal { color: #03BCA3; }
+.due-late { color: #03BCA3; }
+
+/* 4. Meetings: blue bar, one-line layout */
+.todays-meetings-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 14px 0 0 0;
+  margin-top: 18px;
+}
+
+/* 5. Equal width for tasks & meetings, smaller market intel */
+.dashboard-tasks-market {
+  display: flex;
+  gap: 18px;
+}
+.prioritized-tasks {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.market-intel {
+  flex: 0 0 320px;
+  max-width: 340px;
+  min-width: 260px;
+  margin-left: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.intel-card {
+  background: #eaeaea;
+  border-radius: 8px;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 8px;
+}
+/* Container matches prioritized-tasks width */
+.calendar-container {
+    background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  width: calc(100% - 260px - 78px);
+  margin-top: 12px;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 18px;
+  gap: 8px;
+}
+
+.calendar-icon {
+   width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 4px;
+}
+
+.calendar-title {
+  font-size: 13px;
+  color: #222;
+}
+
+.calendar-list {
+  position: relative;
+}
+
+.calendar-list::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: #2563eb;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.calendar-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 0 20px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: transparent;
+}
+
+.calendar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.calendar-row:last-child {
+  border-bottom: none;
+}
+
+.calendar-time {
+  min-width: 95px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+  text-align: left;
+  margin-right: 0;
+  margin-top: 2px;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.calendar-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 0;
+}
+
+.calendar-client {
+  font-weight: 700;
+  font-size: 12px;
+  color: #111;
+  margin-bottom: 2px;
+  line-height: 1.1;
+}
+
+.calendar-desc {
+  font-size: 11px;
+  color: #444;
+  line-height: 1.1;
+}
+
+.calendar-status {
+   margin-left: auto;
+  align-self: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #34bfa3;
+  background: #ebfdfb;
+  border-radius: 18px;
+  padding: 8px 20px;
+  min-width: 220px;
+  text-align: center;
+}
+
+.calendar-status.complete {
+  color: #03BCA3;
+ background-color: #ebfdfb;
+
+}
+
+.calendar-status.in-progress {
+  color: #F59E42;
+   background-color: #fff3e7;
+}
+
+.intel-title {
+  font-weight: 700;
+  font-size: 13px;
+}
+.intel-desc {
+  font-size: 12px;
+  color: #444;
+}
+.intel-btn {
+  background: #03BCA3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .dashboard-container {
+    padding: 16px 12px;
+    margin-left: 0;
+    width: 100%;
+  }
+  .dashboard-tasks-market {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .market-intel {
+    margin-top: 18px;
+  }
+  .dashboard-summary-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    flex-direction: column;
+  }
+  .summary-card {
+    min-width: 0;
+    width: 100%;
+    padding: 16px 12px;
+  }
+  .calendar-container {
+    max-width: 100%;
+    padding: 16px 8px;
+    width: 100%;
+  }
+}
+
+/* Small tablets and large phones */
+@media (max-width: 900px) {
+  .calendar-container {
+    max-width: 100%;
+    padding: 12px 4px;
+    width: 100%;
+  }
+  .calendar-row {
+    padding: 10px 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .calendar-status {
+    font-size: 0.95rem;
+    min-width: unset;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+}
+
+/* Phones */
+@media (max-width: 700px) {
+  .dashboard-container {
+    padding: 8px 2px;
+    margin-left: 0;
+    width: 100%;
+  }
+  .dashboard-secondary {
+    padding: 0 4px 12px 4px;
+  }
+  .prioritized-tasks,
+  .market-intel {
+    padding: 10px 4px;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .dashboard-summary-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex-direction: column;
+  }
+  .summary-card {
+    padding: 10px 6px;
+    width: 100%;
+    min-width: 0;
+  }
+  .dashboard-table-wrapper {
+    display: none;
+  }
+  .calendar-container {
+    padding: 8px 2px;
+    width: 100%;
+    min-width: 0;
+  }
+  .calendar-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+    gap: 6px;
+  }
+  .calendar-status {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    margin-top: 8px;
+    text-align: left;
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+  .calendar-info {
+    width: 100%;
+  }
+   .tasks-header,
+  .task-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 12px 6px;
+  }
+  .task-row > *,
+  .tasks-header > * {
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 500px) {
+  .dashboard-summary-cards {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .summary-card {
+    padding: 8px 2px;
+  }
+  .calendar-container {
+    padding: 4px 0;
+  }
+}

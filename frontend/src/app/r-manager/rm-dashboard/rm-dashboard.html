@@ -1,0 +1,184 @@
+<div class="dashboard-container">
+    <h2 class="dashboard-greeting">Good Morning RM!</h2>
+    <div class="dashboard-summary-cards">
+        <div *ngFor="let card of summaryCards" class="summary-card">
+            <div class="summary-heading">{{ card.label }}</div>
+            <div class="summary-value" [ngStyle]="{'color': card.color}">{{ card.value }}</div>
+            <div class="summary-sub" [ngStyle]="{'color': card.color}">{{ card.sub }}</div>
+        </div>
+    </div>
+
+    <div class="dashboard-table-wrapper">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Relationship Years</th>
+                    <th>Account Type</th>
+                    <th>Source of Wealth</th>
+                    <th>Risk Score</th>
+                    <th>Customer Risk Profile</th>
+                    <th>AUM</th>
+                    <th>Growth</th>
+                    <th>Client Sat</th>
+                    <th>Customer Card</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td class="text-left">{{ client.name }}</td>
+                    <td class="text-center">{{ client.relationshipYears }}</td>
+                    <td class="text-left">{{ client.accountType }}</td>
+                    <td class="text-left">{{ client.sourceOfWealth }}</td>
+                    <td class="text-left">{{ client.riskScore }}</td>
+                    <td class="text-left">{{ client.customerRiskProfile }}</td>
+                    <td class="text-center">{{ client.aum }}</td>
+                    <td class="text-center">{{ client.growth }}</td>
+                    <td class="client-sat-cell text-center" [ngClass]="getClientSatClass(client.clientSat)">
+                        {{ client.clientSat }}
+                    </td>
+                    <td class="text-center"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="grand-total-row">
+                    <td class="grand-label" colspan="6"><b>Grand Total</b></td>
+                    <td class="grand-aum text-center"><b>{{ totalAUM | number:'1.0-0' }}</b></td>
+                    <td colspan="3"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="dashboard-secondary">
+
+        <!-- Prioritized Tasks & Market Intelligence (2-column grid) -->
+        <div class="dashboard-tasks-market">
+            <!-- Prioritized Tasks -->
+            <div class="prioritized-tasks">
+                <div class="section-title">
+                    <span class="section-icon"><svg viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M5.99998 1.66672H11.3333V3.00003H5.99998V1.66672ZM5.99998 6.33337H11.3333V7.66672H5.99998V6.33337ZM0.666603 9.66672H3.99992V13H0.666634L0.666603 9.66672ZM1.6666 10.6667V12H2.99992V10.6667H1.6666ZM5.99995 11H11.3333V12.3334H5.99998L5.99995 11ZM3.9317 0.441467L4.72432 1.05115L2.34832 4.14L0.204041 2.26375L0.86254 1.51119L2.20529 2.68537L3.9317 0.441467ZM3.9317 5.10812L4.72432 5.71784L2.34832 8.80665L0.204041 6.9304L0.86254 6.17784L2.20529 7.35203L3.9317 5.10812Z"
+                                fill="black" />
+                        </svg>
+                    </span>
+                    <span>Prioritized Tasks</span>
+                </div>
+                <div class="tasks-table">
+                    <div class="task-row">
+                        <span class="task-avatar"><svg width="18" height="18" viewBox="0 0 18 18">
+                                <circle cx="9" cy="9" r="8.5" stroke="#F05224" stroke-width="1.5" fill="white" />
+                                <polygon points="7,6 13,9 7,12" fill="#F05224" />
+                            </svg></span>
+                        <span class="task-name">David Lee</span>
+                        <span class="task-type meeting">Meeting</span>
+                        <div class="task-main">
+                            <div class="task-title">Credit Facility Review Meeting</div>
+                            <div class="task-insight">
+                                <span class="ai-insight">AI Insight:</span>
+                                Prepare rate reduction proposal, client shows strong financials
+                            </div>
+                        </div>
+                        <span class="task-due">Due in <span class="due-soon">2 Hours</span></span>
+                    </div>
+                    <div class="task-row">
+                        <span class="task-avatar"><svg width="18" height="18" viewBox="0 0 18 18">
+                                <circle cx="9" cy="9" r="8.5" stroke="#F05224" fill="white" />
+                                <polygon points="7,6 13,9 7,12" fill="#F05224" />
+                            </svg></span>
+                        <span class="task-name">Toshiro Yamamoto</span>
+                        <span class="task-type compliance">Compliance</span>
+                        <div class="task-main">
+                            <div class="task-title">CDD refresh required</div>
+                            <div class="task-insight">
+                                <span class="ai-insight">AI Insight:</span>
+                                Auto populated forms ready for review and submission
+                            </div>
+                        </div>
+                        <span class="task-due">Due in <span class="due-normal">1 Day</span></span>
+                    </div>
+                    <div class="task-row">
+                        <span class="task-avatar"><svg width="18" height="18" viewBox="0 0 18 18">
+                                <circle cx="9" cy="9" r="8.5" stroke="#F05224" stroke-width="1.5" fill="white" />
+                                <polygon points="7,6 13,9 7,12" fill="#F05224" />
+                            </svg></span>
+                        <span class="task-name">Ibrahim Ismail</span>
+                        <span class="task-type opportunity">Opportunity</span>
+                        <div class="task-main">
+                            <div class="task-title">FX Hedging Opportunity</div>
+                            <div class="task-insight">
+                                <span class="ai-insight">AI Insight:</span>
+                                USD/SGD exposure <span class="highlight-blue">$2.3M</span>. Recommend
+                                <a href="#" class="highlight-blue">6 month</a> forward contract
+                            </div>
+                        </div>
+                        <span class="task-due">Due in <span class="due-late">3 Days</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Intelligence -->
+            <div class="market-intel">
+                <div class="section-title">
+                    <span class="section-icon"><svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.5 12.5V13C9.63261 13 9.75979 12.9473 9.85355 12.8536C9.94732 12.7598 10 12.6326 10 12.5H9.5ZM5.5 12.5H5C5 12.6326 5.05268 12.7598 5.14645 12.8536C5.24021 12.9473 5.36739 13 5.5 13V12.5ZM6 15H9V14H6V15ZM3.58 6.4L3.57 6.47L4.56 6.61L4.571 6.54L3.58 6.4ZM7.5 3C6.5468 3.00005 5.6256 3.34392 4.90552 3.96848C4.18544 4.59304 3.7148 5.45638 3.58 6.4L4.571 6.54C4.67206 5.83494 5.02298 5.18997 5.56117 4.72341C6.09936 4.25686 6.78773 4.00001 7.5 4V3ZM11.42 6.4C11.2852 5.45638 10.8146 4.59304 10.0945 3.96848C9.3744 3.34392 8.4532 3.00005 7.5 3V4C8.21227 4.00001 8.90064 4.25686 9.43883 4.72341C9.97703 5.18997 10.3289 5.83494 10.43 6.54L11.42 6.4ZM11.43 6.47L11.42 6.4L10.43 6.54L10.439 6.61L11.43 6.47ZM10.64 9.459C11.27 8.645 11.588 7.585 11.43 6.47L10.44 6.611C10.4973 7.00423 10.4746 7.40499 10.3732 7.78922C10.2718 8.17346 10.0939 8.53325 9.85 8.847L10.64 9.459ZM9 10.9V12.5H10V10.901L9 10.9ZM9.5 12H5.5V13H9.5V12ZM6 12.5V10.901H5V12.5H6ZM3.57 6.47C3.49393 6.99574 3.52468 7.53142 3.66042 8.045C3.79616 8.55858 4.0341 9.0395 4.36 9.459L5.151 8.847C4.90712 8.53325 4.72815 8.17346 4.62677 7.78922C4.52538 7.40499 4.50267 7.00323 4.56 6.61L3.57 6.47ZM6 10.9C6 10.077 5.562 9.377 5.15 8.846L4.36 9.459C4.743 9.954 5 10.426 5 10.9H6ZM9.85 8.846C9.437 9.378 9 10.077 9 10.9H10C10 10.426 10.257 9.954 10.64 9.459L9.85 8.846ZM7 0V2H8V0H7ZM0 8H2V7H0V8ZM13 8H15V7H13V8ZM3.354 3.646L1.854 2.146L1.146 2.854L2.646 4.354L3.354 3.646ZM12.354 4.354L13.854 2.854L13.146 2.146L11.646 3.646L12.354 4.354Z"
+                                fill="black" />
+                        </svg>
+                    </span>
+                    <span>Market Intelligence</span>
+                </div>
+                <div class="intel-card">
+                    <div class="intel-title">Interest rates expected to rise 0.25% next quarter</div>
+                    <div class="intel-desc">Opportunity to discuss rate sensitive products with 5 clients</div>
+                    <button class="intel-btn">Schedule rate review meetings</button>
+                </div>
+                <div class="intel-card">
+                    <div class="intel-title">New MAS Guidelines on digital banking effective next month</div>
+                    <div class="intel-desc">4 clients may need digital onboarding assistance</div>
+                    <button class="intel-btn">Prepare digital adoption workflow</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- Today's Meetings -->
+  <div class="calendar-container">
+  <div class="calendar-header">
+    <span class="calendar-icon">
+      <!-- Calendar SVG here -->
+      <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M4 9H6V11H4V9ZM4 13H6V15H4V13ZM8 9H10V11H8V9ZM8 13H10V15H8V13ZM12 9H14V11H12V9ZM12 13H14V15H12V13Z" fill="black"/><path d="M2 20H16C17.103 20 18 19.103 18 18V4C18 2.897 17.103 2 16 2H14V0H12V2H6V0H4V2H2C0.897 2 0 2.897 0 4V18C0 19.103 0.897 20 2 20ZM16 6L16.001 18H2V6H16Z" fill="black"/></svg>
+    </span>
+    <span class="calendar-title">Today's Meetings</span>
+  </div>
+  <div class="calendar-list">
+    <div class="calendar-row">
+        <div class="calendar-info"><div class="calendar-time">10:00 AM</div>
+      <div class="calendar-details">
+        <div class="calendar-client">ABC Corporation Ltd</div>
+        <div class="calendar-desc">Credit Review • Conference Room A</div>
+      </div></div>
+      <div class="calendar-status complete">Complete • AI brief ready</div>
+    </div>
+    <div class="calendar-row">
+          <div class="calendar-info"><div class="calendar-time">2:30 PM</div>
+      <div class="calendar-details">
+        <div class="calendar-client">JKL Industries</div>
+        <div class="calendar-desc">Relationship Review • Client Office</div>
+      </div></div>
+      
+      <div class="calendar-status in-progress">In Progress • 80% complete</div>
+    </div>
+    <div class="calendar-row">
+        <div class="calendar-info"> <div class="calendar-time">4:00 PM</div>
+      <div class="calendar-details">
+        <div class="calendar-client">MNO Trading</div>
+        <div class="calendar-desc">Product Presentation • Virtual Meeting</div>
+      </div></div>
+      <div class="calendar-status complete">Complete • Personalized deck ready</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>

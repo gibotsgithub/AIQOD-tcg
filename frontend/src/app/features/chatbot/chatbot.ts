@@ -117,7 +117,7 @@ export class Chatbot implements AfterViewInit {
     this.loading = true;
 
     this.http
-      .post<any>('https://product-fs.aiqod.com/tanushree/check-compliance', formData)
+      .post<any>('https://crazyintern.aiqod.com/tanushree/check-compliance', formData)
       .subscribe({
         next: (response) => {
           this.loading = false;
@@ -129,7 +129,7 @@ export class Chatbot implements AfterViewInit {
           // 🔁 Save MAS history to Node backend
           this.http
             .post(
-              'https://product-fs.aiqod.com/tanushree/api/mas-history/save',
+              'https://crazyintern.aiqod.com/tanushree/api/mas-history/save',
               resultWithUser
             )
             .subscribe({

@@ -117,7 +117,7 @@ export class Chatbot implements AfterViewInit {
     this.loading = true;
 
     this.http
-      .post<any>('https://tcg-45s9.onrender.com/check-compliance', formData)
+      .post<any>('http://13.235.223.80:8000/check-compliance', formData)
       .subscribe({
         next: (response) => {
           this.loading = false;
@@ -129,7 +129,7 @@ export class Chatbot implements AfterViewInit {
           // 🔁 Save MAS history to Node backend
           this.http
             .post(
-              'https://tcg-node.onrender.com/api/mas-history/save',
+              'http://13.235.223.80:8000/api/mas-history/save',
               resultWithUser
             )
             .subscribe({

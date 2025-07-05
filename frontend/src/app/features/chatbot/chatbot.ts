@@ -110,8 +110,7 @@ export class Chatbot implements AfterViewInit {
     this.loading = true;
     const start = Date.now();
     this.http
-      .post<any>('https://tcg-45s9.onrender.com/check-compliance', formData)
-      .pipe(timeout(300000))
+      .post<any>('http://13.235.223.80:8000/check-compliance', formData)
       .subscribe({
         next: (response) => {
           this.loading = false;

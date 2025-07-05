@@ -887,7 +887,7 @@ app = FastAPI(title="AI Document Compliance Checker", version="1.0.0")
 #change this once deployed to vercel
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://tcg-five.vercel.app"],  # your frontend
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -913,6 +913,7 @@ if not GEMINI_API_KEY:
 compliance_checker = ComplianceChecker(GEMINI_API_KEY)
 
 @app.post("/upload-document")
+
 async def upload_document(file: UploadFile = File(...)):
     """Upload and store input document"""
     allowed_exts = ['.pdf', '.docx', '.txt']

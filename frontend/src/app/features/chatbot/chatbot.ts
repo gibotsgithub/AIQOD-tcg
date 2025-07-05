@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { SecurityService } from '../../security.service';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-chatbot',
@@ -107,13 +108,14 @@ export class Chatbot implements AfterViewInit {
     formData.append('query', query);
 
     this.loading = true;
-
+    const start = Date.now();
     this.http
       .post<any>('https://tcg-45s9.onrender.com/check-compliance', formData)
+      .pipe(timeout(300000))
       .subscribe({
         next: (response) => {
           this.loading = false;
-
+          console.log('✅ Done in', Date.now() - start, 'ms');
           // Append user_name from localStorage
           const user_name = localStorage.getItem('user_name');
           const resultWithUser = { ...response, user_name };
@@ -156,6 +158,7 @@ export class Chatbot implements AfterViewInit {
         error: (error) => {
           this.loading = false;
           console.error('Error from backend:', error);
+          console.warn('❌ Failed after', Date.now() - start, 'ms');
         },
       });
 

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { SecurityService } from '../../security.service';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-chatbot',
@@ -57,14 +58,6 @@ export class Chatbot implements AfterViewInit {
     }
 
     if (file) {
-      const isPDF = file.type === 'application/pdf';
-      if (!isPDF) {
-        console.warn('Only PDF files are allowed.');
-        alert('❌ Only PDF files are accepted. Please upload a .pdf file.');
-        input.value = '';
-        return;
-      }
-
       this.selectedFileName = file.name;
     }
   }
@@ -91,7 +84,6 @@ export class Chatbot implements AfterViewInit {
   analysisPending = false;
   sendFileMessage(): void {
     console.log(this.selectedFileName);
-
     const inputText = this.myInputRef.nativeElement.value.trim();
 
     if (!this.selectedFileName || !inputText) {
@@ -100,7 +92,6 @@ export class Chatbot implements AfterViewInit {
     }
 
     const query = this.focusQueryMap[inputText] ?? inputText;
-
     this.appendMessage(inputText, false);
 
     const input = this.fileInputRef.nativeElement;
@@ -115,58 +106,22 @@ export class Chatbot implements AfterViewInit {
     formData.append('query', query);
 
     this.loading = true;
+    const start = Date.now();
 
     this.http
-      .post<any>('https://crazyintern.aiqod.com/tanushree/check-compliance', formData)
+      .post<{ job_id: string }>(
+        'http://13.235.223.80:8000/check-compliance',
+        formData
+      )
       .subscribe({
         next: (response) => {
-          this.loading = false;
-
-          // Append user_name from localStorage
-          const user_name = localStorage.getItem('user_name');
-          const resultWithUser = { ...response, user_name };
-
-          // 🔁 Save MAS history to Node backend
-          this.http
-            .post(
-              'https://tcg-node.onrender.com/api/mas-history/save',
-              resultWithUser
-            )
-            .subscribe({
-              next: () => console.log('✅ MAS history saved to DB'),
-              error: (err) =>
-                console.error('❌ Failed to save MAS history:', err),
-            });
-
-          // 🧭 Navigation Logic
-          const currentRoute = this.security.getCurrentRoute();
-          if (currentRoute === '/mas-policy-watch') {
-            this.router.navigate(['/analysis-results'], {
-              state: { resultData: response },
-            });
-          } else {
-            // ✅ Alert instead of prompt, and delay to ensure visibility
-            setTimeout(() => {
-              alert(
-                '✅ Data loaded successfully! Visit MAS Policy Watch to view results.'
-              );
-
-              this.analysisPending = true;
-              const sub = this.security.currentRoute$.subscribe((route) => {
-                if (this.analysisPending && route === '/mas-policy-watch') {
-                  this.router.navigate(['/analysis-results'], {
-                    state: { resultData: response },
-                  });
-                  this.analysisPending = false;
-                  sub.unsubscribe();
-                }
-              });
-            }, 10);
-          }
+          const jobId = response.job_id;
+          console.log('✅ Job submitted, job_id:', jobId);
+          this.pollJobStatus(jobId, start);
         },
         error: (error) => {
           this.loading = false;
-          console.error('Error from backend:', error);
+          console.error('❌ Failed to submit job:', error);
         },
       });
 
@@ -175,6 +130,78 @@ export class Chatbot implements AfterViewInit {
     this.selectedFileName = null;
     this.fileInputRef.nativeElement.value = '';
     this.selectedFocus = null;
+  }
+
+  pollJobStatus(jobId: string, startTime: number): void {
+    const pollInterval = 3000; // 3 seconds
+
+    const poll = () => {
+      this.http
+        .get<any>(`http://13.235.223.80:8000/job-status/${jobId}`)
+        .subscribe({
+          next: (res) => {
+            if (res.status === 'pending') {
+              console.log(`Job ${jobId} still processing...`);
+              setTimeout(poll, pollInterval);
+            } else if (res.status === 'completed') {
+              this.loading = false;
+              console.log('✅ Job completed in', Date.now() - startTime, 'ms');
+
+              const resultWithUser = {
+                ...res.result,
+                user_name: localStorage.getItem('user_name'),
+              };
+
+              // Save to Node backend
+              this.http
+                .post(
+                  'https://tcg-node.onrender.com/api/mas-history/save',
+                  resultWithUser
+                )
+                .subscribe({
+                  next: () => console.log('✅ MAS history saved'),
+                  error: (err) =>
+                    console.error('❌ Failed to save MAS history:', err),
+                });
+
+              // Route logic
+              const currentRoute = this.security.getCurrentRoute();
+              if (currentRoute === '/mas-policy-watch') {
+                this.router.navigate(['/analysis-results'], {
+                  state: { resultData: res.result },
+                });
+              } else {
+                setTimeout(() => {
+                  alert(
+                    '✅ Data loaded successfully! Visit MAS Policy Watch to view results.'
+                  );
+                  this.analysisPending = true;
+                  const sub = this.security.currentRoute$.subscribe((route) => {
+                    if (this.analysisPending && route === '/mas-policy-watch') {
+                      this.router.navigate(['/analysis-results'], {
+                        state: { resultData: res.result },
+                      });
+                      this.analysisPending = false;
+                      sub.unsubscribe();
+                    }
+                  });
+                }, 10);
+              }
+            } else if (res.status === 'failed') {
+              this.loading = false;
+              console.error(`❌ Job failed:`, res.error);
+              alert(`❌ Compliance check failed: ${res.error}`);
+            }
+          },
+          error: (err) => {
+            this.loading = false;
+            console.error('❌ Polling failed:', err);
+            alert('❌ Polling error occurred.');
+          },
+        });
+    };
+
+    poll(); // start polling
   }
 
   private appendMessage(content: string, isFile: boolean): void {
@@ -309,5 +336,3 @@ export class Chatbot implements AfterViewInit {
       </svg>
   `;
 }
-
-

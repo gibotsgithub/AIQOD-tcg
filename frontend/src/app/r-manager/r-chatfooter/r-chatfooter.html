@@ -26,7 +26,12 @@
     </div>
 
     <!-- Text Input -->
-    <input type="text" class="chat-input" placeholder="Ask Anything" />
+    <input
+      type="text"
+      class="chat-input"
+      placeholder="Ask Anything"
+      #inputRef
+    />
 
     <!-- Bottom Actions + Send Button -->
     <div class="footer-actions-row">
@@ -81,7 +86,7 @@
       </div>
 
       <div class="send-button-container">
-        <button class="send-button-icon" (click)="sendQuery()">
+        <button class="send-button-icon" (click)="sendQuery(inputRef.value)">
           <svg
             width="16"
             height="16"

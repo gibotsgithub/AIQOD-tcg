@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RChatfooter } from '../r-chatfooter/r-chatfooter';
 
 @Component({
@@ -9,194 +10,48 @@ import { RChatfooter } from '../r-chatfooter/r-chatfooter';
   templateUrl: './tran-intelligence.html',
   styleUrls: ['./tran-intelligence.css'],
 })
-export class TIntelligence {
-  transactions = [
-    {
-      id: 'TXN1245169622',
-      customer: 'Patrick Lim',
-      account: 'ACC91787',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Urgent ❌',
-      verification: 'Auto-Approved',
-      total: '210,000',
-    },
-    {
-      id: 'TXN1408798870',
-      customer: 'Sophia Chen',
-      account: 'ACC88133',
-      method: 'Wire Transfer',
-      fraudFlag: '✔️',
-      amlFlag: 'Structured Transaction',
-      priority: 'Standard ✔️',
-      verification: 'Human Review Reqd, STR',
-      total: '9,700',
-    },
-    {
-      id: 'TXN2003219230',
-      customer: 'Sophia Chen',
-      account: 'ACC45453',
-      method: 'Wire Transfer',
-      fraudFlag: '✔️',
-      amlFlag: 'Structured Transaction',
-      priority: 'Standard ✔️',
-      verification: 'Human Review Reqd, STR',
-      total: '9,350',
-    },
-    {
-      id: 'TXN1241502084',
-      customer: 'David Lee',
-      account: 'ACC84850',
-      method: 'Wire Transfer',
-      fraudFlag: '❌',
-      amlFlag: 'None',
-      priority: 'Critical ❌',
-      verification: 'Auto-Approved',
-      total: '380,000',
-    },
-    {
-      id: 'TXN2415439100',
-      customer: 'Sophia Chen',
-      account: 'ACC29239',
-      method: 'Wire Transfer',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Human Review Reqd, STR',
-      total: '9,850',
-    },
-    {
-      id: 'TXN2465139688',
-      customer: 'Aditya Mehta',
-      account: 'ACC21498',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '❌',
-      amlFlag: 'None',
-      priority: 'Urgent ❌',
-      verification: 'Auto-Approved',
-      total: '420,000',
-    },
-    {
-      id: 'TXN2569030756',
-      customer: 'Anita Kumar',
-      account: 'ACC59142',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '450,000',
-    },
-    {
-      id: 'TXN2716681379',
-      customer: 'Patrick Lim',
-      account: 'ACC36942',
-      method: 'Automated Clearing House',
-      fraudFlag: '❌',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '450,000',
-    },
-    {
-      id: 'TXN2956523396',
-      customer: 'Anita Kumar',
-      account: 'ACC23084',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '450,000',
-    },
-    {
-      id: 'TXN3954382896',
-      customer: 'Ibrahim Ismail',
-      account: 'ACC38465',
-      method: 'Automated Clearing House',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '380,000',
-    },
-    {
-      id: 'TXN4246461826',
-      customer: 'Aditya Mehta',
-      account: 'ACC39654',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '520,000',
-    },
-    {
-      id: 'TXN4142754237',
-      customer: 'Sophia Chen',
-      account: 'ACC52100',
-      method: 'Automated Clearing House',
-      fraudFlag: '✔️',
-      amlFlag: 'Structured Transaction',
-      priority: 'Standard ✔️',
-      verification: 'Human Review Reqd, STR',
-      total: '9,400',
-    },
-    {
-      id: 'TXN5265272329',
-      customer: 'Grace Tan',
-      account: 'ACC23080',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Urgent ❌',
-      verification: 'Auto-Approved',
-      total: '380,000',
-    },
-    {
-      id: 'TXN3896077707',
-      customer: 'Christine Wong',
-      account: 'ACC18004',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '❌',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '250,000',
-    },
-    {
-      id: 'TXN5897093700',
-      customer: 'Christine Wong',
-      account: 'ACC18004',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '280,000',
-    },
-    {
-      id: 'TXN6154853073',
-      customer: 'Tan Cheng Huat',
-      account: 'ACC37651',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '✔️',
-      amlFlag: 'None',
-      priority: 'Standard ✔️',
-      verification: 'Auto-Approved',
-      total: '210,000',
-    },
-    {
-      id: 'TXN6966473752',
-      customer: 'Toshiro Yamamoto',
-      account: 'ACC90065',
-      method: 'Real-Time Gross Settlement',
-      fraudFlag: '❌',
-      amlFlag: 'None',
-      priority: 'Critical ❌',
-      verification: 'Auto-Approved',
-      total: '250,000',
-    },
-  ];
+export class TIntelligence implements OnInit {
+  transactions: any[] = []; // For display (lightweight)
+  fullTransactions: any[] = []; // For passing around full data
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http
+      .get<any>('https://tcg-node.onrender.com/sample-data/transaction_details')
+      .subscribe({
+        next: (res) => {
+          console.log('✅ Fetched transactions:', res);
+
+          const docs = res.documents || [];
+          this.fullTransactions = docs;
+
+          this.transactions = docs.map((doc: any) => ({
+            id: doc['Transaction ID'] ?? '—',
+            customer: doc['Name'] ?? '—',
+            account: doc['Client Account ID'] ?? '—',
+            method: doc['Payment Method'] ?? '—',
+            fraudFlag: doc['Fraud Flag'] ? '✔️' : '❌',
+            amlFlag: 'None', // Placeholder or logic
+            priority: doc['Amount_SGD'] > 1000000 ? 'Urgent ❌' : 'Normal ✅',
+            verification: doc['Verification_Status'] ?? 'Unknown',
+            total:
+              doc['Amount_SGD']?.toLocaleString('en-SG', {
+                style: 'currency',
+                currency: 'SGD',
+              }) ?? 'SGD 0',
+          }));
+        },
+        error: (err) => {
+          console.error('❌ Failed to fetch transactions:', err);
+        },
+      });
+  }
+
+  // Optional helper to get full doc by ID
+  getFullTransactionById(txnId: string) {
+    return this.fullTransactions.find(
+      (doc) => doc['Transaction ID'] === txnId || doc.id === txnId
+    );
+  }
 }

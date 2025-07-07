@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class MakerCertification {
   progress = 1;
+  txnData: any;
 
   incrementProgress(): void {
     this.progress += 1;
@@ -25,6 +26,17 @@ export class MakerCertification {
   svg: Record<string, SafeHtml>;
 
   constructor(private sanitizer: DomSanitizer, private router: Router) {
+    const nav = this.router.getCurrentNavigation();
+    this.txnData = nav?.extras?.state?.['txnData'];
+
+    if (!this.txnData) {
+      console.warn('❌ No transaction data received.');
+    } else {
+      console.log('✅ Received txnData:', this.txnData);
+    }
+
+    console.log(this.txnData?.['Transaction ID']);
+
     this.svg = {
       arrow: this.sanitize(`<svg
         width="109"

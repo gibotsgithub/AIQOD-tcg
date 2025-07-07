@@ -223,15 +223,23 @@
       <form class="form-body">
         <div class="form-row">
           <label>Transaction Reference Number</label>
-          <input type="text" disabled />
+          <input type="text" [value]="txnData?.['Transaction ID']" disabled />
         </div>
         <div class="form-row">
           <label>Transaction Type</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Transaction_Type']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Transaction Date</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Date']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Value/Settlement Date</label>
@@ -239,23 +247,43 @@
         </div>
         <div class="form-row">
           <label>Amount</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Amount_SGD']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Currency</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Currency']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Client/Account Number</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Client Account ID']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Debit Account Number</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Debit Account ID']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Beneficiary Name</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Benificiary Name']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Beneficiary Account Details</label>
@@ -263,11 +291,19 @@
         </div>
         <div class="form-row">
           <label>Payment Routing</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Payment Routing']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Payment Method</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Payment Method']"
+            style="background-color: #e1effb"
+          />
         </div>
         <button
           type="button"
@@ -297,7 +333,7 @@
       <form class="form-body">
         <div class="form-row">
           <label>Purpose Code</label>
-          <input type="text" disabled />
+          <input type="text" [value]="txnData?.['Purpose Code']" disabled />
         </div>
         <div class="form-row">
           <label style="height: 180px">Business Justification</label>
@@ -305,15 +341,27 @@
         </div>
         <div class="form-row">
           <label>Client Instruction Ref. No.</label>
-          <input type="text" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Client Instruction Ref. No']?.['']"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label>Recurring Transaction Flag</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Recurring Transaction Flag']"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label style="height: 51px">Priority Level</label>
-          <input type="text" style="height: 51px; background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Priority Level']"
+            style="height: 51px; background-color: #e1effb"
+          />
         </div>
         <button
           type="button"
@@ -350,11 +398,19 @@
         </div>
         <div class="form-row">
           <label>Client Instruction Ref. No.</label>
-          <input type="text" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Client Instruction Ref. No']?.['']"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label>Recurring Transaction Flag</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Recurring Transaction Flag']"
+            style="background-color: #e1effb"
+          />
         </div>
         <button
           type="button"
@@ -383,23 +439,45 @@
       <form class="form-body">
         <div class="form-row">
           <label style="height: 50px">Source of Funds Confirmed</label>
-          <input type="text" style="height: 50px" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Source Of Funds Confirmed']"
+            style="height: 50px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">KYC verification date</label>
-          <input type="text" style="height: 50px" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['KYC Verification Date']"
+            style="height: 50px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">Unusual Transaction Indicator</label>
-          <input type="text" style="height: 50px; background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['Unusual Transactio Indicators']"
+            style="height: 50px; background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">PEP Involvement</label>
-          <input type="text" style="height: 50px; background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['PEP Involvement']"
+            style="height: 50px; background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label style="height: 95px">High Risk Country Involvement</label>
-          <input type="text" style="height: 95px; background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="txnData?.['High Risk Country Involvement']"
+            style="height: 95px; background-color: #e1effb"
+          />
         </div>
         <button
           type="button"
@@ -477,19 +555,39 @@
       <form class="form-body">
         <div class="form-row">
           <label style="height: 58px">Maker ID</label>
-          <input type="text" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Maker ID']"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 58px">Maker name</label>
-          <input type="text" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Name']"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">Submission timestamp</label>
-          <input type="text" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Timestamp']"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 58px">Initial Risk Score</label>
-          <input type="text" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="txnData?.['Risk_Score']"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 58px">Required approval level</label>

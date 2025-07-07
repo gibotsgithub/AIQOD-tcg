@@ -15,6 +15,10 @@ export class MakerCertification {
   progress = 1;
   txnData: any;
 
+  goBack() {
+    this.router.navigate(['/transaction-intelligence']);
+  }
+
   incrementProgress(): void {
     this.progress += 1;
   }

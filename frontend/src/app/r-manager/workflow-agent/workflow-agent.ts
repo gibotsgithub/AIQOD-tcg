@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workflow-agent',
@@ -8,6 +9,18 @@ import { Component } from '@angular/core';
   styleUrl: './workflow-agent.css',
 })
 export class WorkflowAgent {
+  constructor(private router: Router) {}
+
+  curr_role = localStorage.getItem('role');
+
+  goBack() {
+    if (this.curr_role === 'checker') {
+      this.router.navigate(['/workflow']);
+    } else {
+      this.router.navigate(['/transaction-intelligence']);
+    }
+  }
+
   tabs = [
     {
       greenBar: 'Maker Agent',

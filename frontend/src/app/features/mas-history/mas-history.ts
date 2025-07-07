@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-mas-history',
   standalone: true,
-  imports: [CommonModule], 
+  imports: [CommonModule],
   templateUrl: './mas-history.html',
   styleUrls: ['./mas-history.css'],
 })
@@ -20,7 +20,9 @@ export class MasHistoryComponent implements OnInit {
     // console.log(userName);
     if (userName) {
       this.http
-        .get<any[]>(`http://localhost:8080/api/mas-history/user/${userName}`)
+        .get<any[]>(
+          `https://tcg-node.onrender.com/api/mas-history/user/${userName}`
+        )
         .subscribe({
           next: (data) => {
             this.transactions = data;
@@ -40,7 +42,9 @@ export class MasHistoryComponent implements OnInit {
     );
   }
   viewDetails(tx: any) {
-      this.router.navigate(['/analysis-results'], { state: { resultData: tx, from : 'mas-history' } });
-     //fromchatbot+data
+    this.router.navigate(['/analysis-results'], {
+      state: { resultData: tx, from: 'mas-history' },
+    });
+    //fromchatbot+data
   }
 }

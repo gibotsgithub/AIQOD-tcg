@@ -110,7 +110,7 @@ export class Chatbot implements AfterViewInit {
 
     this.http
       .post<{ job_id: string }>(
-        'https://13.235.223.80:8000/check-compliance',
+        'https://crazyintern.aiqod.com/tanushree/check-compliance',
         formData
       )
       .subscribe({

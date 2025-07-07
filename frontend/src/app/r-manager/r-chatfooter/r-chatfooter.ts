@@ -30,33 +30,43 @@ export class RChatfooter implements OnDestroy {
   }
 
   sendQuery(message: string) {
-    const regex =
-      /initiate\s+maker\s+checker\s+for\s+['"]?\s*([A-Za-z0-9]+)\s*['"]?/i;
-    const match = message.match(regex);
+    // Try to extract a potential transaction ID (alphanumeric, optional quotes)
+    const idPattern = /['"]?([A-Za-z0-9]{4,})['"]?/g; // minimum 4 chars to reduce false positives
+    const messageUpper = message.toUpperCase();
 
-    if (match) {
-      const txnId = match[1].trim().toUpperCase();
-      console.log('🔍 Extracted TXN ID:', txnId);
+    // Print all transactions for reference
+    this.transactions.forEach((t, i) => {
+      console.log(`${i + 1}:`, t['Transaction ID'], '|| id:', t.id);
+    });
 
-      this.transactions.forEach((t, i) => {
-        console.log(`${i + 1}:`, t['Transaction ID'], '|| id:', t.id);
-      });
+    let foundTxn = null;
+
+    // Try matching every possible alphanumeric token as a potential txn ID
+    let match;
+    while ((match = idPattern.exec(message)) !== null) {
+      const candidateId = match[1].toUpperCase();
+      console.log('🔍 Trying candidate ID:', candidateId);
 
       const txn = this.transactions.find(
         (t) =>
           (t['Transaction ID'] &&
-            t['Transaction ID'].toUpperCase() === txnId) ||
-          (t.id && t.id.toUpperCase() === txnId)
+            t['Transaction ID'].toUpperCase() === candidateId) ||
+          (t.id && t.id.toUpperCase() === candidateId)
       );
 
       if (txn) {
-        console.log('✅ Matched Transaction:', txn);
-        this.router.navigate(['/maker-checker'], { state: { txnData: txn } });
-      } else {
-        console.warn('❌ Transaction ID not found:', txnId);
+        foundTxn = txn;
+        break; // Stop once found
       }
+    }
+
+    if (foundTxn) {
+      console.log('✅ Matched Transaction:', foundTxn);
+      this.router.navigate(['/maker-checker'], {
+        state: { txnData: foundTxn },
+      });
     } else {
-      console.log('📝 Regular message:', message);
+      console.warn('❌ No matching transaction ID found in message:', message);
     }
   }
 }

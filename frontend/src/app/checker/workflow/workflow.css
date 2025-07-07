@@ -49,8 +49,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 70px; /* Increase gap between rows */
-  max-width: 1400px;
+  gap: 80px; /* Increase gap between rows */
+  max-width: 1250px;
   margin: 0;
   position: relative;
 }
@@ -63,7 +63,7 @@
 .workflow-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
-  gap: 30px; /* Space between cards */
+  gap: 80px; 
   width: 100%;
   align-items: start;
   justify-items: center;
@@ -296,7 +296,7 @@ body {
 }
 
 .workflow-row-2{
-    margin-left: 150px;
+    margin-left: 220px;
 }
 
 .workflow-card-pill {
@@ -326,7 +326,10 @@ body {
   pointer-events: none;
   z-index: 1;
 }
-
+.leader-line {
+  z-index: 1000 !important;
+  pointer-events: none; /* ensures arrows don't block card clicks */
+}
 .workflow-list li {
   font-size: 14px; /* Increase from 12px */
   color: #222;

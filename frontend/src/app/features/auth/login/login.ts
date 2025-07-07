@@ -44,11 +44,7 @@ export class Login implements OnInit {
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('user_name', res.user.user_name);
           localStorage.setItem('role', res.user.role);
-          if (res.user.role === 'Manager') {
-            this.router.navigate(['/mas-policy-watch']);
-          } else {
-            this.router.navigate(['/dashboard']);
-          }
+          this.router.navigate(['dashboard']);
         },
         error: (err) => {
           this.errorMessage = err.error?.error || 'Login failed. Try again.';

@@ -1,10 +1,12 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-top-navbar',
-  imports: [NgIf],
+  imports: [NgIf, CommonModule],
   standalone: true,
   templateUrl: './top-navbar.html',
   styleUrl: './top-navbar.css',
@@ -13,7 +15,28 @@ export class TopNavbar {
   @Input() showModelDropdown = true;
   showProfileMenu = false;
   @ViewChild('modelSelect') modelSelect!: ElementRef<HTMLSelectElement>;
-  constructor(private router: Router) {}
+  
+  role: string | null = null;
+  rmList: string[] = [];
+
+  constructor(private router: Router, private http: HttpClient) {}
+
+ngOnInit() {
+  this.role = localStorage.getItem('role');
+  this.http.get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
+    .subscribe({
+      next: (data) => {
+        // Map to just the user_name field
+        this.rmList = data.map(rm => rm.user_name);
+        console.log('RM Names:', this.rmList);
+      },
+      error: (err) => {
+        console.error('Failed to fetch RM list:', err);
+        this.rmList = [];
+      }
+    });
+}
+
 
   // fixed dropdown
   handlePolicyRoute(event: Event): void {

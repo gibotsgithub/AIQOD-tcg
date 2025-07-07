@@ -980,6 +980,7 @@ if not GEMINI_API_KEY:
 compliance_checker = ComplianceChecker(GEMINI_API_KEY)
 
 @app.post("/upload-document")
+
 async def upload_document(file: UploadFile = File(...)):
     """Upload and store input document"""
     allowed_exts = ['.pdf', '.docx', '.txt']

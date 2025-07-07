@@ -40,7 +40,9 @@ class UserController {
     try {
       const { user_name, password } = req.body;
       console.log("Login attempt:", user_name, password);
-      const user = await User.findOne({ user_name });
+      const user = await User.findOne({
+        user_name: { $regex: new RegExp(`^${user_name}$`, "i") },
+      });
       if (!user || user.password !== password) {
         return res.status(401).json({ error: "Invalid credentials" });
       }

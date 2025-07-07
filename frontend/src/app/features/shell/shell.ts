@@ -19,7 +19,12 @@ export class Shell {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         const url = (event as NavigationEnd).urlAfterRedirects;
-        this.showModelDropdown = !url.startsWith('/dashboard');
+        this.showModelDropdown = !(
+          url.startsWith('/mas-policy-watch') ||
+          url.startsWith('/analysis-results') ||
+          url.startsWith('/mas-history') ||
+          url.startsWith('/dashboard')
+        );
       });
   }
 }

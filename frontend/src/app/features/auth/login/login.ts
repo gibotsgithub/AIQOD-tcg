@@ -33,14 +33,20 @@ export class Login implements OnInit {
       password: this.password,
     };
 
+    console.log(loginData);
+
     this.http
       .post<any>('https://tcg-node.onrender.com/api/users/login', loginData)
       .subscribe({
         next: (res) => {
+          console.log('logged in', res.user.role);
+
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('user_name', res.user.user_name);
           localStorage.setItem('role', res.user.role);
-          this.router.navigate(['/mas-policy-watch']);
+          if (res.user.role === 'checker') {
+            this.router.navigate(['workflow']);
+          } else this.router.navigate(['dashboard']);
         },
         error: (err) => {
           this.errorMessage = err.error?.error || 'Login failed. Try again.';

@@ -20,6 +20,8 @@ interface Client {
   styleUrl: './rm-dashboard.css',
 })
 export class RmDashboard {
+  rmName = localStorage.getItem('user_name');
+
   summaryCards = [
     {
       label: 'Total AUM',
@@ -167,6 +169,9 @@ export class RmDashboard {
     return 'client-sat-red';
   }
   get totalAUM(): number {
-  return this.clients.reduce((sum, client) => sum + Number(client.aum.toString().replace(/,/g, '')), 0);
-}
+    return this.clients.reduce(
+      (sum, client) => sum + Number(client.aum.toString().replace(/,/g, '')),
+      0
+    );
+  }
 }

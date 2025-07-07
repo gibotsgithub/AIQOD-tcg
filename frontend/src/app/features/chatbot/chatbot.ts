@@ -110,7 +110,7 @@ export class Chatbot implements AfterViewInit {
 
     this.http
       .post<{ job_id: string }>(
-        'http://13.235.223.80:8000/check-compliance',
+        'https://13.235.223.80:8000/check-compliance',
         formData
       )
       .subscribe({
@@ -137,7 +137,7 @@ export class Chatbot implements AfterViewInit {
 
     const poll = () => {
       this.http
-        .get<any>(`http://13.235.223.80:8000/job-status/${jobId}`)
+        .get<any>(`https://13.235.223.80:8000/job-status/${jobId}`)
         .subscribe({
           next: (res) => {
             if (res.status === 'pending') {

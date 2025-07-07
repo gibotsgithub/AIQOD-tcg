@@ -61,7 +61,7 @@ export const routes: Routes = [
         path: 'workflow-agent',
         component: WorkflowAgent,
         canActivate: [AuthRoleGuard],
-        data: { allowedRoles: ['admin', 'RM'] },
+        data: { allowedRoles: ['admin', 'RM', 'checker'] },
       },
       {
         path: 'transaction-intelligence',
@@ -79,7 +79,7 @@ export const routes: Routes = [
         path: 'workflow',
         component: Workflow,
         canActivate: [AuthRoleGuard],
-        data: { allowedRoles: ['admin', 'RM'] },
+        data: { allowedRoles: ['admin', 'checker'] },
       },
     ],
   },

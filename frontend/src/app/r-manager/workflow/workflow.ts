@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
@@ -6,12 +7,18 @@ declare var LeaderLine: any;
 @Component({
   selector: 'app-workflow',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './workflow.html',
   styleUrl: './workflow.css',
 })
 export class Workflow implements AfterViewInit, OnDestroy {
   private lines: any[] = [];
+  isNotChecker = true;
+
+  ngOnInit() {
+    const role = localStorage.getItem('role');
+    this.isNotChecker = role !== 'checker';
+  }
 
   navHandler() {
     this.router.navigate(['/workflow-agent']);

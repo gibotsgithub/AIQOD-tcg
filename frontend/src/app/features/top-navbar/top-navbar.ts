@@ -12,7 +12,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './top-navbar.html',
   styleUrl: './top-navbar.css',
 })
-export class TopNavbar implements OnInit{
+export class TopNavbar implements OnInit {
   @Input() showModelDropdown = true;
   showProfileMenu = false;
   @ViewChild('modelSelect') modelSelect!: ElementRef<HTMLSelectElement>;
@@ -24,35 +24,34 @@ export class TopNavbar implements OnInit{
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit() {
-  this.role = localStorage.getItem('role');
-  this.http
-    .get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
-    .subscribe({
-      next: (data) => {
-        this.rmList = data;
-        console.log('RM Names:', this.rmList);
-      },
-      error: (err) => {
-        console.error('Failed to fetch RM list:', err);
-        this.rmList = [];
-      },
-    });
+    this.role = localStorage.getItem('role');
+    this.http
+      .get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
+      .subscribe({
+        next: (data) => {
+          this.rmList = data;
+          console.log('RM Names:', this.rmList);
+        },
+        error: (err) => {
+          console.error('Failed to fetch RM list:', err);
+          this.rmList = [];
+        },
+      });
 
-  // Route-based model dropdown logic
-  // this.router.events
-  //   .pipe(filter(event => event instanceof NavigationEnd))
-  //   .subscribe((event: NavigationEnd) => {
-  //     let path = event.urlAfterRedirects || event.url;
-  //     path = path.split('?')[0].replace(/\/$/, '');
-  //     this.showModelDropdown = !(
-  //       path.startsWith('/mas-policy-watch') ||
-  //       path.startsWith('/analysis-results') ||
-  //       path.startsWith('/mas-history') ||
-  //       path.startsWith('/dashboard')
-  //     );
-  //   });
-}
-
+    // Route-based model dropdown logic
+    // this.router.events
+    //   .pipe(filter(event => event instanceof NavigationEnd))
+    //   .subscribe((event: NavigationEnd) => {
+    //     let path = event.urlAfterRedirects || event.url;
+    //     path = path.split('?')[0].replace(/\/$/, '');
+    //     this.showModelDropdown = !(
+    //       path.startsWith('/mas-policy-watch') ||
+    //       path.startsWith('/analysis-results') ||
+    //       path.startsWith('/mas-history') ||
+    //       path.startsWith('/dashboard')
+    //     );
+    //   });
+  }
 
   // fixed dropdown
   handlePolicyRoute(event: Event): void {
@@ -83,7 +82,7 @@ export class TopNavbar implements OnInit{
     const Impersonator = localStorage.getItem('Impersonator');
     localStorage.setItem('user_name', Impersonator || '');
     localStorage.setItem('isImpersonating', 'false');
-    window.location.reload();
+    this.router.navigate(['/dashboard']);
   }
   get isImpersonating(): boolean {
     return localStorage.getItem('isImpersonating') === 'true';

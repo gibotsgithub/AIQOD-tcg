@@ -20,7 +20,7 @@ export class MakerCertification {
   }
 
   navHandler() {
-    this.router.navigate(['/workflow']);
+    this.router.navigate(['/workflow-agent']);
   }
 
   svg: Record<string, SafeHtml>;

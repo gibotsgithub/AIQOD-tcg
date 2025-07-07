@@ -52,6 +52,28 @@
   color: var(--text-dark);
   font-family: var(--font-family);
 }
+.dashboard-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: var(--text-dark);
+  font-family: var(--font-family);
+  margin-bottom: 12px;
+}
+
+.dashboard-heading {
+  margin: 0;
+  font-size: 1.3rem; /* Adjust as needed */
+  font-weight: 600;
+}
+
+.acra-title {
+  margin: 0;
+  font-size: 1.3rem; /* Adjust as needed */
+  font-weight: 600;
+  text-align: right;
+}
 
 .maker-subheader {
   font-family: "Montserrat", sans-serif;

@@ -24,12 +24,27 @@ body {
   padding-bottom: 200px;
 }
 
-.dashboard-heading {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 20px;
+.dashboard-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   color: var(--text-dark);
   font-family: var(--font-family);
+  margin-bottom: 12px;
+}
+
+.dashboard-heading {
+  margin: 0;
+  font-size: 1.3rem; /* Adjust as needed */
+  font-weight: 600;
+}
+
+.acra-title {
+  margin: 0;
+  font-size: 1.3rem; /* Adjust as needed */
+  font-weight: 600;
+  text-align: right;
 }
 
 .dashboard-grid {

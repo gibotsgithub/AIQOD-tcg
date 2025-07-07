@@ -336,5 +336,3 @@ export class Chatbot implements AfterViewInit {
       </svg>
   `;
 }
-
-

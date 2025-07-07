@@ -66,7 +66,7 @@ export class TopNavbar {
   returnToManager() {
     localStorage.setItem('role', 'Manager');
     const Impersonator = localStorage.getItem('Impersonator');
-    localStorage.setItem('user_name', Impersonator||"");
+    localStorage.setItem('user_name', Impersonator || '');
     localStorage.setItem('isImpersonating', 'false');
     window.location.reload();
   }
@@ -75,9 +75,9 @@ export class TopNavbar {
   }
   onRmClick(userName: string) {
     const manager = localStorage.getItem('user_name');
-    localStorage.setItem('Impersonator', manager||"");
+    localStorage.setItem('Impersonator', manager || '');
     console.log('Clicked RM:', userName);
-    localStorage.setItem('user', userName);
+    localStorage.setItem('user_name', userName);
     localStorage.setItem('role', 'RM');
     localStorage.setItem('isImpersonating', 'true');
     window.location.reload();

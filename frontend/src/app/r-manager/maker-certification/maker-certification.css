@@ -15,6 +15,7 @@
     rgba(86, 86, 86, 0.1) 100%
   );
   color: var(--text-dark);
+  padding-bottom: 200px;
 }
 
 .back-btn {

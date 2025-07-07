@@ -223,7 +223,7 @@
       <form class="form-body">
         <div class="form-row">
           <label>Transaction Reference Number</label>
-          <input type="text" />
+          <input type="text" disabled />
         </div>
         <div class="form-row">
           <label>Transaction Type</label>
@@ -297,7 +297,7 @@
       <form class="form-body">
         <div class="form-row">
           <label>Purpose Code</label>
-          <input type="text" />
+          <input type="text" disabled />
         </div>
         <div class="form-row">
           <label style="height: 180px">Business Justification</label>
@@ -305,7 +305,7 @@
         </div>
         <div class="form-row">
           <label>Client Instruction Ref. No.</label>
-          <input type="text" />
+          <input type="text" disabled />
         </div>
         <div class="form-row">
           <label>Recurring Transaction Flag</label>
@@ -342,7 +342,7 @@
       <form class="form-body">
         <div class="form-row">
           <label>Client Instruction</label>
-          <input type="text" />
+          <input type="text" disabled />
         </div>
         <div class="form-row">
           <label style="height: 235px">Business Justification</label>
@@ -350,7 +350,7 @@
         </div>
         <div class="form-row">
           <label>Client Instruction Ref. No.</label>
-          <input type="text" />
+          <input type="text" disabled />
         </div>
         <div class="form-row">
           <label>Recurring Transaction Flag</label>
@@ -383,11 +383,11 @@
       <form class="form-body">
         <div class="form-row">
           <label style="height: 50px">Source of Funds Confirmed</label>
-          <input type="text" style="height: 50px" />
+          <input type="text" style="height: 50px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 50px">KYC verification date</label>
-          <input type="text" style="height: 50px" />
+          <input type="text" style="height: 50px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 50px">Unusual Transaction Indicator</label>
@@ -430,17 +430,17 @@
           <label style="height: 63px"
             >Declaration confirming review of transaction details</label
           >
-          <input type="text" style="height: 63px" />
+          <input type="text" style="height: 63px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 59px"
             >Declaration confirming adherence to bank policies</label
           >
-          <input type="text" style="height: 59px" />
+          <input type="text" style="height: 59px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 50px">Digital Signature</label>
-          <input type="text" style="height: 50px" />
+          <input type="text" style="height: 50px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 50px">Notes for checker</label>
@@ -477,28 +477,28 @@
       <form class="form-body">
         <div class="form-row">
           <label style="height: 58px">Maker ID</label>
-          <input type="text" style="height: 58px" />
+          <input type="text" style="height: 58px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 58px">Maker name</label>
-          <input type="text" style="height: 58px" />
+          <input type="text" style="height: 58px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 50px">Submission timestamp</label>
-          <input type="text" style="height: 58px" />
+          <input type="text" style="height: 58px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 58px">Initial Risk Score</label>
-          <input type="text" style="height: 58px" />
+          <input type="text" style="height: 58px" disabled />
         </div>
         <div class="form-row">
           <label style="height: 58px">Required approval level</label>
-          <input type="text" style="height: 58px" />
+          <input type="text" style="height: 58px" disabled />
         </div>
         <button
           type="button"
           class="submit-btn"
-          (click)="incrementProgress()"
+          (click)="navHandler()"
           [disabled]="progress > 6"
           [ngStyle]="{ 'background-color': progress > 6 ? '#BEBEBE' : '' }"
         >
@@ -508,3 +508,5 @@
     </div>
   </div>
 </div>
+
+<app-r-chatfooter></app-r-chatfooter>

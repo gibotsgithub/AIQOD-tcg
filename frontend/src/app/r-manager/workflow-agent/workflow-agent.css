@@ -19,6 +19,29 @@
   margin-bottom: 24px;
 }
 
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  color: #353535;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+  margin-bottom: 30px;
+}
+
+.back-btn svg {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
 .workflow-title {
   font-size: 1.5rem;
   font-weight: 600;

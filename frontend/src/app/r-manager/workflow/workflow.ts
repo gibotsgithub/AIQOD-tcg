@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 declare var LeaderLine: any;
 
@@ -12,6 +12,12 @@ declare var LeaderLine: any;
 })
 export class Workflow implements AfterViewInit, OnDestroy {
   private lines: any[] = [];
+
+  navHandler() {
+    this.router.navigate(['/workflow-agent']);
+  }
+
+  constructor(private router: Router) {}
 
   ngAfterViewInit() {
     this.lines.push(
@@ -106,7 +112,7 @@ export class Workflow implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.lines.forEach(line => line.remove());
+    this.lines.forEach((line) => line.remove());
     this.lines = [];
   }
 }

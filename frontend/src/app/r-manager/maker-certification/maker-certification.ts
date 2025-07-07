@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Chatbot } from '../../features/chatbot/chatbot';
+import { RChatfooter } from '../r-chatfooter/r-chatfooter';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-maker-certification',
-  imports: [CommonModule],
+  imports: [CommonModule, RChatfooter],
   templateUrl: './maker-certification.html',
   styleUrl: './maker-certification.css',
 })
@@ -15,9 +18,13 @@ export class MakerCertification {
     this.progress += 1;
   }
 
+  navHandler() {
+    this.router.navigate(['/workflow']);
+  }
+
   svg: Record<string, SafeHtml>;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private router: Router) {
     this.svg = {
       arrow: this.sanitize(`<svg
         width="109"

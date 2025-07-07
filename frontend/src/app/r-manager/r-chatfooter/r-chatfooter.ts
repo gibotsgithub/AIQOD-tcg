@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-r-chatfooter',
@@ -13,7 +14,7 @@ export class RChatfooter implements OnDestroy {
   showChatbot = false;
   private intervalId: any;
 
-  constructor() {
+  constructor(private router: Router) {
     this.intervalId = setInterval(() => {
       const savedValue = localStorage.getItem('showChatbot');
       this.showChatbot = savedValue === 'true';
@@ -24,5 +25,9 @@ export class RChatfooter implements OnDestroy {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
+  }
+
+  sendQuery() {
+    this.router.navigate(['/maker-checker']);
   }
 }

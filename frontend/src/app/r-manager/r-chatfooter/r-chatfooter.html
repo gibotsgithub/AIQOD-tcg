@@ -26,7 +26,7 @@
     </div>
 
     <!-- Text Input -->
-    <input type="text" class="chat-input" placeholder="Ask Anything" disabled />
+    <input type="text" class="chat-input" placeholder="Ask Anything" />
 
     <!-- Bottom Actions + Send Button -->
     <div class="footer-actions-row">
@@ -81,7 +81,7 @@
       </div>
 
       <div class="send-button-container">
-        <button class="send-button-icon" disabled>
+        <button class="send-button-icon" (click)="sendQuery()">
           <svg
             width="16"
             height="16"

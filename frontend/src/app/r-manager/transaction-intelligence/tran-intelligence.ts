@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RChatfooter } from '../r-chatfooter/r-chatfooter';
 
 @Component({
   selector: 'app-tran-intelligence',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RChatfooter],
   templateUrl: './tran-intelligence.html',
   styleUrls: ['./tran-intelligence.css'],
 })

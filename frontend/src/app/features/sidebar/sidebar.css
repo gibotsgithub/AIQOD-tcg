@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 999;
-  font-family: var(--font-family, 'Inter', sans-serif);
+  font-family: var(--font-family, "Inter", sans-serif);
   transition: width 0.2s;
 }
 
@@ -18,11 +18,10 @@
   padding-top: 32px;
   list-style: none;
   margin: 0;
- 
 }
 
 .sidebar li {
-  display: flex; ;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -32,7 +31,20 @@
   transition: color 0.2s;
   box-sizing: border-box;
   position: relative;
+}
 
+.sidebar li.sidebar-item:hover svg .p1,
+.sidebar li.sidebar-item.active svg .p1 {
+  fill: #0e2342;
+  stroke: #039884 !important;
+  stroke-width: 2.5px;
+}
+
+.sidebar li.sidebar-item:hover svg .p2,
+.sidebar li.sidebar-item.active svg .p2 {
+  fill: #0e2342;
+  stroke: #0e2342 !important;
+  stroke-width: 2.5px;
 }
 
 .sidebar li.active,
@@ -57,10 +69,9 @@
 
 .sidebar li.active svg path,
 .sidebar li:hover svg path {
-  stroke: #03BCA3;
-  fill: #03BCA3; /* If your SVG uses fill */
+  stroke: #03bca3;
+  fill: #03bca3; /* If your SVG uses fill */
 }
-
 
 .sidebar li svg,
 .sidebar li i {

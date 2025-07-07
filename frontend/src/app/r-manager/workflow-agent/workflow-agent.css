@@ -1,0 +1,245 @@
+.workflow-agent {
+  background: var(--content-light);
+  min-height: calc(100vh - 72px);
+  margin-top: 0; /* Removed to prevent gap */
+  margin-left: 70px;
+  width: calc(100% - 70px);
+  padding: 32px 32px;
+  position: relative;
+  font-family: var(--font-family);
+  background: linear-gradient(
+    180deg,
+    rgba(86, 86, 86, 0.1) 0%,
+    rgba(86, 86, 86, 0.1) 100%
+  );
+  color: var(--text-dark);
+}
+
+.workflow-header {
+  margin-bottom: 24px;
+}
+
+.workflow-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-family: var(--font-family);
+}
+
+.workflow-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.workflow-tab {
+  width: 259px;
+  height: 520px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.svg-wrap {
+  width: 69px;
+  height: 70px;
+  margin-bottom: 12px;
+}
+
+.green-bar {
+  background-color: #03bca3;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+  height: 118px;
+  line-height: 118px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.tab-content {
+  padding: 10px;
+  flex: 1;
+  width: 100%;
+  font-size: 12.75px;
+  font-weight: 600;
+  color: #666;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.workflow-footer {
+  width: 100%;
+  background-color: #f5f9ff; /* Light background like in image */
+  border-radius: 10px;
+  padding: 24px;
+  box-sizing: border-box;
+  margin-top: 24px; /* spacing above */
+  min-height: 264px;
+}
+
+.footer-text {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3rem;
+  letter-spacing: -1.5%;
+  text-align: center;
+  vertical-align: middle;
+  color: #03bca3;
+}
+
+.footer-graphs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4%;
+  padding: 0 32px;
+}
+
+/* Each donut + label + optional divider wrapper */
+.graph-wrapper {
+  display: flex;
+  align-items: center;
+  width: 25%; /* 4 items = 25% each */
+  box-sizing: border-box;
+  justify-content: center;
+  position: relative;
+}
+
+/* Each donut + label pair */
+.graph-pair {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Label to the left of donut */
+.graph-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  width: 120px;
+  text-align: right;
+  margin-right: 12px;
+}
+
+/* Donut container */
+.donut-container {
+  width: 157px;
+  height: 157px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Outer ring with conic progress */
+.donut-ring {
+  width: 157px;
+  height: 157px;
+  border-radius: 50%;
+  background: conic-gradient(#03bca3 0deg, #e6e6e6 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Middle ring to simulate gap */
+.middle-ring {
+  width: 122px;
+  height: 122px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inner donut circle */
+.donut-inner {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  background-color: #081d3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-inner span {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Vertical line between donuts */
+.vertical-divider {
+  position: absolute;
+  right: -16px; /* Pull it closer to center */
+  top: 20px;
+  height: 120px;
+  width: 1px;
+  background-color: #b3b3b3;
+}
+
+@media (max-width: 1024px) {
+  /* Stack the agent cards vertically */
+  .workflow-agent {
+    margin-left: 0;
+    width: 100%;
+    padding: 24px 16px; /* Add slight padding for mobile spacing */
+  }
+
+  .workflow-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .workflow-tab {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    margin-bottom: 24px;
+  }
+
+  .footer-text {
+    margin-bottom: 24px;
+  }
+
+  /* Stack the donut sections vertically */
+  .footer-graphs {
+    flex-direction: column;
+    gap: 32px;
+    padding: 0;
+  }
+
+  .graph-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .graph-pair {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .graph-label {
+    text-align: center;
+    margin: 0 0 12px 0;
+    width: auto;
+  }
+
+  .vertical-divider {
+    display: none;
+  }
+}

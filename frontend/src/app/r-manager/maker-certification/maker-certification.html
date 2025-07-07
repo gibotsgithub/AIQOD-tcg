@@ -1,0 +1,510 @@
+<div class="main-container">
+  <button class="back-btn">
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <mask
+        id="mask0_0_1638"
+        style="mask-type: alpha"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="32"
+        height="32"
+      >
+        <rect width="32" height="32" fill="#D9D9D9" />
+      </mask>
+      <g mask="url(#mask0_0_1638)">
+        <path
+          d="M15.9993 21.3315L17.866 19.4648L15.7327 17.3315H21.3327V14.6648H15.7327L17.866 12.5315L15.9993 10.6648L10.666 15.9981L15.9993 21.3315ZM15.9993 29.3315C14.1549 29.3315 12.4216 28.9815 10.7993 28.2815C9.17713 27.5815 7.76602 26.6315 6.56602 25.4315C5.36602 24.2315 4.41602 22.8204 3.71602 21.1981C3.01602 19.5759 2.66602 17.8426 2.66602 15.9981C2.66602 14.1537 3.01602 12.4204 3.71602 10.7981C4.41602 9.17591 5.36602 7.76479 6.56602 6.56479C7.76602 5.36479 9.17713 4.41479 10.7993 3.71479C12.4216 3.01479 14.1549 2.66479 15.9993 2.66479C17.8438 2.66479 19.5771 3.01479 21.1993 3.71479C22.8216 4.41479 24.2327 5.36479 25.4327 6.56479C26.6327 7.76479 27.5827 9.17591 28.2827 10.7981C28.9827 12.4204 29.3327 14.1537 29.3327 15.9981C29.3327 17.8426 28.9827 19.5759 28.2827 21.1981C27.5827 22.8204 26.6327 24.2315 25.4327 25.4315C24.2327 26.6315 22.8216 27.5815 21.1993 28.2815C19.5771 28.9815 17.8438 29.3315 15.9993 29.3315ZM15.9993 26.6648C18.9771 26.6648 21.4993 25.6315 23.566 23.5648C25.6327 21.4981 26.666 18.9759 26.666 15.9981C26.666 13.0203 25.6327 10.4981 23.566 8.43146C21.4993 6.36479 18.9771 5.33146 15.9993 5.33146C13.0216 5.33146 10.4993 6.36479 8.43268 8.43146C6.36602 10.4981 5.33268 13.0203 5.33268 15.9981C5.33268 18.9759 6.36602 21.4981 8.43268 23.5648C10.4993 25.6315 13.0216 26.6648 15.9993 26.6648Z"
+          fill="#333333"
+        />
+      </g>
+    </svg>
+    Go Back
+  </button>
+  <div class="maker-header">
+    <h2 class="maker-title">Maker Certification</h2>
+    <div class="maker-subheader">Complete all required fields below</div>
+  </div>
+
+  <div class="img-progress-tracker">
+    <!-- 1. Maker Agent (active) -->
+    <div class="img-group">
+      <div class="svg-container">
+        <div
+          [innerHTML]="progress===1 ? svg['makerActive'] : svg['makerInactive']"
+        ></div>
+      </div>
+      <div class="img-text">Maker Agent</div>
+    </div>
+
+    <div class="arrow">
+      <div [innerHTML]="svg['arrow']"></div>
+    </div>
+
+    <!-- 2. Maker Agent -->
+    <div class="img-group">
+      <div class="svg-container">
+        <div
+          [innerHTML]="progress===2? svg['makerActive'] : svg['makerInactive']"
+        ></div>
+      </div>
+      <div class="img-text">Maker Agent</div>
+    </div>
+
+    <div class="double-arrow">
+      <div [innerHTML]="svg['arrowUp']" class="arrow up"></div>
+
+      <div [innerHTML]="svg['arrowDown']" class="arrow down"></div>
+    </div>
+
+    <!-- 3. Parallel: Doc Validation + Pre Check -->
+    <div class="parallel-group">
+      <div class="img-group">
+        <div class="svg-container">
+          <div
+            [innerHTML]="progress===3? svg['makerActive'] : svg['makerInactive']"
+          ></div>
+          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
+          <div [innerHTML]="svg['docValidation']" class="small-circle"></div>
+        </div>
+        <div class="img-text">Document Validation Agent</div>
+      </div>
+      <div class="img-group">
+        <div class="svg-container">
+          <div
+            [innerHTML]="progress===3? svg['makerActive'] : svg['makerInactive']"
+          ></div>
+          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
+          <div [innerHTML]="svg['preCheck']" class="small-circle"></div>
+        </div>
+        <div class="img-text">Pre Check Intelligence Agent</div>
+      </div>
+    </div>
+
+    <div class="double-arrow">
+      <div [innerHTML]="svg['arrowUp']" class="arrow up"></div>
+
+      <div [innerHTML]="svg['arrowDown']" class="arrow down"></div>
+    </div>
+
+    <!-- 4. Parallel: Compliance + Context Verification -->
+    <div class="parallel-group">
+      <div class="img-group">
+        <div class="svg-container">
+          <div
+            [innerHTML]="progress===4? svg['makerActive'] : svg['makerInactive']"
+          ></div>
+          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
+          <div [innerHTML]="svg['compliance']" class="small-circle"></div>
+        </div>
+        <div class="img-text">Compliance Agent</div>
+      </div>
+      <div class="img-group">
+        <div class="svg-container">
+          <div
+            [innerHTML]="progress===4? svg['makerActive'] : svg['makerInactive']"
+          ></div>
+          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
+          <div [innerHTML]="svg['contextAware']" class="small-circle"></div>
+        </div>
+        <div class="img-text">Context Aware Verification Agent</div>
+      </div>
+    </div>
+
+    <div class="double-arrow">
+      <div
+        [innerHTML]="svg['arrowUp']"
+        class="arrow up"
+        style="transform: translateY(-60%)"
+      ></div>
+
+      <div
+        [innerHTML]="svg['arrowDown']"
+        class="arrow down"
+        style="transform: translateY(10%)"
+      ></div>
+    </div>
+
+    <!-- 5. Maker Agent -->
+    <div class="img-group">
+      <div class="svg-container">
+        <div
+          [innerHTML]="progress===5? svg['makerActive'] : svg['makerInactive']"
+        ></div>
+      </div>
+      <div class="img-text">Maker Agent</div>
+    </div>
+
+    <div class="arrow">
+      <svg
+        width="34"
+        height="12"
+        viewBox="0 0 34 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="margin-bottom: 75%"
+      >
+        <path
+          d="M34 6L24 0.226497V11.7735L34 6ZM0 6L0 7H25V6V5H0L0 6Z"
+          fill="#BEBEBE"
+        />
+      </svg>
+    </div>
+
+    <!-- 6. Checker Agent -->
+    <div
+      class="img-group"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 120px;
+        justify-content: center;
+        height: 100%;
+      "
+    >
+      <div style="margin-bottom: 25%">Checker Agent</div>
+    </div>
+  </div>
+
+  <div class="tracker-container">
+    <div class="tracker-column">
+      <div
+        [innerHTML]="progress===2?svg['markedCheckbox']:svg['checkboxes']"
+      ></div>
+
+      <span class="label">Transaction Information</span>
+    </div>
+    <div class="tracker-column">
+      <div
+        [innerHTML]="progress===3?svg['markedCheckbox']:svg['checkboxes']"
+      ></div>
+      <span class="label">Transaction Classification</span>
+    </div>
+    <div class="tracker-column">
+      <div
+        [innerHTML]="progress===4?svg['markedCheckbox']:svg['checkboxes']"
+      ></div>
+      <span class="label">Supporting Documentation</span>
+    </div>
+    <div class="tracker-column">
+      <div
+        [innerHTML]="progress===5?svg['markedCheckbox']:svg['checkboxes']"
+      ></div>
+      <span class="label">Compliance Information</span>
+    </div>
+    <div class="tracker-column">
+      <div
+        [innerHTML]="progress>=6?svg['markedCheckbox']:svg['checkboxes']"
+      ></div>
+      <span class="label">Maker Certification</span>
+    </div>
+  </div>
+  <div class="form-section">
+    <div *ngIf="progress >= 1" class="form-container">
+      <!-- Top section -->
+      <div class="form-header">
+        <div class="form-header-left">
+          <div class="header-text">AI Agent Prefilled Form</div>
+          <div class="sub-text">Transaction Information</div>
+        </div>
+        <div class="form-header-right">
+          <div [innerHTML]="svg['tcgLogo']"></div>
+        </div>
+      </div>
+
+      <!-- Form section -->
+      <form class="form-body">
+        <div class="form-row">
+          <label>Transaction Reference Number</label>
+          <input type="text" />
+        </div>
+        <div class="form-row">
+          <label>Transaction Type</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Transaction Date</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Value/Settlement Date</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Amount</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Currency</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Client/Account Number</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Debit Account Number</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Beneficiary Name</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Beneficiary Account Details</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Payment Routing</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Payment Method</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <button
+          type="button"
+          class="submit-btn"
+          (click)="incrementProgress()"
+          [disabled]="progress > 1"
+          [ngStyle]="{ 'background-color': progress > 1 ? '#BEBEBE' : '' }"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+
+    <div *ngIf="progress >= 2" class="form-container">
+      <!-- Top section -->
+      <div class="form-header">
+        <div class="form-header-left">
+          <div class="header-text">‎</div>
+          <div class="sub-text">Transaction Classification</div>
+        </div>
+        <div class="form-header-right">
+          <div [innerHTML]="svg['tcgLogo']"></div>
+        </div>
+      </div>
+
+      <!-- Form section -->
+      <form class="form-body">
+        <div class="form-row">
+          <label>Purpose Code</label>
+          <input type="text" />
+        </div>
+        <div class="form-row">
+          <label style="height: 180px">Business Justification</label>
+          <input type="text" style="height: 180px; background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Client Instruction Ref. No.</label>
+          <input type="text" />
+        </div>
+        <div class="form-row">
+          <label>Recurring Transaction Flag</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label style="height: 51px">Priority Level</label>
+          <input type="text" style="height: 51px; background-color: #e1effb" />
+        </div>
+        <button
+          type="button"
+          class="submit-btn"
+          (click)="incrementProgress()"
+          [disabled]="progress > 2"
+          [ngStyle]="{ 'background-color': progress > 2 ? '#BEBEBE' : '' }"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+    <div *ngIf="progress >= 3" class="form-container">
+      <!-- Top section -->
+      <div class="form-header">
+        <div class="form-header-left">
+          <div class="header-text">‎</div>
+          <div class="sub-text">Supporting Documentation</div>
+        </div>
+        <div class="form-header-right">
+          <div [innerHTML]="svg['tcgLogo']"></div>
+        </div>
+      </div>
+
+      <!-- Form section -->
+      <form class="form-body">
+        <div class="form-row">
+          <label>Client Instruction</label>
+          <input type="text" />
+        </div>
+        <div class="form-row">
+          <label style="height: 235px">Business Justification</label>
+          <input type="text" style="height: 235px; background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label>Client Instruction Ref. No.</label>
+          <input type="text" />
+        </div>
+        <div class="form-row">
+          <label>Recurring Transaction Flag</label>
+          <input type="text" style="background-color: #e1effb" />
+        </div>
+        <button
+          type="button"
+          class="submit-btn"
+          (click)="incrementProgress()"
+          [disabled]="progress > 3"
+          [ngStyle]="{ 'background-color': progress > 3 ? '#BEBEBE' : '' }"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+    <div *ngIf="progress >= 4" class="form-container">
+      <!-- Top section -->
+      <div class="form-header">
+        <div class="form-header-left">
+          <div class="header-text">‎</div>
+          <div class="sub-text">Compliance Information</div>
+        </div>
+        <div class="form-header-right">
+          <div [innerHTML]="svg['tcgLogo']"></div>
+        </div>
+      </div>
+
+      <!-- Form section -->
+      <form class="form-body">
+        <div class="form-row">
+          <label style="height: 50px">Source of Funds Confirmed</label>
+          <input type="text" style="height: 50px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 50px">KYC verification date</label>
+          <input type="text" style="height: 50px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 50px">Unusual Transaction Indicator</label>
+          <input type="text" style="height: 50px; background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label style="height: 50px">PEP Involvement</label>
+          <input type="text" style="height: 50px; background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label style="height: 95px">High Risk Country Involvement</label>
+          <input type="text" style="height: 95px; background-color: #e1effb" />
+        </div>
+        <button
+          type="button"
+          class="submit-btn"
+          (click)="incrementProgress()"
+          [disabled]="progress > 4"
+          [ngStyle]="{ 'background-color': progress > 4 ? '#BEBEBE' : '' }"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+    <div *ngIf="progress >= 5" class="form-container">
+      <!-- Top section -->
+      <div class="form-header">
+        <div class="form-header-left">
+          <div class="header-text">‎</div>
+          <div class="sub-text">Maker Certification</div>
+        </div>
+        <div class="form-header-right">
+          <div [innerHTML]="svg['tcgLogo']"></div>
+        </div>
+      </div>
+
+      <!-- Form section -->
+      <form class="form-body">
+        <div class="form-row">
+          <label style="height: 63px"
+            >Declaration confirming review of transaction details</label
+          >
+          <input type="text" style="height: 63px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 59px"
+            >Declaration confirming adherence to bank policies</label
+          >
+          <input type="text" style="height: 59px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 50px">Digital Signature</label>
+          <input type="text" style="height: 50px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 50px">Notes for checker</label>
+          <input type="text" style="height: 50px; background-color: #e1effb" />
+        </div>
+        <div class="form-row">
+          <label style="height: 71px">Four-Eyes Confirmation Requirement</label>
+          <input type="text" style="height: 71px; background-color: #e1effb" />
+        </div>
+        <button
+          type="button"
+          class="submit-btn"
+          (click)="incrementProgress()"
+          [disabled]="progress > 5"
+          [ngStyle]="{ 'background-color': progress > 5 ? '#BEBEBE' : '' }"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+    <div *ngIf="progress >= 6" class="form-container">
+      <!-- Top section -->
+      <div class="form-header">
+        <div class="form-header-left">
+          <div class="header-text">‎</div>
+          <div class="sub-text">System Fields</div>
+        </div>
+        <div class="form-header-right">
+          <div [innerHTML]="svg['tcgLogo']"></div>
+        </div>
+      </div>
+
+      <!-- Form section -->
+      <form class="form-body">
+        <div class="form-row">
+          <label style="height: 58px">Maker ID</label>
+          <input type="text" style="height: 58px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 58px">Maker name</label>
+          <input type="text" style="height: 58px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 50px">Submission timestamp</label>
+          <input type="text" style="height: 58px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 58px">Initial Risk Score</label>
+          <input type="text" style="height: 58px" />
+        </div>
+        <div class="form-row">
+          <label style="height: 58px">Required approval level</label>
+          <input type="text" style="height: 58px" />
+        </div>
+        <button
+          type="button"
+          class="submit-btn"
+          (click)="incrementProgress()"
+          [disabled]="progress > 6"
+          [ngStyle]="{ 'background-color': progress > 6 ? '#BEBEBE' : '' }"
+        >
+          Submit Form
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

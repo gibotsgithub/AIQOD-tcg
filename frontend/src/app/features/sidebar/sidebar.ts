@@ -5,8 +5,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-sidebar',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css'
+  styleUrl: './sidebar.css',
 })
 export class Sidebar {
+  showChatbot = false;
 
+  openChatbot() {
+    this.showChatbot = true;
+    localStorage.setItem('showChatbot', 'true');
+  }
 }

@@ -6,9 +6,11 @@ import { AnalysisResultsComponent } from './analysis-results/analysis-results';
 import { Dashboard } from './dashboard/dashboard';
 import { MasHistoryComponent } from './features/mas-history/mas-history';
 import { DashboardNavigator } from './dashboard-navigator/dashboard-navigator';
-import { Workflow } from './checker/workflow/workflow';
+import { WorkflowAgent } from './r-manager/workflow-agent/workflow-agent';
+import { TIntelligence } from './r-manager/transaction-intelligence/tran-intelligence';
+import { MakerCertification } from './r-manager/maker-certification/maker-certification';
+import { AuthRoleGuard } from '../auth-role.guard';
 
-// Add 'export' before const routes
 export const routes: Routes = [
   {
     path: '',
@@ -22,14 +24,56 @@ export const routes: Routes = [
   {
     path: '',
     component: Shell,
+    canActivate: [AuthRoleGuard], // only allow access inside Shell if logged in
     children: [
-      { path: 'mas-policy-watch', component: MasPolicyWatch },
-      { path: 'analysis-results/:id', component: AnalysisResultsComponent },
-      { path: 'analysis-results', component: AnalysisResultsComponent },
-      { path: 'dashboard', component: DashboardNavigator },
-      { path: 'mas-history', component: MasHistoryComponent },
-      { path: 'workflow', component: Workflow }
-      // add other protected routes here
+      {
+        path: 'mas-policy-watch',
+        component: MasPolicyWatch,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager'] },
+      },
+      {
+        path: 'analysis-results/:id',
+        component: AnalysisResultsComponent,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager'] },
+      },
+      {
+        path: 'analysis-results',
+        component: AnalysisResultsComponent,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager'] },
+      },
+      {
+        path: 'dashboard',
+        component: DashboardNavigator,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager', 'RM'] },
+      },
+      {
+        path: 'mas-history',
+        component: MasHistoryComponent,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager'] },
+      },
+      {
+        path: 'workflow-agent',
+        component: WorkflowAgent,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager', 'RM'] },
+      },
+      {
+        path: 'transaction-intelligence',
+        component: TIntelligence,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager', 'RM'] },
+      },
+      {
+        path: 'maker-checker',
+        component: MakerCertification,
+        canActivate: [AuthRoleGuard],
+        data: { allowedRoles: ['admin', 'Manager', 'RM'] },
+      },
     ],
   },
 ];

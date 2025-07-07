@@ -137,7 +137,7 @@ export class Chatbot implements AfterViewInit {
 
     const poll = () => {
       this.http
-        .get<any>(`https://13.235.223.80:8000/job-status/${jobId}`)
+        .get<any>(`https://crazyintern.aiqod.com/tanushree/job-status/${jobId}`)
         .subscribe({
           next: (res) => {
             if (res.status === 'pending') {

@@ -92,12 +92,13 @@
         <div class="logout-dropdown" *ngIf="showProfileMenu">
           <ng-container *ngIf="role?.toLowerCase() === 'manager' && rmList.length">
             <ul class="rm-list">
-              <li *ngFor="let rm of rmList" class="rm-list-item">
-                <span class="rm-avatar">{{ rm[0] }}</span>
-                <span class="rm-name">{{ rm }}</span>
+              <li *ngFor="let rm of rmList" class="rm-list-item" >
+                <span class="rm-avatar">{{ rm.user_name[0] }}</span>
+                <span (click)="onRmClick(rm.user_name)"class="rm-name">{{ rm.user_name }}</span>
               </li>
             </ul>
           </ng-container>
+          <button *ngIf="isImpersonating" (click)="returnToManager()" class="returnToManager">Return to Manager</button>
           <button (click)="logout()" class="logout-btn">Logout</button>
         </div>
       </div>

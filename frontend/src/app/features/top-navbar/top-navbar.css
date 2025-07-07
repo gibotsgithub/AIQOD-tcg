@@ -140,7 +140,20 @@
   color: #e53935;
   background-color: #fff0f0;
   border-radius: 7px;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 6px;
+  cursor: pointer;
+  transition: color .15s;
+  text-align: center;
+}
+.returnToManager{
+  background: none;
+  border: none;
+  color: #03bca3;
+  background-color: #e7fefb;
+  border-radius: 7px;
+  font-weight: 600;
   font-size: 0.98rem;
   padding: 6px;
   cursor: pointer;

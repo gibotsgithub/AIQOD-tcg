@@ -15,28 +15,29 @@ export class TopNavbar {
   @Input() showModelDropdown = true;
   showProfileMenu = false;
   @ViewChild('modelSelect') modelSelect!: ElementRef<HTMLSelectElement>;
-  
+
   role: string | null = null;
-  rmList: string[] = [];
+  rmList: any[] = [];
+  manager = localStorage.getItem('user_name');
 
   constructor(private router: Router, private http: HttpClient) {}
 
-ngOnInit() {
-  this.role = localStorage.getItem('role');
-  this.http.get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
-    .subscribe({
-      next: (data) => {
-        // Map to just the user_name field
-        this.rmList = data.map(rm => rm.user_name);
-        console.log('RM Names:', this.rmList);
-      },
-      error: (err) => {
-        console.error('Failed to fetch RM list:', err);
-        this.rmList = [];
-      }
-    });
-}
-
+  ngOnInit() {
+    this.role = localStorage.getItem('role');
+    this.http
+      .get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
+      .subscribe({
+        next: (data) => {
+          // Map to just the user_name field
+          this.rmList = data;
+          console.log('RM Names:', this.rmList);
+        },
+        error: (err) => {
+          console.error('Failed to fetch RM list:', err);
+          this.rmList = [];
+        },
+      });
+  }
 
   // fixed dropdown
   handlePolicyRoute(event: Event): void {
@@ -60,5 +61,25 @@ ngOnInit() {
     sessionStorage.clear();
     // Optionally clear any in-memory state here
     this.router.navigate(['/login']);
+  }
+
+  returnToManager() {
+    localStorage.setItem('role', 'Manager');
+    const Impersonator = localStorage.getItem('Impersonator');
+    localStorage.setItem('user_name', Impersonator||"");
+    localStorage.setItem('isImpersonating', 'false');
+    window.location.reload();
+  }
+  get isImpersonating(): boolean {
+    return localStorage.getItem('isImpersonating') === 'true';
+  }
+  onRmClick(userName: string) {
+    const manager = localStorage.getItem('user_name');
+    localStorage.setItem('Impersonator', manager||"");
+    console.log('Clicked RM:', userName);
+    localStorage.setItem('user', userName);
+    localStorage.setItem('role', 'RM');
+    localStorage.setItem('isImpersonating', 'true');
+    window.location.reload();
   }
 }

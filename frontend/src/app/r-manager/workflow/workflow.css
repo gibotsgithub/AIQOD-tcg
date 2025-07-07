@@ -283,18 +283,6 @@ body {
   background: #011735;
 }
 
-@media (max-width: 1200px) {
-  .checker-certification-cards {
-    flex-direction: column;
-    gap: 24px;
-    align-items: stretch;
-  }
-  .checker-card {
-    width: 100%;
-    min-width: 0;
-  }
-}
-
 .workflow-row-2{
     margin-left: 220px;
 }
@@ -442,38 +430,119 @@ body {
 }
 
 /* Responsive */
+/* ----------- 1200px and below ----------- */
 @media (max-width: 1200px) {
   .workflow-container {
     margin-left: 0;
     width: 100%;
     padding: 16px;
   }
-
+  .workflow-header {
+    margin-bottom: 28px;
+    gap: 16px;
+  }
+  .workflow-graph {
+    max-width: 100vw;
+    gap: 36px;
+  }
   .workflow-row {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 24px;
+    width: 100%;
   }
-
   .workflow-card {
     width: 100%;
     max-width: 400px;
+    min-width: 0;
+    padding: 12px;
+  }
+  .checker-certification-section {
+    padding: 0 8px 24px 8px;
+  }
+  .checker-certification-cards {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .checker-card {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 10px 16px 10px;
+    margin: 12px 0;
   }
 }
 
-@media (max-width: 768px) {
+/* ----------- 900px and below ----------- */
+@media (max-width: 900px) {
+  .workflow-graph {
+    gap: 18px;
+  }
+  .workflow-row {
+    gap: 12px;
+  }
   .workflow-card {
-    width: 100%;
-    max-width: 350px;
-    padding: 20px;
+    max-width: 95vw;
+    padding: 8px;
   }
+}
 
+/* ----------- 768px and below ----------- */
+@media (max-width: 768px) {
+  .workflow-container {
+    padding: 8px;
+  }
+  .workflow-header {
+    margin-bottom: 16px;
+    gap: 8px;
+  }
+  .workflow-card {
+    max-width: 98vw;
+    padding: 10px;
+    min-height: 180px;
+  }
   .workflow-card-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-
   .workflow-list li {
     font-size: 0.9rem;
+    gap: 6px;
+  }
+  .checker-title {
+    font-size: 1.1rem;
+    margin-top: 24px;
+  }
+  .checker-card {
+    padding: 8px 4px 10px 4px;
+  }
+  .checker-label, .checker-value, .checker2-label, .checker2-value {
+    font-size: 12px;
+    padding: 8px 6px;
   }
 }
+
+/* ----------- 600px and below ----------- */
+@media (max-width: 600px) {
+  .workflow-card {
+    max-width: 99vw;
+    min-height: 100px;
+    padding: 4px;
+  }
+  .workflow-card-header {
+    gap: 8px;
+    padding: 4px;
+  }
+  .workflow-card-title {
+    font-size: 0.95rem;
+    max-width: 120px;
+  }
+  .workflow-list li {
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+  .workflow-arrows, .leader-line {
+    display: none !important;
+  }
+}
+

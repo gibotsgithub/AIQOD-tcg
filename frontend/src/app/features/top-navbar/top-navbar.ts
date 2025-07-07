@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-top-navbar',
   imports: [NgIf, CommonModule],
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './top-navbar.html',
   styleUrl: './top-navbar.css',
 })
-export class TopNavbar {
+export class TopNavbar implements OnInit{
   @Input() showModelDropdown = true;
   showProfileMenu = false;
   @ViewChild('modelSelect') modelSelect!: ElementRef<HTMLSelectElement>;
@@ -23,21 +24,35 @@ export class TopNavbar {
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit() {
-    this.role = localStorage.getItem('role');
-    this.http
-      .get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
-      .subscribe({
-        next: (data) => {
-          // Map to just the user_name field
-          this.rmList = data;
-          console.log('RM Names:', this.rmList);
-        },
-        error: (err) => {
-          console.error('Failed to fetch RM list:', err);
-          this.rmList = [];
-        },
-      });
-  }
+  this.role = localStorage.getItem('role');
+  this.http
+    .get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
+    .subscribe({
+      next: (data) => {
+        this.rmList = data;
+        console.log('RM Names:', this.rmList);
+      },
+      error: (err) => {
+        console.error('Failed to fetch RM list:', err);
+        this.rmList = [];
+      },
+    });
+
+  // Route-based model dropdown logic
+  // this.router.events
+  //   .pipe(filter(event => event instanceof NavigationEnd))
+  //   .subscribe((event: NavigationEnd) => {
+  //     let path = event.urlAfterRedirects || event.url;
+  //     path = path.split('?')[0].replace(/\/$/, '');
+  //     this.showModelDropdown = !(
+  //       path.startsWith('/mas-policy-watch') ||
+  //       path.startsWith('/analysis-results') ||
+  //       path.startsWith('/mas-history') ||
+  //       path.startsWith('/dashboard')
+  //     );
+  //   });
+}
+
 
   // fixed dropdown
   handlePolicyRoute(event: Event): void {

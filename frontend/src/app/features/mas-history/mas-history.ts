@@ -49,22 +49,19 @@ export class MasHistoryComponent implements OnInit {
   }
 
   deleteEntry(tx: any){
-    if (!tx || !tx._id) return; // Ensure the transaction has an ID
-
-  this.http
-    .delete(`https://tcg-node.onrender.com/api/mas-history/${tx._id}`)
-    .subscribe({
-      next: () => {
-        // Remove the deleted transaction from the local array
-        this.transactions = this.transactions.filter(t => t._id !== tx._id);
-        // Optionally, show a success message
-        alert('Entry deleted successfully!');
-      },
-      error: (err) => {
-        console.error('Failed to delete entry:', err);
-        // Optionally, show an error message
-        alert('Failed to delete entry.');
-      }
-    });
+   if (confirm('Are you sure you want to delete this entry?')) {
+    this.http
+      .delete(`https://tcg-node.onrender.com/api/mas-history/${tx._id}`)
+      .subscribe({
+        next: () => {
+          this.transactions = this.transactions.filter(t => t._id !== tx._id);
+          alert('Entry deleted successfully!');
+        },
+        error: (err) => {
+          console.error('Failed to delete entry:', err);
+          alert('Failed to delete entry.');
+        }
+      });
+    }
   }
 }

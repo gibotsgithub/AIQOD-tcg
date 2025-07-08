@@ -39,20 +39,36 @@
 .mas-history-row:last-child {
   border-radius: 0 0 10px 10px;
 }
-
-.mas-history-actions button {
+.viewDetailsBtn{
   background: #33baa1;
   color: #fff;
   border: none;
   border-radius: 6px;
   padding: 6px 16px;
   font-size: 14px;
+  margin-left: 8px;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
   transition: background 0.2s;
 }
-.mas-history-actions button:hover {
+
+.viewDetailsBtn:hover {
   background: #17b3a6;
+}
+.deleteBtn{
+  background: #dd4949;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 14px;
+  margin-left: 8px;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.deleteBtn:hover{
+  background: #cf3a3a;
 }
 
 @media (max-width: 1024px) {

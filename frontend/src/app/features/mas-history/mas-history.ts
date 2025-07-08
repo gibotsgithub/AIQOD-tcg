@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-mas-history',
   standalone: true,
-  imports: [CommonModule], 
+  imports: [CommonModule],
   templateUrl: './mas-history.html',
   styleUrls: ['./mas-history.css'],
 })
@@ -20,7 +20,9 @@ export class MasHistoryComponent implements OnInit {
     // console.log(userName);
     if (userName) {
       this.http
-        .get<any[]>(`https://tcg-node.onrender.com/api/mas-history/user/${userName}`)
+        .get<any[]>(
+          `https://tcg-node.onrender.com/api/mas-history/user/${userName}`
+        )
         .subscribe({
           next: (data) => {
             this.transactions = data;
@@ -40,7 +42,26 @@ export class MasHistoryComponent implements OnInit {
     );
   }
   viewDetails(tx: any) {
-      this.router.navigate(['/analysis-results'], { state: { resultData: tx, from : 'mas-history' } });
-     //fromchatbot+data
+    this.router.navigate(['/analysis-results'], {
+      state: { resultData: tx, from: 'mas-history' },
+    });
+    //fromchatbot+data
+  }
+
+  deleteEntry(tx: any){
+   if (confirm('Are you sure you want to delete this entry?')) {
+    this.http
+      .delete(`https://tcg-node.onrender.com/api/mas-history/${tx._id}`)
+      .subscribe({
+        next: () => {
+          this.transactions = this.transactions.filter(t => t._id !== tx._id);
+          alert('Entry deleted successfully!');
+        },
+        error: (err) => {
+          console.error('Failed to delete entry:', err);
+          alert('Failed to delete entry.');
+        }
+      });
+    }
   }
 }

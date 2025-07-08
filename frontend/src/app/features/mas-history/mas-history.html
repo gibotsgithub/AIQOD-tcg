@@ -14,7 +14,8 @@
         <span>{{ tx.compliance_score}}</span>
         <span>{{ getTotalIssues(tx.issue_counts) }}</span>
         <span class="mas-history-actions">
-            <button (click)="viewDetails(tx)">View Details</button>
+            <button (click)="viewDetails(tx)" class="viewDetailsBtn">View Details</button>
+            <button (click)="deleteEntry(tx)" class="deleteBtn">Delete</button>
         </span>
     </div>
 </div>

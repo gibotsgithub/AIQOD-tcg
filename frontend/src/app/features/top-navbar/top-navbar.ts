@@ -83,6 +83,7 @@ export class TopNavbar implements OnInit {
     localStorage.setItem('user_name', Impersonator || '');
     localStorage.setItem('isImpersonating', 'false');
     this.router.navigate(['/dashboard']);
+    window.location.reload();
   }
   get isImpersonating(): boolean {
     return localStorage.getItem('isImpersonating') === 'true';

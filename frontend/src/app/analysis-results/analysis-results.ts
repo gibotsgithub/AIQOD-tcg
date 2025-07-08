@@ -56,6 +56,7 @@ export class AnalysisResultsComponent implements OnDestroy {
         // If navigated with state (from MAS History or upload), use state data
         const nav = this.router.getCurrentNavigation();
         const stateData = nav?.extras.state?.['resultData'];
+        console.log('stateData', stateData);
         const from = nav?.extras.state?.['from'];
         if (from === 'mas-history') {
           this.backRoute = '/mas-history';
@@ -64,6 +65,7 @@ export class AnalysisResultsComponent implements OnDestroy {
         }
         if (stateData) {
           this.updateComplianceStats(stateData);
+          console.log('📊 State data loaded:', stateData);
         }
       }
     });
@@ -144,6 +146,7 @@ export class AnalysisResultsComponent implements OnDestroy {
     this.mediumSeverity = data.issue_counts?.Medium || 0;
     this.lowSeverity = data.issue_counts?.Low || 0;
     this.resultData = data;
+    console.log('result data', this.resultData);
   }
 
   ngOnDestroy(): void {

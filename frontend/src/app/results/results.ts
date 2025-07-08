@@ -16,7 +16,9 @@ export class Results implements OnInit {
   ngOnInit(): void {
     const tableData = this.resultData?.non_compliance_table ?? [];
 
-    console.log(tableData);
+    console.log('resultData is', this.resultData);
+
+    console.log('tableData', tableData);
 
     this.nonComplianceIssues = tableData.map((item: any) => {
       const page = item.page_number ?? '—';

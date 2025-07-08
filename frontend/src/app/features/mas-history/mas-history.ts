@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./mas-history.css'],
 })
 export class MasHistoryComponent implements OnInit {
-  transactions: any[] = [];
+  resultData: any[] = [];
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -25,8 +25,8 @@ export class MasHistoryComponent implements OnInit {
         )
         .subscribe({
           next: (data) => {
-            this.transactions = data;
-            console.log(data);
+            this.resultData = data;
+            console.log('sending data', data);
           },
           error: (err) => {
             console.error('Failed to fetch MAS history:', err);
@@ -42,26 +42,30 @@ export class MasHistoryComponent implements OnInit {
     );
   }
   viewDetails(tx: any) {
+    console.log('view details clicked', tx);
     this.router.navigate(['/analysis-results'], {
       state: { resultData: tx, from: 'mas-history' },
     });
     //fromchatbot+data
   }
 
-  deleteEntry(tx: any){
-   if (confirm('Are you sure you want to delete this entry?')) {
+  deleteEntry(tx: any) {
+    if (!tx || !tx._id) return; // Ensure the transaction has an ID
+
     this.http
       .delete(`https://tcg-node.onrender.com/api/mas-history/${tx._id}`)
       .subscribe({
         next: () => {
-          this.transactions = this.transactions.filter(t => t._id !== tx._id);
+          // Remove the deleted transaction from the local array
+          this.resultData = this.resultData.filter((t) => t._id !== tx._id);
+          // Optionally, show a success message
           alert('Entry deleted successfully!');
         },
         error: (err) => {
           console.error('Failed to delete entry:', err);
+          // Optionally, show an error message
           alert('Failed to delete entry.');
-        }
+        },
       });
-    }
   }
 }

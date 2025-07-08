@@ -101,6 +101,66 @@ export class Chatbot implements AfterViewInit {
       return;
     }
 
+    const fileName = file.name;
+    const user_name = localStorage.getItem('user_name');
+
+    // 🔍 PRE-CHECK before uploading
+    this.http
+      .post<{ exists: boolean; result?: any }>(
+        'https://tcg-node.onrender.com/api/mas-history/check-if-exists',
+        {
+          user_name,
+          input_document: fileName,
+          query,
+        }
+      )
+      .subscribe({
+        next: (res) => {
+          if (res.exists && res.result) {
+            console.log('⚠️ Existing result found — skipping upload');
+
+            // Route directly to analysis-results
+            const currentRoute = this.security.getCurrentRoute();
+            if (currentRoute === '/mas-policy-watch') {
+              this.router.navigate(['/analysis-results'], {
+                state: { resultData: res.result },
+              });
+            } else {
+              setTimeout(() => {
+                alert(
+                  '✅ Data already available! Visit MAS Policy Watch to view results.'
+                );
+                this.analysisPending = true;
+                const sub = this.security.currentRoute$.subscribe((route) => {
+                  if (this.analysisPending && route === '/mas-policy-watch') {
+                    this.router.navigate(['/analysis-results'], {
+                      state: { resultData: res.result },
+                    });
+                    this.analysisPending = false;
+                    sub.unsubscribe();
+                  }
+                });
+              }, 10);
+            }
+          } else {
+            // ✅ Continue with original flow: Upload file to crazyintern
+            this.proceedWithUpload(file, query);
+          }
+        },
+        error: (err) => {
+          console.error('❌ Pre-check failed, proceeding anyway:', err);
+          this.proceedWithUpload(file, query);
+        },
+      });
+
+    // Reset inputs
+    this.myInputRef.nativeElement.value = '';
+    this.selectedFileName = null;
+    this.fileInputRef.nativeElement.value = '';
+    this.selectedFocus = null;
+  }
+
+  proceedWithUpload(file: File, query: string): void {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('query', query);
@@ -117,22 +177,16 @@ export class Chatbot implements AfterViewInit {
         next: (response) => {
           const jobId = response.job_id;
           console.log('✅ Job submitted, job_id:', jobId);
-          this.pollJobStatus(jobId, start);
+          this.pollJobStatus(jobId, start, query);
         },
         error: (error) => {
           this.loading = false;
           console.error('❌ Failed to submit job:', error);
         },
       });
-
-    // Reset inputs
-    this.myInputRef.nativeElement.value = '';
-    this.selectedFileName = null;
-    this.fileInputRef.nativeElement.value = '';
-    this.selectedFocus = null;
   }
 
-  pollJobStatus(jobId: string, startTime: number): void {
+  pollJobStatus(jobId: string, startTime: number, query: String): void {
     const pollInterval = 3000; // 3 seconds
 
     const poll = () => {
@@ -150,6 +204,7 @@ export class Chatbot implements AfterViewInit {
               const resultWithUser = {
                 ...res.result,
                 user_name: localStorage.getItem('user_name'),
+                query,
               };
 
               // Save to Node backend

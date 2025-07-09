@@ -13,18 +13,24 @@ declare var LeaderLine: any;
 })
 export class Workflow implements AfterViewInit, OnDestroy {
   private lines: any[] = [];
-  isNotChecker = true;
+  txnData: any;
 
   ngOnInit() {
     const role = localStorage.getItem('role');
-    this.isNotChecker = role !== 'checker';
+  }
+
+  goBack() {
+    this.router.navigate(['/maker-checker']);
   }
 
   navHandler() {
     this.router.navigate(['/workflow-agent']);
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    const nav = this.router.getCurrentNavigation();
+    this.txnData = nav?.extras?.state?.['txnData'];
+  }
 
   ngAfterViewInit() {
     this.lines.push(

@@ -14,11 +14,15 @@ export class TIntelligence implements OnInit {
   transactions: any[] = []; // For display (lightweight)
   fullTransactions: any[] = []; // For passing around full data
 
+  rm_id = localStorage.getItem('RM_ID');
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://tcg-node.onrender.com/sample-data/transaction_details')
+      .get<any>(
+        `https://tcg-node.onrender.com/transaction-intelligence/${this.rm_id}`
+      )
       .subscribe({
         next: (res) => {
           console.log('✅ Fetched transactions:', res);

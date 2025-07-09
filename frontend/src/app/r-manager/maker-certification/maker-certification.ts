@@ -29,6 +29,9 @@ export class MakerCertification {
 
   svg: Record<string, SafeHtml>;
 
+  rm_id = localStorage.getItem('RM_ID');
+  rm_name = localStorage.getItem('user_name');
+
   constructor(private sanitizer: DomSanitizer, private router: Router) {
     const nav = this.router.getCurrentNavigation();
     this.txnData = nav?.extras?.state?.['txnData'];

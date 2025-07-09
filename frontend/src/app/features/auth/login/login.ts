@@ -44,6 +44,10 @@ export class Login implements OnInit {
           localStorage.setItem('isLoggedIn', 'true');
           localStorage.setItem('user_name', res.user.user_name);
           localStorage.setItem('role', res.user.role);
+          localStorage.setItem('RM_ID', res.user.RM_ID ?? '');
+          console.log(res.user);
+
+          console.log(res.user.RM_ID);
           if (res.user.role === 'checker') {
             this.router.navigate(['workflow']);
           } else this.router.navigate(['dashboard']);

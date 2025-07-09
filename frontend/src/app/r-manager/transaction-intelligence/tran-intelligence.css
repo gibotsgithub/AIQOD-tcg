@@ -192,9 +192,27 @@ body {
 
 .transaction-table-container {
   margin-top: 16px;
+  max-height: 400px;
   overflow-x: auto;
   background-color: #fff;
   padding: 0 16px 16px 16px;
+}
+
+.transaction-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2; /* Make sure it appears above body rows */
+}
+
+.table-body::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 .transaction-table {

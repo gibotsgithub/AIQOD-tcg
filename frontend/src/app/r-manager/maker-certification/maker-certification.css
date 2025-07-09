@@ -16,6 +16,7 @@
   );
   color: var(--text-dark);
   padding-bottom: 200px;
+  box-sizing: border-box;
 }
 
 .back-btn {
@@ -209,7 +210,7 @@
   display: grid;
   width: 100%;
   max-width: 1717px;
-  grid-template-columns: repeat(3, 435px);
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
   grid-template-rows: repeat(2, 523px);
   gap: 10px;
   justify-content: space-between; /* optional: aligns grid to the left */
@@ -219,7 +220,6 @@
 }
 
 .form-container {
-  width: 440px;
   height: 523px;
   border-radius: 10px;
   background: #ffffff;
@@ -228,7 +228,10 @@
   flex-direction: column;
   padding: 16px;
   box-sizing: border-box;
+  /* width removed to allow flexible sizing */
 }
+
+
 
 /* Top 20% */
 .form-header {

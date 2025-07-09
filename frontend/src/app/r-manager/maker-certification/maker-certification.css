@@ -315,24 +315,10 @@
   padding: 4px;
   box-sizing: border-box;
   border: none;
-  overflow-x: auto;
   background-color: #c9ffe8;
   overflow-x: auto;
   white-space: normal; 
   /* word-wrap: break-word; */
-  word-break: break-word;
-}
-.form-row textarea.form-input {
-  width: 48.5%;
-  min-height: 22.9px;
-  max-height: 100px;
-  padding: 4px;
-  box-sizing: border-box;
-  border: none;
-  background-color: #c9ffe8;
-  resize: vertical;
-  overflow-x: auto;
-  white-space: pre-wrap;
   word-break: break-word;
 }
 .submit-btn {

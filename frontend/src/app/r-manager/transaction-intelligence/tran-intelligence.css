@@ -195,7 +195,7 @@ body {
 
 .transaction-table-container {
   margin-top: 16px;
-  max-height: 400px;
+  max-height: 250px;
   overflow-x: auto;
   background-color: #fff;
   padding: 0 16px 16px 16px;

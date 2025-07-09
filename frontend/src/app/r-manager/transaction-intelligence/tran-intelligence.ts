@@ -13,9 +13,13 @@ import { RChatfooter } from '../r-chatfooter/r-chatfooter';
 export class TIntelligence implements OnInit {
   transactions: any[] = []; // For display (lightweight)
   fullTransactions: any[] = []; // For passing around full data
-  rmName = localStorage.getItem('user_name');
+  rmName = localStorage.getItem('user_name') ?? '';
 
-  rm_id = localStorage.getItem('RM_ID');
+  rm_id = localStorage.getItem('RM_ID') ?? '';
+
+  showChatbot = false;
+
+  private intervalId: any;
 
   constructor(private http: HttpClient) {}
 
@@ -51,6 +55,11 @@ export class TIntelligence implements OnInit {
           console.error('❌ Failed to fetch transactions:', err);
         },
       });
+
+    this.intervalId = setInterval(() => {
+      const savedValue = localStorage.getItem('showChatbot');
+      this.showChatbot = savedValue === 'true';
+    }, 500);
   }
 
   // Optional helper to get full doc by ID
@@ -58,5 +67,9 @@ export class TIntelligence implements OnInit {
     return this.fullTransactions.find(
       (doc) => doc['Transaction ID'] === txnId || doc.id === txnId
     );
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
   }
 }

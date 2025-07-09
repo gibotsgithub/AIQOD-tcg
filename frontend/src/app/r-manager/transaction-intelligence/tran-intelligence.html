@@ -1,4 +1,9 @@
-<div class="dashboard-container">
+<div
+  class="dashboard-container"
+  [ngStyle]="{
+    'padding-bottom': showChatbot ? '200px' : '0px'
+  }"
+>
   <div class="dashboard-header-row">
     <h2 class="dashboard-heading">How can I help you?</h2>
     <h2 class="acra-title">ACRA</h2>

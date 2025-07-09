@@ -40,7 +40,7 @@
     <div class="img-group">
       <div class="svg-container">
         <div
-          [innerHTML]="progress===1 ? svg['makerActive'] : svg['makerInactive']"
+          [innerHTML]="progress>=1 ? svg['makerActive'] : svg['makerInactive']"
         ></div>
       </div>
       <div class="img-text">Maker Agent</div>
@@ -54,7 +54,7 @@
     <div class="img-group">
       <div class="svg-container">
         <div
-          [innerHTML]="progress===2? svg['makerActive'] : svg['makerInactive']"
+          [innerHTML]="progress>=2? svg['makerActive'] : svg['makerInactive']"
         ></div>
       </div>
       <div class="img-text">Maker Agent</div>
@@ -71,7 +71,7 @@
       <div class="img-group">
         <div class="svg-container">
           <div
-            [innerHTML]="progress===3? svg['makerActive'] : svg['makerInactive']"
+            [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
           ></div>
           <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
           <div [innerHTML]="svg['docValidation']" class="small-circle"></div>
@@ -81,7 +81,7 @@
       <div class="img-group">
         <div class="svg-container">
           <div
-            [innerHTML]="progress===3? svg['makerActive'] : svg['makerInactive']"
+            [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
           ></div>
           <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
           <div [innerHTML]="svg['preCheck']" class="small-circle"></div>
@@ -101,7 +101,7 @@
       <div class="img-group">
         <div class="svg-container">
           <div
-            [innerHTML]="progress===4? svg['makerActive'] : svg['makerInactive']"
+            [innerHTML]="progress>=4? svg['makerActive'] : svg['makerInactive']"
           ></div>
           <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
           <div [innerHTML]="svg['compliance']" class="small-circle"></div>
@@ -111,7 +111,7 @@
       <div class="img-group">
         <div class="svg-container">
           <div
-            [innerHTML]="progress===4? svg['makerActive'] : svg['makerInactive']"
+            [innerHTML]="progress>=4? svg['makerActive'] : svg['makerInactive']"
           ></div>
           <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
           <div [innerHTML]="svg['contextAware']" class="small-circle"></div>
@@ -138,7 +138,7 @@
     <div class="img-group">
       <div class="svg-container">
         <div
-          [innerHTML]="progress===5? svg['makerActive'] : svg['makerInactive']"
+          [innerHTML]="progress>=5? svg['makerActive'] : svg['makerInactive']"
         ></div>
       </div>
       <div class="img-text">Maker Agent</div>
@@ -179,26 +179,26 @@
   <div class="tracker-container">
     <div class="tracker-column">
       <div
-        [innerHTML]="progress===2?svg['markedCheckbox']:svg['checkboxes']"
+        [innerHTML]="progress>=2?svg['markedCheckbox']:svg['checkboxes']"
       ></div>
 
       <span class="label">Transaction Information</span>
     </div>
     <div class="tracker-column">
       <div
-        [innerHTML]="progress===3?svg['markedCheckbox']:svg['checkboxes']"
+        [innerHTML]="progress>=3?svg['markedCheckbox']:svg['checkboxes']"
       ></div>
       <span class="label">Transaction Classification</span>
     </div>
     <div class="tracker-column">
       <div
-        [innerHTML]="progress===4?svg['markedCheckbox']:svg['checkboxes']"
+        [innerHTML]="progress>=4?svg['markedCheckbox']:svg['checkboxes']"
       ></div>
       <span class="label">Supporting Documentation</span>
     </div>
     <div class="tracker-column">
       <div
-        [innerHTML]="progress===5?svg['markedCheckbox']:svg['checkboxes']"
+        [innerHTML]="progress>=5?svg['markedCheckbox']:svg['checkboxes']"
       ></div>
       <span class="label">Compliance Information</span>
     </div>

@@ -476,7 +476,8 @@
             <td
               [ngStyle]="t.verification !== 'Auto-Approved' ? { 'color': 'blue', 'font-weight': '500' } : {}"
             >
-              {{ t.verification }}
+              {{ t.verification === "Human Review Reqd, STR"? "Human Review
+              Reqd" : t.verification }}
             </td>
             <td>{{ t.total }}</td>
           </tr>

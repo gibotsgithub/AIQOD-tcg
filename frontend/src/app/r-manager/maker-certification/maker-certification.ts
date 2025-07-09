@@ -12,8 +12,24 @@ import { Router } from '@angular/router';
   styleUrl: './maker-certification.css',
 })
 export class MakerCertification {
-  progress = 1;
+  progress = 0;
   txnData: any;
+  delayedDataMap: Record<number, any> = {};
+
+  getDatePlusDays(days: number): string {
+    if (!this.txnData?.['Date']) return '';
+
+    const originalDateStr = this.txnData['Date']; // e.g., "3/14/2025"
+    const [month, day, year] = originalDateStr.split('/').map(Number);
+
+    const originalDate = new Date(year, month - 1, day);
+    originalDate.setDate(originalDate.getDate() + days);
+
+    // Format back as MM/DD/YYYY (or whatever format you want)
+    return `${
+      originalDate.getMonth() + 1
+    }/${originalDate.getDate()}/${originalDate.getFullYear()}`;
+  }
 
   goBack() {
     this.router.navigate(['/transaction-intelligence']);
@@ -21,6 +37,33 @@ export class MakerCertification {
 
   incrementProgress(): void {
     this.progress += 1;
+
+    const current = this.progress;
+
+    // Delay loading data for this step only if not already set
+    if (!this.delayedDataMap[current]) {
+      setTimeout(() => {
+        this.delayedDataMap[current] = {
+          ...this.txnData,
+          DatePlus2: this.getDatePlusDays(2),
+          beneficiaryAccountDetails: 'Origin Account',
+          tdReview: 'Checked by Maker',
+          bpAdherence: 'Checked by Maker',
+          digitalSignature: 'DS-5473-KLM (timestamped\n 2025-04-11 14:22 UTC)',
+          notes:
+            '"Transaction flagged as Critical,\n PEP = No, Justification present"',
+          fourEyes: 'Enhanced (due to \nCritical priority + high-risk country)',
+          rm_id: localStorage.getItem('RM_ID'),
+          rm_name: localStorage.getItem('user_name'),
+          approvalLevel: 'Enhanced',
+        };
+
+        console.log(
+          `✅ Data loaded for progress ${current}:`,
+          this.delayedDataMap[current]
+        );
+      }, 1000);
+    }
   }
 
   navHandler() {
@@ -32,6 +75,12 @@ export class MakerCertification {
   rm_id = localStorage.getItem('RM_ID');
   rm_name = localStorage.getItem('user_name');
 
+  ngOnInit() {
+    this.incrementProgress();
+  }
+
+  delayedData: any = null;
+
   constructor(private sanitizer: DomSanitizer, private router: Router) {
     const nav = this.router.getCurrentNavigation();
     this.txnData = nav?.extras?.state?.['txnData'];
@@ -41,6 +90,36 @@ export class MakerCertification {
     } else {
       console.log('✅ Received txnData:', this.txnData);
     }
+
+    setTimeout(() => {
+      const originalDateStr = this.txnData?.['Date'] ?? '';
+
+      let datePlus2 = '';
+      if (originalDateStr) {
+        const [month, day, year] = originalDateStr.split('/').map(Number);
+        const date = new Date(year, month - 1, day);
+        date.setDate(date.getDate() + 2);
+        datePlus2 = `${
+          date.getMonth() + 1
+        }/${date.getDate()}/${date.getFullYear()}`;
+      }
+
+      this.delayedData = {
+        ...this.txnData,
+        DatePlus2: datePlus2,
+        beneficiaryAccountDetails: 'Origin Account',
+        tdReview: 'Checked by Maker',
+        bpAdherence: 'Checked by Maker',
+        digitalSignature: 'DS-5473-KLM (timestamped 2025-04-11 14:22 UTC)',
+        notes:
+          '"Transaction flagged as Critical, PEP = No, Justification present"',
+        fourEyes: 'Enhanced (due to Critical priority + high-risk country)',
+        rm_id: localStorage.getItem('RM_ID'),
+        rm_name: localStorage.getItem('user_name'),
+        approvalLevel: 'Enhanced',
+      };
+      console.log('✅ Data available after delay:', this.delayedData);
+    }, 1000);
 
     console.log(this.txnData?.['Transaction ID']);
 

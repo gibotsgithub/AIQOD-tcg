@@ -313,6 +313,9 @@
   box-sizing: border-box;
   border: none;
   background-color: #c9ffe8;
+  overflow-x: auto;
+  white-space: normal; /* allow wrapping */
+  word-break: break-word;
 }
 
 .submit-btn {

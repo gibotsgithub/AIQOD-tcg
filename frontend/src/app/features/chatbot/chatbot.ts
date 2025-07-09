@@ -201,6 +201,8 @@ export class Chatbot implements AfterViewInit {
               this.loading = false;
               console.log('✅ Job completed in', Date.now() - startTime, 'ms');
 
+              console.log('✅ Result:', res.result);
+
               const resultWithUser = {
                 ...res.result,
                 user_name: localStorage.getItem('user_name'),

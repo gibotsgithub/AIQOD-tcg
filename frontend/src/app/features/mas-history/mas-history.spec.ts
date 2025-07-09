@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MasHistory } from './mas-history';
+import { MasHistoryComponent } from './mas-history';
 
-describe('MasHistory', () => {
-  let component: MasHistory;
-  let fixture: ComponentFixture<MasHistory>;
+describe('MasHistoryComponent', () => {
+  let component: MasHistoryComponent;
+  let fixture: ComponentFixture<MasHistoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MasHistory]
+      declarations: [ MasHistoryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MasHistory);
+    fixture = TestBed.createComponent(MasHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

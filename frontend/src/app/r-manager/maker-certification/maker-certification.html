@@ -54,10 +54,18 @@
     <div class="img-group">
       <div class="svg-container">
         <div
-          [innerHTML]="progress>=2? svg['makerActive'] : svg['makerInactive']"
+          [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
+        ></div>
+        <div
+          [innerHTML]="progress>=3? svg['circleBackgroundActive']:svg['circleBackground']"
+          class="small-circle"
+        ></div>
+        <div
+          [innerHTML]="progress>=3? svg['docValidationActive']: svg['docValidation']"
+          class="small-circle"
         ></div>
       </div>
-      <div class="img-text">Maker Agent</div>
+      <div class="img-text">Document Validation Agent</div>
     </div>
 
     <div class="double-arrow">
@@ -73,8 +81,14 @@
           <div
             [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['docValidation']" class="small-circle"></div>
+          <div
+            [innerHTML]="progress>=3? svg['circleBackgroundActive']:svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]="progress>=3? svg['docValidationActive']: svg['docValidation']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Document Validation Agent</div>
       </div>
@@ -83,8 +97,14 @@
           <div
             [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['preCheck']" class="small-circle"></div>
+          <div
+            [innerHTML]="progress>=3? svg['circleBackgroundActive']: svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]="progress>=3? svg['preCheckActive']: svg['preCheck']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Pre Check Intelligence Agent</div>
       </div>
@@ -103,8 +123,14 @@
           <div
             [innerHTML]="progress>=4? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['compliance']" class="small-circle"></div>
+          <div
+            [innerHTML]="progress>=4? svg['circleBackgroundActive']: svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]="progress>=4? svg['complianceAgentActive']: svg['compliance']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Compliance Agent</div>
       </div>
@@ -113,8 +139,14 @@
           <div
             [innerHTML]="progress>=4? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['contextAware']" class="small-circle"></div>
+          <div
+            [innerHTML]=" progress>=4? svg['circleBackgroundActive']: svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]=" progress>=4? svg['contextAwareActive']: svg['contextAware']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Context Aware Verification Agent</div>
       </div>

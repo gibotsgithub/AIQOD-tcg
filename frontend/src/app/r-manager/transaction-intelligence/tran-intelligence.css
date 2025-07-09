@@ -108,6 +108,9 @@ body {
   border-radius: 10px;
   gap: 4px;
 }
+.review-span {
+  grid-column: 1 / -1; /* This makes the item span both columns */
+}
 
 .activity-header {
   color: #000;

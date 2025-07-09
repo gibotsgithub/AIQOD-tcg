@@ -11,6 +11,7 @@ import { NgxEchartsDirective } from 'ngx-echarts';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+  managerName = localStorage.getItem('user_name');
   barOptions = {
     tooltip: {
       trigger: 'axis',
@@ -66,6 +67,7 @@ export class Dashboard {
         label: { show: false },
         color: '#61b33b',
         data: [2000, 5000, 11000],
+        barWidth: '50%',
       },
       {
         name: 'High Risk',
@@ -106,7 +108,7 @@ export class Dashboard {
     series: [
       {
         type: 'pie',
-        radius: ['70%', '60%'],
+        radius: ['70%', '55%'],
         center: ['50%', '40%'],
         avoidLabelOverlap: true,
         label: {

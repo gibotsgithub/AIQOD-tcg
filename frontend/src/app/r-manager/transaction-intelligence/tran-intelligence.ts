@@ -13,6 +13,7 @@ import { RChatfooter } from '../r-chatfooter/r-chatfooter';
 export class TIntelligence implements OnInit {
   transactions: any[] = []; // For display (lightweight)
   fullTransactions: any[] = []; // For passing around full data
+  rmName = localStorage.getItem('user_name');
 
   rm_id = localStorage.getItem('RM_ID');
 

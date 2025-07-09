@@ -16,6 +16,8 @@ export class Workflow implements AfterViewInit, OnDestroy {
   private lines: any[] = [];
   txnData: any;
   workflowCards: any[] = [];
+  showBothSections = true;
+  
 
   ngOnInit() {
     const role = localStorage.getItem('role');
@@ -55,11 +57,13 @@ export class Workflow implements AfterViewInit, OnDestroy {
     this.router.navigate(['/workflow-agent']);
   }
 
-  constructor(private router: Router, private http: HttpClient) {
-    const nav = this.router.getCurrentNavigation();
-    this.txnData = nav?.extras?.state?.['txnData'];
-  }
-
+constructor(private router: Router, private http: HttpClient) {
+  const nav = this.router.getCurrentNavigation();
+  this.txnData = nav?.extras?.state?.['txnData'];
+  const flag = nav?.extras?.state?.['showBothSections'];
+  this.showBothSections = typeof flag === 'boolean' ? flag : true;
+  console.log("showboth", this.showBothSections);
+}
   ngAfterViewInit() {
     this.lines.push(
       new LeaderLine(

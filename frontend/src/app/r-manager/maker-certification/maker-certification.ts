@@ -67,7 +67,7 @@ export class MakerCertification {
   }
 
   navHandler() {
-    this.router.navigate(['/workflow'], { state: { txnData: this.txnData } });
+    this.router.navigate(['/workflow'], { state: { txnData: this.txnData, showBothSections: false} });
   }
 
   svg: Record<string, SafeHtml>;

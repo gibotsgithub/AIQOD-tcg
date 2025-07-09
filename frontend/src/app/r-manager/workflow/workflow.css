@@ -72,10 +72,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 55px; /* Increase gap between rows */
+  gap: 40px; /* Increase gap between rows */
   max-width: 1250px;
   margin: 0;
   position: relative;
+  margin-bottom: 40px;
 }
 .workflow-graph > div[style*="position: absolute"] {
   /* Optional: ensures all arrow divs are above the background but below cards if needed */

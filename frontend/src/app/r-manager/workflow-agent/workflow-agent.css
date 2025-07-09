@@ -71,9 +71,26 @@
 }
 
 .svg-wrap {
+  position: relative;
   width: 69px;
   height: 70px;
   margin-bottom: 12px;
+}
+
+/* Apply only to base SVGs like 'backLine' and 'maker' */
+.svg-wrap > div:not(.small-circle) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.small-circle {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .green-bar {

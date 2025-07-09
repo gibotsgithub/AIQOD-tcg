@@ -54,10 +54,18 @@
     <div class="img-group">
       <div class="svg-container">
         <div
-          [innerHTML]="progress>=2? svg['makerActive'] : svg['makerInactive']"
+          [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
+        ></div>
+        <div
+          [innerHTML]="progress>=3? svg['circleBackgroundActive']:svg['circleBackground']"
+          class="small-circle"
+        ></div>
+        <div
+          [innerHTML]="progress>=3? svg['docValidationActive']: svg['docValidation']"
+          class="small-circle"
         ></div>
       </div>
-      <div class="img-text">Maker Agent</div>
+      <div class="img-text">Document Validation Agent</div>
     </div>
 
     <div class="double-arrow">
@@ -73,8 +81,14 @@
           <div
             [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['docValidation']" class="small-circle"></div>
+          <div
+            [innerHTML]="progress>=3? svg['circleBackgroundActive']:svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]="progress>=3? svg['docValidationActive']: svg['docValidation']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Document Validation Agent</div>
       </div>
@@ -83,8 +97,14 @@
           <div
             [innerHTML]="progress>=3? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['preCheck']" class="small-circle"></div>
+          <div
+            [innerHTML]="progress>=3? svg['circleBackgroundActive']: svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]="progress>=3? svg['preCheckActive']: svg['preCheck']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Pre Check Intelligence Agent</div>
       </div>
@@ -103,8 +123,14 @@
           <div
             [innerHTML]="progress>=4? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['compliance']" class="small-circle"></div>
+          <div
+            [innerHTML]="progress>=4? svg['circleBackgroundActive']: svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]="progress>=4? svg['complianceAgentActive']: svg['compliance']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Compliance Agent</div>
       </div>
@@ -113,8 +139,14 @@
           <div
             [innerHTML]="progress>=4? svg['makerActive'] : svg['makerInactive']"
           ></div>
-          <div [innerHTML]="svg['circleBackground']" class="small-circle"></div>
-          <div [innerHTML]="svg['contextAware']" class="small-circle"></div>
+          <div
+            [innerHTML]=" progress>=4? svg['circleBackgroundActive']: svg['circleBackground']"
+            class="small-circle"
+          ></div>
+          <div
+            [innerHTML]=" progress>=4? svg['contextAwareActive']: svg['contextAware']"
+            class="small-circle"
+          ></div>
         </div>
         <div class="img-text">Context Aware Verification Agent</div>
       </div>
@@ -226,13 +258,17 @@
       <form class="form-body">
         <div class="form-row">
           <label>Transaction Reference Number</label>
-          <input type="text" [value]="txnData?.['Transaction ID']" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[1]?.['Transaction ID']"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label>Transaction Type</label>
           <input
             type="text"
-            [value]="txnData?.['Transaction_Type']"
+            [value]="delayedDataMap[1]?.['Transaction_Type']"
             style="background-color: #e1effb"
           />
         </div>
@@ -240,19 +276,23 @@
           <label>Transaction Date</label>
           <input
             type="text"
-            [value]="txnData?.['Date']"
+            [value]="delayedDataMap[1]?.['Date']"
             style="background-color: #e1effb"
           />
         </div>
         <div class="form-row">
           <label>Value/Settlement Date</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="delayedDataMap[1]?.DatePlus2"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Amount</label>
           <input
             type="text"
-            [value]="txnData?.['Amount_SGD']"
+            [value]="delayedDataMap[1]?.['Amount_SGD']"
             style="background-color: #e1effb"
           />
         </div>
@@ -260,7 +300,7 @@
           <label>Currency</label>
           <input
             type="text"
-            [value]="txnData?.['Currency']"
+            [value]="delayedDataMap[1]?.['Currency']"
             style="background-color: #e1effb"
           />
         </div>
@@ -268,7 +308,7 @@
           <label>Client/Account Number</label>
           <input
             type="text"
-            [value]="txnData?.['Client Account ID']"
+            [value]="delayedDataMap[1]?.['Client Account ID']"
             style="background-color: #e1effb"
           />
         </div>
@@ -276,7 +316,7 @@
           <label>Debit Account Number</label>
           <input
             type="text"
-            [value]="txnData?.['Debit Account ID']"
+            [value]="delayedDataMap[1]?.['Debit Account ID']"
             style="background-color: #e1effb"
           />
         </div>
@@ -284,19 +324,23 @@
           <label>Beneficiary Name</label>
           <input
             type="text"
-            [value]="txnData?.['Benificiary Name']"
+            [value]="delayedDataMap[1]?.['Benificiary Name']"
             style="background-color: #e1effb"
           />
         </div>
         <div class="form-row">
           <label>Beneficiary Account Details</label>
-          <input type="text" style="background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="delayedDataMap[1]?.beneficiaryAccountDetails"
+            style="background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label>Payment Routing</label>
           <input
             type="text"
-            [value]="txnData?.['Payment Routing']"
+            [value]="delayedDataMap[1]?.['Payment Routing']"
             style="background-color: #e1effb"
           />
         </div>
@@ -304,7 +348,7 @@
           <label>Payment Method</label>
           <input
             type="text"
-            [value]="txnData?.['Payment Method']"
+            [value]="delayedDataMap[1]?.['Payment Method']"
             style="background-color: #e1effb"
           />
         </div>
@@ -336,7 +380,11 @@
       <form class="form-body">
         <div class="form-row">
           <label>Purpose Code</label>
-          <input type="text" [value]="txnData?.['Purpose Code']" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[2]?.['Purpose Code']"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 180px">Business Justification</label>
@@ -346,7 +394,7 @@
           <label>Client Instruction Ref. No.</label>
           <input
             type="text"
-            [value]="txnData?.['Client Instruction Ref No']?.['']"
+            [value]="delayedDataMap[2]?.['Client Instruction Ref No']?.['']"
             disabled
           />
         </div>
@@ -354,7 +402,7 @@
           <label>Recurring Transaction Flag</label>
           <input
             type="text"
-            [value]="txnData?.['Recurring Transaction Flag']"
+            [value]="delayedDataMap[2]?.['Recurring Transaction Flag']"
             style="background-color: #e1effb"
           />
         </div>
@@ -362,7 +410,7 @@
           <label style="height: 51px">Priority Level</label>
           <input
             type="text"
-            [value]="txnData?.['Priority Level']"
+            [value]="delayedDataMap[2]?.['Priority Level']"
             style="height: 51px; background-color: #e1effb"
           />
         </div>
@@ -403,7 +451,7 @@
           <label>Client Instruction Ref. No.</label>
           <input
             type="text"
-            [value]="txnData?.['Client Instruction Ref No']?.['']"
+            [value]="delayedDataMap[3]?.['Client Instruction Ref No']?.['']"
             disabled
           />
         </div>
@@ -411,7 +459,7 @@
           <label>Recurring Transaction Flag</label>
           <input
             type="text"
-            [value]="txnData?.['Recurring Transaction Flag']"
+            [value]="delayedDataMap[3]?.['Recurring Transaction Flag']"
             style="background-color: #e1effb"
           />
         </div>
@@ -444,7 +492,7 @@
           <label style="height: 50px">Source of Funds Confirmed</label>
           <input
             type="text"
-            [value]="txnData?.['Source Of Funds Confirmed']"
+            [value]="delayedDataMap[4]?.['Source Of Funds Confirmed']"
             style="height: 50px"
             disabled
           />
@@ -453,7 +501,7 @@
           <label style="height: 50px">KYC verification date</label>
           <input
             type="text"
-            [value]="txnData?.['KYC Verification Date']"
+            [value]="delayedDataMap[4]?.['KYC Verification Date']"
             style="height: 50px"
             disabled
           />
@@ -462,7 +510,7 @@
           <label style="height: 50px">Unusual Transaction Indicator</label>
           <input
             type="text"
-            [value]="txnData?.['Unusual Transactio Indicators']"
+            [value]="delayedDataMap[4]?.['Unusual Transactio Indicators']"
             style="height: 50px; background-color: #e1effb"
           />
         </div>
@@ -470,7 +518,7 @@
           <label style="height: 50px">PEP Involvement</label>
           <input
             type="text"
-            [value]="txnData?.['PEP Involvement']"
+            [value]="delayedDataMap[4]?.['PEP Involvement']"
             style="height: 50px; background-color: #e1effb"
           />
         </div>
@@ -478,7 +526,7 @@
           <label style="height: 95px">High Risk Country Involvement</label>
           <input
             type="text"
-            [value]="txnData?.['High Risk Country Involvement']"
+            [value]="delayedDataMap[4]?.['High Risk Country Involvement']"
             style="height: 95px; background-color: #e1effb"
           />
         </div>
@@ -511,25 +559,48 @@
           <label style="height: 63px"
             >Declaration confirming review of transaction details</label
           >
-          <input type="text" style="height: 63px" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[5]?.tdReview"
+            style="height: 63px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 59px"
             >Declaration confirming adherence to bank policies</label
           >
-          <input type="text" style="height: 59px" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[5]?.bpAdherence"
+            style="height: 59px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">Digital Signature</label>
-          <input type="text" style="height: 50px" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[5]?.digitalSignature"
+            style="height: 50px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">Notes for checker</label>
-          <input type="text" style="height: 50px; background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="delayedDataMap[5]?.notes"
+            style="height: 50px; background-color: #e1effb"
+          />
         </div>
         <div class="form-row">
           <label style="height: 71px">Four-Eyes Confirmation Requirement</label>
-          <input type="text" style="height: 71px; background-color: #e1effb" />
+          <input
+            type="text"
+            [value]="delayedDataMap[5]?.fourEyes"
+            style="height: 71px; background-color: #e1effb"
+          />
         </div>
         <button
           type="button"
@@ -558,17 +629,27 @@
       <form class="form-body">
         <div class="form-row">
           <label style="height: 58px">Maker ID</label>
-          <input type="text" [value]="rm_id" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[6]?.rm_id"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 58px">Maker name</label>
-          <input type="text" [value]="rm_name" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[6]?.rm_name"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <div class="form-row">
           <label style="height: 50px">Submission timestamp</label>
           <input
             type="text"
-            [value]="txnData?.['Timestamp']"
+            [value]="delayedDataMap[6]?.['Timestamp']"
             style="height: 58px"
             disabled
           />
@@ -577,14 +658,19 @@
           <label style="height: 58px">Initial Risk Score</label>
           <input
             type="text"
-            [value]="txnData?.['Risk_Score']"
+            [value]="delayedDataMap[6]?.['Risk_Score']"
             style="height: 58px"
             disabled
           />
         </div>
         <div class="form-row">
           <label style="height: 58px">Required approval level</label>
-          <input type="text" style="height: 58px" disabled />
+          <input
+            type="text"
+            [value]="delayedDataMap[6]?.approvalLevel"
+            style="height: 58px"
+            disabled
+          />
         </div>
         <button
           type="button"

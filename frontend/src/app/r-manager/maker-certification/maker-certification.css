@@ -317,10 +317,10 @@
   border: none;
   background-color: #c9ffe8;
   overflow-x: auto;
-  white-space: normal; /* allow wrapping */
+  white-space: normal; 
+  /* word-wrap: break-word; */
   word-break: break-word;
 }
-
 .submit-btn {
   margin-top: auto;
   align-self: center;

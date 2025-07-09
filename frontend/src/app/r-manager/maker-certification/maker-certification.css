@@ -212,8 +212,10 @@
   grid-template-columns: repeat(3, 435px);
   grid-template-rows: repeat(2, 523px);
   gap: 10px;
-  justify-content: start; /* optional: aligns grid to the left */
-  padding: 10px; /* optional: spacing around the grid */
+  justify-content: space-between; /* optional: aligns grid to the left */
+  align-items: start;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .form-container {

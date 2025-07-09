@@ -28,20 +28,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let client of clients">
-          <td class="text-left">{{ client.name }}</td>
-          <td class="text-center">{{ client.relationshipYears }}</td>
-          <td class="text-left">{{ client.accountType }}</td>
-          <td class="text-left">{{ client.sourceOfWealth }}</td>
-          <td class="text-left">{{ client.riskScore }}</td>
-          <td class="text-left">{{ client.customerRiskProfile }}</td>
-          <td class="text-center">{{ client.aum }}</td>
-          <td class="text-center">{{ client.growth }}</td>
+        <tr *ngFor="let client of clientData">
+          <td class="text-left">{{ client["Name"] }}</td>
+          <td class="text-center">{{ client["Relationship_Years"] }}</td>
+          <td class="text-left">{{ client["Account_Types"] }}</td>
+          <td class="text-left">{{ client["Source_of_Wealth"] }}</td>
+          <td class="text-left">{{ client["Risk_Score"] }}</td>
+          <td class="text-left">No Risk Flag</td>
+          <td class="text-center">
+            {{ client["AUM_SGD"] | currency:'':'':'1.0-0' }}
+          </td>
+          <td class="text-center">{{ client["QoQ Growth"] }}</td>
           <td
             class="client-sat-cell text-center"
-            [ngClass]="getClientSatClass(client.clientSat)"
+            [ngClass]="getClientSatClass(client['Client Sat'])"
           >
-            {{ client.clientSat }}
+            {{ client['Client Sat'] }}
           </td>
         </tr>
       </tbody>
@@ -93,7 +95,7 @@
                 />
                 <polygon points="7,6 13,9 7,12" fill="#F05224" /></svg
             ></span>
-            <span class="task-name">David Lee</span>
+            <span class="task-name">{{ clientData[0]['Name'] }}</span>
             <span class="task-type meeting">Meeting</span>
             <div class="task-main">
               <div class="task-title">Credit Facility Review Meeting</div>
@@ -112,7 +114,7 @@
                 <circle cx="9" cy="9" r="8.5" stroke="#F05224" fill="white" />
                 <polygon points="7,6 13,9 7,12" fill="#F05224" /></svg
             ></span>
-            <span class="task-name">Toshiro Yamamoto</span>
+            <span class="task-name">{{ clientData[1]['Name'] }}</span>
             <span class="task-type compliance">Compliance</span>
             <div class="task-main">
               <div class="task-title">CDD refresh required</div>
@@ -138,7 +140,7 @@
                 />
                 <polygon points="7,6 13,9 7,12" fill="#F05224" /></svg
             ></span>
-            <span class="task-name">Ibrahim Ismail</span>
+            <span class="task-name">{{ clientData[2]['Name'] }}</span>
             <span class="task-type opportunity">Opportunity</span>
             <div class="task-main">
               <div class="task-title">FX Hedging Opportunity</div>

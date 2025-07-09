@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
@@ -14,9 +15,36 @@ declare var LeaderLine: any;
 export class Workflow implements AfterViewInit, OnDestroy {
   private lines: any[] = [];
   txnData: any;
+  workflowCards: any[] = [];
 
   ngOnInit() {
     const role = localStorage.getItem('role');
+
+    this.http
+      .get<any>('https://tcg-node.onrender.com/workflow-cards')
+      .subscribe({
+        next: (res) => {
+          console.log('✅ Workflow Cards:', res.documents);
+          this.workflowCards = res.documents;
+        },
+        error: (err) => {
+          console.error('❌ Failed to fetch workflow cards:', err);
+        },
+      });
+  }
+
+  getStepsForCard(cardId: string): { key: string; value: boolean }[] {
+    const card = this.workflowCards.find((c) =>
+      Object.entries(c).some(
+        ([k, v]) => k.trim() === 'card_id' && String(v).trim() === cardId.trim()
+      )
+    );
+
+    if (!card) return [];
+
+    return Object.entries(card)
+      .filter(([key]) => key.trim() !== '_id' && key.trim() !== 'card_id')
+      .map(([key, value]) => ({ key: key.trim(), value: Boolean(value) }));
   }
 
   goBack() {
@@ -27,7 +55,7 @@ export class Workflow implements AfterViewInit, OnDestroy {
     this.router.navigate(['/workflow-agent']);
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     const nav = this.router.getCurrentNavigation();
     this.txnData = nav?.extras?.state?.['txnData'];
   }

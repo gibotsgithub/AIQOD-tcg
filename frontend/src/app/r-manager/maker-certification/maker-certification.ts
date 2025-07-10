@@ -8,7 +8,7 @@ import { Workflow } from '../workflow/workflow';
 
 @Component({
   selector: 'app-maker-certification',
-  imports: [CommonModule, RChatfooter, Workflow],
+  imports: [CommonModule, RChatfooter],
   templateUrl: './maker-certification.html',
   styleUrl: './maker-certification.css',
 })

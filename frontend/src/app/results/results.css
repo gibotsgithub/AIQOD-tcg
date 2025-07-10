@@ -1,5 +1,5 @@
 .analysis-container {
-  background: var(--content-light);
+  background: #f7f8fa;
   min-height: calc(100vh - 72px);
   margin-top: 0;
   margin-left: 70px;

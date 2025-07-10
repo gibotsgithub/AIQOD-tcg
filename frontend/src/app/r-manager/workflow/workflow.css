@@ -1,9 +1,9 @@
 .workflow-container {
   padding: 36px 36px;
-  min-height: calc(100vh - 72px);
-  background: var(--content-light, #f7f8fa);
-  margin-left: 70px;
-  width: calc(100% - 70px);
+  min-height: var(--override-height, calc(100vh - 72px));
+  background: #f7f8fa;
+  margin-left: var(--override-margin-left, 70px);
+  width: var(--override-width, calc(100% - 70px));
   box-sizing: border-box;
   font-family: var(--font-family);
 }
@@ -12,7 +12,7 @@
   display: block;
   align-items: center;
   margin-bottom: 48px;
-  gap:30px;
+  gap: 30px;
 }
 
 .dashboard-header-row {
@@ -72,10 +72,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 80px; /* Increase gap between rows */
+  gap: 100px; /* Increase gap between rows */
   max-width: 1250px;
   margin: 0;
   position: relative;
+  margin-bottom: 40px;
 }
 .workflow-graph > div[style*="position: absolute"] {
   /* Optional: ensures all arrow divs are above the background but below cards if needed */
@@ -86,7 +87,7 @@
 .workflow-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
-  gap: 80px; 
+  gap: 40px;
   width: 100%;
   align-items: start;
   justify-items: center;
@@ -154,7 +155,7 @@
 }
 body {
   background: #f7f8fa;
-  font-family: 'Montserrat', Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
 }
 
 .checker-certification-section {
@@ -165,7 +166,7 @@ body {
 }
 
 .checker-title {
-   font-size: 24px;
+  font-size: 24px;
   font-weight: 600;
   color: #222;
   margin-top: 40px;
@@ -189,12 +190,11 @@ body {
 .checker-card {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   max-width: 620px;
   margin: 20px 0;
   padding: 20px 24px 24px 24px;
 }
-
 
 .checker-card-header {
   display: flex;
@@ -236,7 +236,7 @@ body {
 }
 
 .checker-value {
-   background: #E1EFFB;
+  background: #e1effb;
   font-size: 14px;
   color: #222;
   font-weight: 400;
@@ -255,7 +255,7 @@ body {
   display: flex;
   align-items: center;
 }
-.checker2-value{
+.checker2-value {
   font-size: 14px;
   color: #222;
   font-weight: 400;
@@ -265,7 +265,7 @@ body {
   align-items: center;
 }
 .checker2-value.system {
-  background: #C9FFE8;
+  background: #c9ffe8;
   color: #222;
 }
 
@@ -285,7 +285,7 @@ body {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: background .15s;
+  transition: background 0.15s;
 }
 
 .checker-btn.submit {
@@ -306,8 +306,8 @@ body {
   background: #011735;
 }
 
-.workflow-row-2{
-    margin-left: 220px;
+.workflow-row-2 {
+  margin-left: 220px;
 }
 
 .workflow-card-pill {
@@ -539,7 +539,10 @@ body {
   .checker-card {
     padding: 8px 4px 10px 4px;
   }
-  .checker-label, .checker-value, .checker2-label, .checker2-value {
+  .checker-label,
+  .checker-value,
+  .checker2-label,
+  .checker2-value {
     font-size: 12px;
     padding: 8px 6px;
   }
@@ -564,8 +567,8 @@ body {
     font-size: 0.82rem;
     gap: 4px;
   }
-  .workflow-arrows, .leader-line {
+  .workflow-arrows,
+  .leader-line {
     display: none !important;
   }
 }
-

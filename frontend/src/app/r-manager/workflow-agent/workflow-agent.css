@@ -7,11 +7,7 @@
   padding: 32px 32px;
   position: relative;
   font-family: var(--font-family);
-  background: linear-gradient(
-    180deg,
-    rgba(86, 86, 86, 0.1) 0%,
-    rgba(86, 86, 86, 0.1) 100%
-  );
+  background: #f7f8fa;
   color: var(--text-dark);
 }
 
@@ -93,9 +89,26 @@
 }
 
 .svg-wrap {
+  position: relative;
   width: 69px;
   height: 70px;
   margin-bottom: 12px;
+}
+
+/* Apply only to base SVGs like 'backLine' and 'maker' */
+.svg-wrap > div:not(.small-circle) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.small-circle {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .green-bar {

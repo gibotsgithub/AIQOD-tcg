@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  AfterViewChecked,
+  Input,
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 declare var LeaderLine: any;
@@ -11,22 +18,66 @@ declare var LeaderLine: any;
   templateUrl: './workflow.html',
   styleUrl: './workflow.css',
 })
-export class Workflow implements AfterViewInit, OnDestroy {
+export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
   private lines: any[] = [];
-  isNotChecker = true;
+  txnData: any;
+  workflowCards: any[] = [];
+  @Input() showBothSections = true;
+  @Input() showGoBack = true;
+  @Input() showAcra = true;
+
+  constructor(private router: Router, private http: HttpClient) {
+    const nav = this.router.getCurrentNavigation();
+    this.txnData = nav?.extras?.state?.['txnData'];
+    const flag = nav?.extras?.state?.['showBothSections'];
+    this.showBothSections = typeof flag === 'boolean' ? flag : true;
+    // console.log('showBothSections:', this.showBothSections);
+  }
 
   ngOnInit() {
-    const role = localStorage.getItem('role');
-    this.isNotChecker = role !== 'checker';
+    this.http
+      .get<any>('https://tcg-node.onrender.com/workflow-cards')
+      .subscribe({
+        next: (res) => {
+          // console.log('✅ Workflow Cards:', res.documents);
+          this.workflowCards = res.documents;
+          // Create lines after DOM update
+          setTimeout(() => this.createLines(), 0);
+        },
+        error: (err) => {
+          console.error('❌ Failed to fetch workflow cards:', err);
+        },
+      });
+  }
+
+  getStepsForCard(cardId: string): { key: string; value: boolean }[] {
+    const card = this.workflowCards.find((c) =>
+      Object.entries(c).some(
+        ([k, v]) => k.trim() === 'card_id' && String(v).trim() === cardId.trim()
+      )
+    );
+
+    if (!card) return [];
+
+    return Object.entries(card)
+      .filter(([key]) => key.trim() !== '_id' && key.trim() !== 'card_id')
+      .map(([key, value]) => ({ key: key.trim(), value: Boolean(value) }));
+  }
+
+  goBack() {
+    this.router.navigate(['/maker-checker']);
   }
 
   navHandler() {
     this.router.navigate(['/workflow-agent']);
   }
 
-  constructor(private router: Router) {}
+  createLines() {
+    // Remove existing lines first
+    this.lines.forEach((line) => line.remove());
+    this.lines = [];
 
-  ngAfterViewInit() {
+    // Create LeaderLine connections between cards
     this.lines.push(
       new LeaderLine(
         document.getElementById('card-2'),
@@ -118,8 +169,22 @@ export class Workflow implements AfterViewInit, OnDestroy {
     );
   }
 
+  ngAfterViewInit() {
+    window.addEventListener('resize', this.repositionLines);
+  }
+
+  ngAfterViewChecked() {
+    // Reposition lines after every view check to handle dynamic layout changes
+    this.lines.forEach((line) => line.position());
+  }
+
   ngOnDestroy() {
     this.lines.forEach((line) => line.remove());
     this.lines = [];
+    window.removeEventListener('resize', this.repositionLines);
   }
+
+  repositionLines = () => {
+    this.lines.forEach((line) => line.position());
+  };
 }

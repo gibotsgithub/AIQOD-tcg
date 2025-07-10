@@ -1,9 +1,14 @@
-<div class="dashboard-container">
+<div
+  class="dashboard-container"
+  [ngStyle]="{
+    'padding-bottom': showChatbot ? '200px' : '0px'
+  }"
+>
   <div class="dashboard-header-row">
-    <h2 class="dashboard-heading">RM Perspective</h2>
-  <h2 class="acra-title">ACRA</h2>
+    <h2 class="dashboard-heading">Transaction Intelligence - ACRA</h2>
+    <!-- <h2 class="acra-title">ACRA</h2> -->
   </div>
-  
+
   <div class="dashboard-grid">
     <div class="dashboard-tab">
       <div class="activity-card">
@@ -430,11 +435,7 @@
             </div>
           </div>
         </div>
-        <div class="grid-item">
-          <div class="activity-header" style="font-size: 20px">STR</div>
-          <div class="activity-header" style="font-size: 20px">4</div>
-        </div>
-        <div class="grid-item">
+        <div class="grid-item review-span">
           <div class="activity-header" style="font-size: 20px">Review</div>
           <div class="activity-header" style="font-size: 20px">4</div>
         </div>
@@ -460,7 +461,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let t of transactions">
+          <tr *ngFor="let t of transactions" class="table-body">
             <td>{{ t.id }}</td>
             <td>{{ t.customer }}</td>
             <td>{{ t.account }}</td>
@@ -475,7 +476,8 @@
             <td
               [ngStyle]="t.verification !== 'Auto-Approved' ? { 'color': 'blue', 'font-weight': '500' } : {}"
             >
-              {{ t.verification }}
+              {{ t.verification === "Human Review Reqd, STR"? "Human Review
+              Reqd" : t.verification }}
             </td>
             <td>{{ t.total }}</td>
           </tr>

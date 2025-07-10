@@ -1,6 +1,7 @@
 .shell-container {
   display: flex;
   height: 100vh;
+  background: #f7f8fa;
 }
 
 .app-layout {
@@ -30,7 +31,11 @@
 
 .main-content {
   flex: 1;
-  background: var(--content-light);
+    background: linear-gradient(
+    180deg,
+    rgba(86, 86, 86, 0.1) 0%,
+    rgba(86, 86, 86, 0.1) 100%
+  );
   overflow-y: auto;
 }
 

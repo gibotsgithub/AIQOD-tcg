@@ -15,11 +15,7 @@ body {
   padding: 32px 32px;
   position: relative;
   font-family: var(--font-family);
-  background: linear-gradient(
-    180deg,
-    rgba(86, 86, 86, 0.1) 0%,
-    rgba(86, 86, 86, 0.1) 100%
-  );
+  background: #f7f8fa;
   color: var(--text-dark);
   padding-bottom: 200px;
 }
@@ -108,6 +104,9 @@ body {
   border-radius: 10px;
   gap: 4px;
 }
+.review-span {
+  grid-column: 1 / -1; /* This makes the item span both columns */
+}
 
 .activity-header {
   color: #000;
@@ -192,9 +191,27 @@ body {
 
 .transaction-table-container {
   margin-top: 16px;
+  max-height: 250px;
   overflow-x: auto;
   background-color: #fff;
   padding: 0 16px 16px 16px;
+}
+
+.transaction-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2; /* Make sure it appears above body rows */
+}
+
+.table-body::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 .transaction-table {

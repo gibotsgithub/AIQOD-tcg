@@ -11,6 +11,7 @@ import { NgxEchartsDirective } from 'ngx-echarts';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+  managerName = localStorage.getItem('user_name');
   barOptions = {
     tooltip: {
       trigger: 'axis',
@@ -26,10 +27,12 @@ export class Dashboard {
       },
     },
     legend: {
-      bottom: 4,
+      orient: 'horizontal', // Ensures legend is in a single line
+      bottom: 4, // Position legend at the bottom (or use 'top' for top) // Center the legend horizontally
       textStyle: {
         fontSize: 10,
       },
+      // Optionally, you can set 'itemGap' to control spacing between items
     },
     grid: {
       left: '3%',
@@ -66,6 +69,7 @@ export class Dashboard {
         label: { show: false },
         color: '#61b33b',
         data: [2000, 5000, 11000],
+        barWidth: '50%',
       },
       {
         name: 'High Risk',
@@ -97,16 +101,18 @@ export class Dashboard {
       formatter: '{b}: ${c} ({d}%)',
     },
     legend: {
-      orient: 'horizontal',
-      bottom: 0,
+      orient: 'horizontal', // Ensures legend is in a single line
+      bottom: 4, // Position legend at the bottom (or use 'top' for top) // Center the legend horizontally
+      left: 'center',
       textStyle: {
-        fontSize: 10, // reduced from 12
+        fontSize: 10,
       },
+      itemGap: 10,
     },
     series: [
       {
         type: 'pie',
-        radius: ['70%', '60%'],
+        radius: ['70%', '55%'],
         center: ['50%', '40%'],
         avoidLabelOverlap: true,
         label: {

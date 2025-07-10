@@ -26,7 +26,7 @@ export class MasHistoryComponent implements OnInit {
         .subscribe({
           next: (data) => {
             this.resultData = data;
-            console.log('sending data', data);
+            // console.log('sending data', data);
           },
           error: (err) => {
             console.error('Failed to fetch MAS history:', err);
@@ -42,7 +42,7 @@ export class MasHistoryComponent implements OnInit {
     );
   }
   viewDetails(tx: any) {
-    console.log('view details clicked', tx);
+    // console.log('view details clicked', tx);
     this.router.navigate(['/analysis-results'], {
       state: { resultData: tx, from: 'mas-history' },
     });
@@ -51,7 +51,8 @@ export class MasHistoryComponent implements OnInit {
 
   deleteEntry(tx: any) {
     if (!tx || !tx._id) return; // Ensure the transaction has an ID
-
+    const confirmDelete = window.confirm('Are you sure you want to delete this entry?');
+    if (!confirmDelete) return;
     this.http
       .delete(`https://tcg-node.onrender.com/api/mas-history/${tx._id}`)
       .subscribe({

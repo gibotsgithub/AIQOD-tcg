@@ -13,27 +13,36 @@ import { RChatfooter } from '../r-chatfooter/r-chatfooter';
 export class TIntelligence implements OnInit {
   transactions: any[] = []; // For display (lightweight)
   fullTransactions: any[] = []; // For passing around full data
+  rmName = localStorage.getItem('user_name') ?? '';
+
+  rm_id = localStorage.getItem('RM_ID') ?? '';
+
+  showChatbot = false;
+
+  private intervalId: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http
-      .get<any>('https://tcg-node.onrender.com/sample-data/transaction_details')
+      .get<any>(
+        `https://tcg-node.onrender.com/transaction-intelligence/${this.rm_id}`
+      )
       .subscribe({
         next: (res) => {
-          console.log('✅ Fetched transactions:', res);
+          // console.log('✅ Fetched transactions:', res);
 
           const docs = res.documents || [];
           this.fullTransactions = docs;
 
           this.transactions = docs.map((doc: any) => ({
-            id: doc['Transaction ID'] ?? '—',
+            id: doc['Transaction_ID'] ?? '—',
             customer: doc['Name'] ?? '—',
-            account: doc['Client Account ID'] ?? '—',
-            method: doc['Payment Method'] ?? '—',
-            fraudFlag: doc['Fraud Flag'] ? '✔️' : '❌',
+            account: doc['Client_Account_ID'] ?? '—',
+            method: doc['Payment_Method'] ?? '—',
+            fraudFlag: doc['Fraud_Flag'] ? '✔️' : '❌',
             amlFlag: 'None', // Placeholder or logic
-            priority: doc['Amount_SGD'] > 1000000 ? 'Urgent ❌' : 'Normal ✅',
+            priority: doc['Priority_Level'] ?? 'Unknown',
             verification: doc['Verification_Status'] ?? 'Unknown',
             total:
               doc['Amount_SGD']?.toLocaleString('en-SG', {
@@ -46,6 +55,11 @@ export class TIntelligence implements OnInit {
           console.error('❌ Failed to fetch transactions:', err);
         },
       });
+
+    this.intervalId = setInterval(() => {
+      const savedValue = localStorage.getItem('showChatbot');
+      this.showChatbot = savedValue === 'true';
+    }, 500);
   }
 
   // Optional helper to get full doc by ID
@@ -53,5 +67,9 @@ export class TIntelligence implements OnInit {
     return this.fullTransactions.find(
       (doc) => doc['Transaction ID'] === txnId || doc.id === txnId
     );
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
   }
 }

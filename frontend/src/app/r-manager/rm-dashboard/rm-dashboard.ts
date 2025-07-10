@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 interface Client {
   name: string;
@@ -21,6 +22,28 @@ interface Client {
 })
 export class RmDashboard {
   rmName = localStorage.getItem('user_name');
+
+  clientData: any[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    const rm_id = localStorage.getItem('RM_ID');
+
+    if (rm_id) {
+      this.http
+        .get<any>(`https://tcg-node.onrender.com/customer_profile/${rm_id}`)
+        .subscribe({
+          next: (res) => {
+            // console.log('✅ Fetched data:', res);
+            this.clientData = res.documents || [];
+          },
+          error: (err) => {
+            console.error('❌ Error fetching data:', err);
+          },
+        });
+    }
+  }
 
   summaryCards = [
     {

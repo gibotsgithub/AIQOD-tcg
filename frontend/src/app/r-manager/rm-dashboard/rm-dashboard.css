@@ -1,5 +1,4 @@
 .dashboard-container {
-  background: var(--content-light);
   min-height: 100%;
   height: auto;
   overflow-y: auto;
@@ -9,11 +8,7 @@
   padding: 32px 32px;
   position: relative;
   font-family: var(--font-family);
-  background: linear-gradient(
-    180deg,
-    rgba(86, 86, 86, 0.1) 0%,
-    rgba(86, 86, 86, 0.1) 100%
-  );
+  background: #f7f8fa;
   color: var(--text-dark);
 }
 .section-icon {

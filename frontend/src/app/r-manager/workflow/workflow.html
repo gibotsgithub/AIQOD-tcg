@@ -1,6 +1,6 @@
 <div class="workflow-container">
   <div class="workflow-header">
-    <button *ngIf="isNotChecker" class="back-btn">
+    <!-- <button class="back-btn" *ngIf="showGoBack" (click)="goBack()">
       <svg
         width="32"
         height="32"
@@ -27,11 +27,14 @@
         </g>
       </svg>
       Go Back
-    </button>
-     <div class="dashboard-header-row">
-    <h2 class="dashboard-heading">Workflow</h2>
-  <h2 class="acra-title">ACRA</h2>
-  </div>
+    </button> -->
+    <div class="dashboard-header-row">
+      <h2 class="dashboard-heading">Workflow</h2>
+      <h2 class="dashboard-heading" *ngIf="txnData">
+        Transaction ID:{{txnData["Transaction_ID"]}}
+      </h2>
+      <h2 class="acra-title" *ngIf="showAcra">ACRA</h2>
+    </div>
   </div>
 
   <div class="workflow-graph">
@@ -285,19 +288,9 @@
           <span class="workflow-card-title">Document Validation</span>
         </div>
         <ul class="workflow-list">
-          <li>
-            <i class="check"></i>Extracting information from submitted documents
+          <li *ngFor="let step of getStepsForCard('Document Validation Agent')">
+            <i [ngClass]="step.value ? 'check' : 'cross'"></i>{{ step.key }}
           </li>
-          <li>
-            <i class="check"></i>Validating information from submitted documents
-          </li>
-          <li>
-            <i class="check"></i>Ensuring completeness of required documentation
-          </li>
-          <li>
-            <i class="check"></i>Verifying consistency across multiple documents
-          </li>
-          <li><i class="check"></i>Flagging discrepancies for human review</li>
         </ul>
       </div>
 
@@ -467,14 +460,11 @@
           >
         </div>
         <ul class="workflow-list">
-          <li>
-            <i class="check"></i>Assembling Client History & Transaction Context
+          <li
+            *ngFor="let step of getStepsForCard('Context Aware Verification')"
+          >
+            <i [ngClass]="step.value ? 'check' : 'cross'"></i>{{ step.key }}
           </li>
-          <li>
-            <i class="check"></i>Comparing current transaction to typical
-            patterns
-          </li>
-          <li><i class="check"></i>Preparing supporting documents</li>
         </ul>
       </div>
     </div>
@@ -645,8 +635,9 @@
           <span class="workflow-card-title">Maker Agent</span>
         </div>
         <ul class="workflow-list">
-          <li><i class="check"></i>Pre-filling form fields</li>
-          <li><i class="check"></i>Validating input completeness</li>
+          <li *ngFor="let step of getStepsForCard('Maker Agent')">
+            <i [ngClass]="step.value ? 'check' : 'cross'"></i>{{ step.key }}
+          </li>
         </ul>
       </div>
 
@@ -814,18 +805,10 @@
           <span class="workflow-card-title">Precheck Intelligence Agent</span>
         </div>
         <ul class="workflow-list">
-          <li><i class="check"></i>Reviewing transactions</li>
-          <li>
-            <i class="check"></i>Flagging potential issues based on historical
-            patterns
-          </li>
-          <li>
-            <i class="check"></i>Scoring transactions by risk level for
-            prioritized review
-          </li>
-          <li>
-            <i class="check"></i>Preparing summary of key verification points
-            for human checker
+          <li
+            *ngFor="let step of getStepsForCard('Precheck Intelligence Agent')"
+          >
+            <i [ngClass]="step.value ? 'check' : 'cross'"></i>{{ step.key }}
           </li>
         </ul>
       </div>
@@ -994,19 +977,8 @@
           <span class="workflow-card-title">Compliance Agent</span>
         </div>
         <ul class="workflow-list">
-          <li>
-            <i class="cross"></i
-            ><span class="error"
-              >Validate Transaction against regulatory requirements</span
-            >
-          </li>
-          <li><i class="check"></i>Scan for watchlist and sanctions</li>
-          <li>
-            <i class="cross"></i><span class="error">KYC/AML compliance</span>
-          </li>
-          <li><i class="check"></i>Check against internal requirements</li>
-          <li>
-            <i class="check"></i>Verify approvals based on amount thresholds
+          <li *ngFor="let step of getStepsForCard('Compliance Agent')">
+            <i [ngClass]="step.value ? 'check' : 'cross'"></i>{{ step.key }}
           </li>
         </ul>
       </div>
@@ -1070,7 +1042,7 @@
         </div>
     </div> -->
 
-  <div class="checker-certification-section">
+  <div class="checker-certification-section" *ngIf="showBothSections">
     <h2 class="checker-title">Checker Certification</h2>
     <div class="checker-subtitle">Complete all required fields below</div>
     <div class="checker-certification-cards">

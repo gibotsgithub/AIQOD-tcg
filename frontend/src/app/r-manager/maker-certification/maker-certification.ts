@@ -17,19 +17,33 @@ export class MakerCertification {
   txnData: any;
   delayedDataMap: Record<number, any> = {};
 
+  formatDate(input: string | Date): string {
+    console.log('formatDate input:', input); // 🔍 Debug log
+    if (!input) return '';
+
+    const date = new Date(input);
+    const mm = date.getMonth() + 1;
+    const dd = date.getDate();
+    const yyyy = date.getFullYear();
+
+    return `${mm}/${dd}/${yyyy}`;
+  }
+
   getDatePlusDays(days: number): string {
     if (!this.txnData?.['Date']) return '';
 
-    const originalDateStr = this.txnData['Date']; // e.g., "3/14/2025"
-    const [month, day, year] = originalDateStr.split('/').map(Number);
+    const originalDateStr = this.txnData['Date']; // e.g., "2025-03-14T00:00:00.000Z"
+    const originalDate = new Date(originalDateStr);
 
-    const originalDate = new Date(year, month - 1, day);
+    // Add days
     originalDate.setDate(originalDate.getDate() + days);
 
-    // Format back as MM/DD/YYYY (or whatever format you want)
-    return `${
-      originalDate.getMonth() + 1
-    }/${originalDate.getDate()}/${originalDate.getFullYear()}`;
+    // Format as MM/DD/YYYY
+    const mm = originalDate.getMonth() + 1;
+    const dd = originalDate.getDate();
+    const yyyy = originalDate.getFullYear();
+
+    return `${mm}/${dd}/${yyyy}`;
   }
 
   goBack() {
@@ -46,6 +60,7 @@ export class MakerCertification {
       setTimeout(() => {
         this.delayedDataMap[current] = {
           ...this.txnData,
+          Transaction_Date: this.txnData?.['Date'],
           DatePlus2: this.getDatePlusDays(2),
           beneficiaryAccountDetails: 'Origin Account',
           riskAssessment: 'Market rates confirmed at 10:15 SGT',
@@ -116,6 +131,8 @@ export class MakerCertification {
 
       this.delayedData = {
         ...this.txnData,
+
+        Transaction_Date: this.txnData?.['Date'],
         DatePlus2: datePlus2,
         beneficiaryAccountDetails: 'Origin Account',
         riskAssessment: 'Market rates confirmed at 10:15 SGT',

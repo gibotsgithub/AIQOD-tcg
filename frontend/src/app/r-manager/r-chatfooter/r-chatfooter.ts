@@ -62,6 +62,7 @@ export class RChatfooter implements OnDestroy {
 
     if (foundTxn) {
       // console.log('✅ Matched Transaction:', foundTxn);
+      localStorage.setItem('transaction_id', foundTxn['Transaction_ID']);
       this.router.navigate(['/maker-checker'], {
         state: { txnData: foundTxn },
       });

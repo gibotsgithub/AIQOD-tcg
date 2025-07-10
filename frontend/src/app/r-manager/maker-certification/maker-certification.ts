@@ -63,10 +63,10 @@ export class MakerCertification {
           approvalLevel: 'Enhanced',
         };
 
-        console.log(
-          `✅ Data loaded for progress ${current}:`,
-          this.delayedDataMap[current]
-        );
+        // console.log(
+        //   `✅ Data loaded for progress ${current}:`,
+        //   this.delayedDataMap[current]
+        // );
       }, 1000);
     }
   }
@@ -95,11 +95,11 @@ export class MakerCertification {
     const nav = this.router.getCurrentNavigation();
     this.txnData = nav?.extras?.state?.['txnData'];
 
-    if (!this.txnData) {
-      console.warn('❌ No transaction data received.');
-    } else {
-      console.log('✅ Received txnData:', this.txnData);
-    }
+    // if (!this.txnData) {
+    //   console.warn('❌ No transaction data received.');
+    // } else {
+    //   // console.log('✅ Received txnData:', this.txnData);
+    // }
 
     setTimeout(() => {
       const originalDateStr = this.txnData?.['Date'] ?? '';
@@ -130,10 +130,10 @@ export class MakerCertification {
         rm_name: localStorage.getItem('user_name'),
         approvalLevel: 'Enhanced',
       };
-      console.log('✅ Data available after delay:', this.delayedData);
+      // console.log('✅ Data available after delay:', this.delayedData);
     }, 1000);
 
-    console.log(this.txnData?.['Transaction ID']);
+    // console.log(this.txnData?.['Transaction ID']);
 
     this.svg = {
       arrow: this.sanitize(`<svg

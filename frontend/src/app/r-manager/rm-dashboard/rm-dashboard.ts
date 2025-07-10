@@ -35,7 +35,7 @@ export class RmDashboard {
         .get<any>(`https://tcg-node.onrender.com/customer_profile/${rm_id}`)
         .subscribe({
           next: (res) => {
-            console.log('✅ Fetched data:', res);
+            // console.log('✅ Fetched data:', res);
             this.clientData = res.documents || [];
           },
           error: (err) => {

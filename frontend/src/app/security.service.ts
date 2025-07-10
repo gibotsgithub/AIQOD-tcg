@@ -10,13 +10,13 @@ export class SecurityService {
   currentRoute$ = this.currentRouteSubject.asObservable();
 
   constructor(private router: Router) {
-    console.log('🛠 Router injected:', !!router);
+    // console.log('🛠 Router injected:', !!router);
     this.currentRouteSubject.next(this.router.url);
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.currentRouteSubject.next(event.urlAfterRedirects);
-        console.log('🔐 Navigated to:', event.urlAfterRedirects);
+        // console.log('🔐 Navigated to:', event.urlAfterRedirects);
       });
   }
 

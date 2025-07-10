@@ -30,7 +30,7 @@ export class TopNavbar implements OnInit {
       .subscribe({
         next: (data) => {
           this.rmList = data;
-          console.log('RM Names:', this.rmList);
+          // console.log('RM Names:', this.rmList);
         },
         error: (err) => {
           console.error('Failed to fetch RM list:', err);

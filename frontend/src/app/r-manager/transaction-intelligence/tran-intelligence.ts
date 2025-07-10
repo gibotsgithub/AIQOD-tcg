@@ -30,7 +30,7 @@ export class TIntelligence implements OnInit {
       )
       .subscribe({
         next: (res) => {
-          console.log('✅ Fetched transactions:', res);
+          // console.log('✅ Fetched transactions:', res);
 
           const docs = res.documents || [];
           this.fullTransactions = docs;

@@ -698,6 +698,7 @@
   </div>
 
   <hr
+    *ngIf="showWorkflow"
     style="
       width: 100%;
       height: 4px;
@@ -708,6 +709,7 @@
   />
 
   <app-workflow
+    *ngIf="showWorkflow"
     [showGoBack]="false"
     [showAcra]="false"
     [showBothSections]="false"

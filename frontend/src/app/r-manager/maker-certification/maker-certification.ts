@@ -71,10 +71,13 @@ export class MakerCertification {
     }
   }
 
+  showWorkflow = false;
+
   navHandler() {
-    this.router.navigate(['/workflow'], {
-      state: { txnData: this.txnData, showBothSections: false },
-    });
+    this.showWorkflow = true;
+    // this.router.navigate(['/workflow'], {
+    //   state: { txnData: this.txnData, showBothSections: false },
+    // });
   }
 
   svg: Record<string, SafeHtml>;

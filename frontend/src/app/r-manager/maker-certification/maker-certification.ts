@@ -49,10 +49,10 @@ export class MakerCertification {
           beneficiaryAccountDetails: 'Origin Account',
           tdReview: 'Checked by Maker',
           bpAdherence: 'Checked by Maker',
-          digitalSignature: 'DS-5473-KLM (timestamped\n 2025-04-11 14:22 UTC)',
+          digitalSignature: 'DS-5473-KLM',
           notes:
             '"Transaction flagged as Critical,\n PEP = No, Justification present"',
-          fourEyes: 'Enhanced (due to \nCritical priority + high-risk country)',
+          fourEyes: 'Enhanced',
           rm_id: localStorage.getItem('RM_ID'),
           rm_name: localStorage.getItem('user_name'),
           approvalLevel: 'Enhanced',
@@ -67,7 +67,9 @@ export class MakerCertification {
   }
 
   navHandler() {
-    this.router.navigate(['/workflow'], { state: { txnData: this.txnData, showBothSections: false} });
+    this.router.navigate(['/workflow'], {
+      state: { txnData: this.txnData, showBothSections: false },
+    });
   }
 
   svg: Record<string, SafeHtml>;
@@ -111,8 +113,7 @@ export class MakerCertification {
         tdReview: 'Checked by Maker',
         bpAdherence: 'Checked by Maker',
         digitalSignature: 'DS-5473-KLM (timestamped 2025-04-11 14:22 UTC)',
-        notes:
-          '"Transaction flagged as Critical, PEP = No, Justification present"',
+        notes: 'Transaction flagged as Critical',
         fourEyes: 'Enhanced (due to Critical priority + high-risk country)',
         rm_id: localStorage.getItem('RM_ID'),
         rm_name: localStorage.getItem('user_name'),

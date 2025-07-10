@@ -36,7 +36,7 @@ export class RChatfooter implements OnDestroy {
 
     // Print all transactions for reference
     this.transactions.forEach((t, i) => {
-      console.log(`${i + 1}:`, t['Transaction ID'], '|| id:', t.id);
+      console.log(`${i + 1}:`, t['Transaction_ID'], '|| id:', t.id);
     });
 
     let foundTxn = null;
@@ -49,8 +49,8 @@ export class RChatfooter implements OnDestroy {
 
       const txn = this.transactions.find(
         (t) =>
-          (t['Transaction ID'] &&
-            t['Transaction ID'].toUpperCase() === candidateId) ||
+          (t['Transaction_ID'] &&
+            t['Transaction_ID'].toUpperCase() === candidateId) ||
           (t.id && t.id.toUpperCase() === candidateId)
       );
 

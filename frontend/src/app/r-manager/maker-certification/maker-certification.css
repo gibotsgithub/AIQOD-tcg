@@ -231,8 +231,6 @@
   /* width removed to allow flexible sizing */
 }
 
-
-
 /* Top 20% */
 .form-header {
   flex: 0 0 20%;
@@ -317,10 +315,34 @@
   border: none;
   background-color: #c9ffe8;
   overflow-x: auto;
-  white-space: normal; 
+  white-space: normal;
   /* word-wrap: break-word; */
   word-break: break-word;
 }
+
+.form-row textarea {
+  margin-left: 1.5%;
+  width: 48.5%;
+  height: 60px;
+  padding: 16px 4px 0 4px; /* Top padding centers single-line content vertically */
+  box-sizing: border-box;
+  border: none;
+  background-color: #c9ffe8;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  resize: none;
+
+  overflow: hidden !important;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+}
+
+.form-row textarea::-webkit-scrollbar {
+  display: none;
+}
+
 .submit-btn {
   margin-top: auto;
   align-self: center;

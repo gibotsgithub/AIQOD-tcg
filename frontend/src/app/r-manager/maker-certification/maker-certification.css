@@ -211,7 +211,7 @@
   width: 100%;
   max-width: 1717px;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
-  grid-template-rows: repeat(2, 523px);
+  grid-auto-rows: 523px;
   gap: 10px;
   justify-content: space-between; /* optional: aligns grid to the left */
   align-items: start;

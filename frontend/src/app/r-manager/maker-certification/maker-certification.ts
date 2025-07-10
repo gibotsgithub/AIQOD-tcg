@@ -4,10 +4,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Chatbot } from '../../features/chatbot/chatbot';
 import { RChatfooter } from '../r-chatfooter/r-chatfooter';
 import { Router } from '@angular/router';
+import { Workflow } from '../workflow/workflow';
 
 @Component({
   selector: 'app-maker-certification',
-  imports: [CommonModule, RChatfooter],
+  imports: [CommonModule, RChatfooter, Workflow],
   templateUrl: './maker-certification.html',
   styleUrl: './maker-certification.css',
 })

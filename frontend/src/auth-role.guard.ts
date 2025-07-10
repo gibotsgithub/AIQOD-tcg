@@ -33,7 +33,7 @@ export class AuthRoleGuard implements CanActivate {
       console.warn(
         `❌ Access denied for role: ${role}, redirecting to ${previousRoute}`
       );
-      return this.router.createUrlTree([previousRoute || '/dashboard']);
+      return this.router.createUrlTree(['/dashboard']);
     }
 
     // ✅ Access granted

@@ -36,13 +36,13 @@ export class TIntelligence implements OnInit {
           this.fullTransactions = docs;
 
           this.transactions = docs.map((doc: any) => ({
-            id: doc['Transaction ID'] ?? '—',
+            id: doc['Transaction_ID'] ?? '—',
             customer: doc['Name'] ?? '—',
-            account: doc['Client Account ID'] ?? '—',
-            method: doc['Payment Method'] ?? '—',
-            fraudFlag: doc['Fraud Flag'] ? '✔️' : '❌',
+            account: doc['Client_Account_ID'] ?? '—',
+            method: doc['Payment_Method'] ?? '—',
+            fraudFlag: doc['Fraud_Flag'] ? '✔️' : '❌',
             amlFlag: 'None', // Placeholder or logic
-            priority: doc['Amount_SGD'] > 1000000 ? 'Urgent ❌' : 'Normal ✅',
+            priority: doc['Priority_Level'] ?? 'Unknown',
             verification: doc['Verification_Status'] ?? 'Unknown',
             total:
               doc['Amount_SGD']?.toLocaleString('en-SG', {

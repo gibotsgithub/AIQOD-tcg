@@ -93,6 +93,10 @@ export class TopNavbar implements OnInit {
     localStorage.setItem('Impersonator', manager || '');
     console.log('Clicked RM:', userName);
     localStorage.setItem('user_name', userName);
+    localStorage.setItem(
+      'RM_ID',
+      this.rmList.find((rm) => rm.user_name === userName)?.RM_ID || ''
+    );
     localStorage.setItem('role', 'RM');
     localStorage.setItem('isImpersonating', 'true');
     window.location.reload();

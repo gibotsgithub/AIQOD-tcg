@@ -31,7 +31,7 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
     this.txnData = nav?.extras?.state?.['txnData'];
     const flag = nav?.extras?.state?.['showBothSections'];
     this.showBothSections = typeof flag === 'boolean' ? flag : true;
-    console.log('showBothSections:', this.showBothSections);
+    // console.log('showBothSections:', this.showBothSections);
   }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
       .get<any>('https://tcg-node.onrender.com/workflow-cards')
       .subscribe({
         next: (res) => {
-          console.log('✅ Workflow Cards:', res.documents);
+          // console.log('✅ Workflow Cards:', res.documents);
           this.workflowCards = res.documents;
           // Create lines after DOM update
           setTimeout(() => this.createLines(), 0);

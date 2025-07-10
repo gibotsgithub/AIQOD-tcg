@@ -10,11 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
-  background: linear-gradient(
-    180deg,
-    rgba(86, 86, 86, 0.1) 0%,
-    rgba(86, 86, 86, 0.1) 100%
-  );
+  background: #f7f8fa;
   color: var(--text-dark);
 }
 .login-root {

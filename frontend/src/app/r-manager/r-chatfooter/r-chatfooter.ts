@@ -35,9 +35,9 @@ export class RChatfooter implements OnDestroy {
     const messageUpper = message.toUpperCase();
 
     // Print all transactions for reference
-    this.transactions.forEach((t, i) => {
-      console.log(`${i + 1}:`, t['Transaction_ID'], '|| id:', t.id);
-    });
+    // this.transactions.forEach((t, i) => {
+    //   console.log(`${i + 1}:`, t['Transaction_ID'], '|| id:', t.id);
+    // });
 
     let foundTxn = null;
 
@@ -45,7 +45,7 @@ export class RChatfooter implements OnDestroy {
     let match;
     while ((match = idPattern.exec(message)) !== null) {
       const candidateId = match[1].toUpperCase();
-      console.log('🔍 Trying candidate ID:', candidateId);
+      // console.log('🔍 Trying candidate ID:', candidateId);
 
       const txn = this.transactions.find(
         (t) =>

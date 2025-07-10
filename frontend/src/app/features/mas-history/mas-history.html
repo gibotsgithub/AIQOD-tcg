@@ -1,8 +1,9 @@
-<!-- Example usage in mas-history.html -->
-<div class="mas-history-table-container">
-  <h2>Recently Scanned Documents</h2>
+<div class="mas-history-container">
+    <h2>Recently Scanned Documents</h2>
+  <div class="mas-history-table-container">
   <div class="mas-history-header">
     <span>Document Name</span>
+    <span>Query Name</span>
     <span>Date Scanned</span>
     <span>Compliance Score</span>
     <span>Violations</span>
@@ -10,6 +11,7 @@
   </div>
   <div class="mas-history-row" *ngFor="let tx of resultData">
     <span>{{ tx.input_document }}</span>
+    <span>{{ tx.query }}</span>
     <span>{{ tx.generated_at | date:'dd-MM-yyyy' }}</span>
     <span>{{ tx.compliance_score}}</span>
     <span>{{ getTotalIssues(tx.issue_counts) }}</span>
@@ -20,4 +22,5 @@
       <button (click)="deleteEntry(tx)" class="deleteBtn">Delete</button>
     </span>
   </div>
+</div>
 </div>

@@ -1,14 +1,7 @@
 .workflow-container {
   padding: 36px 36px;
   min-height: var(--override-height, calc(100vh - 72px));
-  background: var(
-    --override-background,
-    linear-gradient(
-      180deg,
-      rgba(86, 86, 86, 0.1) 0%,
-      rgba(86, 86, 86, 0.1) 100%
-    )
-  );
+  background: #f7f8fa;
   margin-left: var(--override-margin-left, 70px);
   width: var(--override-width, calc(100% - 70px));
   box-sizing: border-box;

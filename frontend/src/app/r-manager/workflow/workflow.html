@@ -30,8 +30,8 @@
     </button> -->
     <div class="dashboard-header-row">
       <h2 class="dashboard-heading">Workflow</h2>
-      <h2 class="dashboard-heading" *ngIf="txnData">
-        Transaction ID:{{txnData["Transaction_ID"]}}
+      <h2 class="dashboard-heading" *ngIf="role=== 'checker' && t_id">
+        Transaction ID:{{ t_id }}
       </h2>
       <h2 class="acra-title" *ngIf="showAcra">ACRA</h2>
     </div>
@@ -977,70 +977,24 @@
           <span class="workflow-card-title">Compliance Agent</span>
         </div>
         <ul class="workflow-list">
-          <li *ngFor="let step of getStepsForCard('Compliance Agent')">
+          <li
+            *ngFor="let step of getStepsForCard('Compliance Agent'); index as i"
+          >
             <i [ngClass]="step.value ? 'check' : 'cross'"></i>{{ step.key }}
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <!-- <div class="arrows">
-        <div 
-            style="position: absolute; width: 84px; height: 340px; left: 589px; top: 309px; pointer-events: none;">
-            <svg width="100%" height="100%" viewBox="0 0 84 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M1 3V2.5H0.5V3H1ZM84 3L79 0.113249V5.88675L84 3ZM1 340H1.5V3H1H0.5V340H1ZM1 3V3.5H79.5V3V2.5H1V3Z"
-                    fill="#03BCA3" />
-            </svg>
-        </div>
 
-
-        <div class="arr24"
-            style="position: absolute; width: 91px; height: 90px; left: 788px; top: 584px; transform: rotate(180deg); pointer-events: none;">
-            <svg width="100%" height="100%" viewBox="0 0 91 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M90 87L90 87.5L90.5 87.5L90.5 87L90 87ZM-7.62939e-06 87L4.99999 89.8867L4.99999 84.1132L-7.62939e-06 87ZM90 7.62939e-06L89.5 7.58568e-06L89.5 87L90 87L90.5 87L90.5 7.67311e-06L90 7.62939e-06ZM90 87L90 86.5L4.49999 86.5L4.49999 87L4.49999 87.5L90 87.5L90 87Z"
-                    fill="#03BCA3" />
-            </svg>
-        </div>
-
-
-        <div class="arr53"
-            style="position: absolute; width: 84px; height: 340px; left: 1124px; top: 309px; pointer-events: none;">
-            <svg width="100%" height="100%" viewBox="0 0 84 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M1 3V2.5H0.5V3H1ZM84 3L79 0.113249V5.88675L84 3ZM1 340H1.5V3H1H0.5V340H1ZM1 3V3.5H79.5V3V2.5H1V3Z"
-                    fill="#03BCA3" />
-            </svg>
-        </div>
-
-
-        <div class="arr45"
-            style="position: absolute; width: 166px; height: 6px; left: 775px; top: 850px; pointer-events: none;">
-            <svg width="100%" height="100%" viewBox="0 0 166 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M166 3L161 0.113249V5.88675L166 3ZM0 3V3.5H161.5V3V2.5H0V3Z" fill="#03BCA3" />
-            </svg>
-        </div>
-
-
-        <div class="arr36"
-            style="position: absolute; width: 322px; height: 92px; left: 1571px; top: 310px; transform: rotate(90deg); pointer-events: none;">
-            <svg width="100%" height="100%" viewBox="0 0 92 322" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M89 1L89.5 1L89.5 0.5L89 0.5L89 1ZM89 322L91.8867 317L86.1132 317L89 322ZM2.28882e-05 0.999996L2.28663e-05 1.5L89 1.5L89 1L89 0.5L2.291e-05 0.499996L2.28882e-05 0.999996ZM89 1L88.5 1L88.5 317.5L89 317.5L89.5 317.5L89.5 1L89 1Z"
-                    fill="#03BCA3" />
-            </svg>
-        </div>
-
-        <div class="arr65"
-            style="position: absolute; width: 542px; height: 92px; left: 1120px; top: 960px; pointer-events: none;">
-            <svg width="100%" height="100%" viewBox="0 0 542 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M541.5 91V91.5H542V91H541.5ZM3 91H2.5V91.5H3V91ZM3 11L0.113249 16H5.88675L3 11ZM541.5 0H541V91H541.5H542V0H541.5ZM541.5 91V90.5H3V91V91.5H541.5V91ZM3 91H3.5V15.5H3H2.5V91H3Z"
-                    fill="#03BCA3" />
-            </svg>
-        </div>
-    </div> -->
+  <button
+    type="button"
+    class="checker-btn submit"
+    (click)="navHandler1()"
+    *ngIf="role != 'checker'"
+  >
+    Send to Checker
+  </button>
 
   <div class="checker-certification-section" *ngIf="showBothSections">
     <h2 class="checker-title">Checker Certification</h2>

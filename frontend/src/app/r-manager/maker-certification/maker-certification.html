@@ -276,7 +276,7 @@
           <label>Transaction Date</label>
           <input
             type="text"
-            [value]="delayedDataMap[1]?.['Date']"
+            [value]="formatDate(delayedDataMap[1]?.Transaction_Date)"
             style="background-color: #e1effb"
           />
         </div>
@@ -441,7 +441,11 @@
       <form class="form-body">
         <div class="form-row">
           <label style="height: 60px">Client Instruction</label>
-          <textarea style="height: 60px" disabled></textarea>
+          <textarea
+            style="height: 60px"
+            [value]="delayedDataMap[3]?.['Client_Instruction']"
+            disabled
+          ></textarea>
         </div>
 
         <div class="form-row">

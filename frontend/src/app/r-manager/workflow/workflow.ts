@@ -25,6 +25,8 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
   @Input() showBothSections = true;
   @Input() showGoBack = true;
   @Input() showAcra = true;
+  t_id = localStorage.getItem('transaction_id');
+  role = localStorage.getItem('role');
 
   constructor(private router: Router, private http: HttpClient) {
     const nav = this.router.getCurrentNavigation();
@@ -32,6 +34,10 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
     const flag = nav?.extras?.state?.['showBothSections'];
     this.showBothSections = typeof flag === 'boolean' ? flag : true;
     // console.log('showBothSections:', this.showBothSections);
+  }
+
+  navHandler1() {
+    this.router.navigate(['/dashboard']);
   }
 
   ngOnInit() {

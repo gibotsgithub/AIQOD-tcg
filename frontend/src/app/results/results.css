@@ -1,5 +1,9 @@
 .analysis-container {
-  background: var(--content-light);
+  background: linear-gradient(
+    180deg,
+    rgba(86, 86, 86, 0.1) 0%,
+    rgba(86, 86, 86, 0.1) 100%
+  );
   min-height: calc(100vh - 72px);
   margin-top: 0;
   margin-left: 70px;

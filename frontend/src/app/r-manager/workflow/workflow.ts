@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, AfterViewInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  OnDestroy,
+  AfterViewChecked,
+  Input,
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 declare var LeaderLine: any;
@@ -16,7 +22,9 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
   private lines: any[] = [];
   txnData: any;
   workflowCards: any[] = [];
-  showBothSections = true;
+  @Input() showBothSections = true;
+  @Input() showGoBack = true;
+  @Input() showAcra = true;
 
   constructor(private router: Router, private http: HttpClient) {
     const nav = this.router.getCurrentNavigation();
@@ -66,7 +74,7 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
 
   createLines() {
     // Remove existing lines first
-    this.lines.forEach(line => line.remove());
+    this.lines.forEach((line) => line.remove());
     this.lines = [];
 
     // Create LeaderLine connections between cards
@@ -167,7 +175,7 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
 
   ngAfterViewChecked() {
     // Reposition lines after every view check to handle dynamic layout changes
-    this.lines.forEach(line => line.position());
+    this.lines.forEach((line) => line.position());
   }
 
   ngOnDestroy() {
@@ -177,6 +185,6 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
   }
 
   repositionLines = () => {
-    this.lines.forEach(line => line.position());
+    this.lines.forEach((line) => line.position());
   };
 }

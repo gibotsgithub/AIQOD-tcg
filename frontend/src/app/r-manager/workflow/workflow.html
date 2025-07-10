@@ -1,6 +1,6 @@
 <div class="workflow-container">
   <div class="workflow-header">
-    <button class="back-btn" (click)="goBack()">
+    <button class="back-btn" *ngIf="showGoBack" (click)="goBack()">
       <svg
         width="32"
         height="32"
@@ -33,7 +33,7 @@
       <h2 class="dashboard-heading" *ngIf="txnData">
         Transaction ID:{{txnData["Transaction_ID"]}}
       </h2>
-      <h2 class="acra-title">ACRA</h2>
+      <h2 class="acra-title" *ngIf="showAcra">ACRA</h2>
     </div>
   </div>
 

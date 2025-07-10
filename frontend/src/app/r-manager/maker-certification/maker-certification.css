@@ -87,9 +87,14 @@
 .img-progress-tracker {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 16px;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  justify-content: space-evenly;
+}
+.img-progress-tracker > * {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .img-group {
@@ -98,10 +103,19 @@
   align-items: center;
   min-width: 120px;
 }
-
+.img-progress-tracker > .arrow,
+.img-progress-tracker > .double-arrow {
+  flex: 0 0 40px; /* Adjust as needed */
+  min-width: 40px;
+  max-width: 60px;
+}
 .svg-container img {
   width: 48px;
   height: 48px;
+}
+.img-progress-tracker > .parallel-group {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .img-text {

@@ -8,6 +8,11 @@
   margin-left: 100px;
   margin-right: 10px;
   margin-top: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(86, 86, 86, 0.1) 0%,
+    rgba(86, 86, 86, 0.1) 100%
+  );
 }
 .h2{
     color: var(--text-dark);

@@ -986,15 +986,16 @@
       </div>
     </div>
   </div>
-
-  <button
+<div class="center-btn-wrapper">  <button
     type="button"
     class="checker-btn submit"
+    id="send-btn"
     (click)="navHandler1()"
     *ngIf="role != 'checker'"
   >
-    Send to Checker
-  </button>
+    Send to Checker 
+  </button></div>
+
 
   <div class="checker-certification-section" *ngIf="showBothSections">
     <h2 class="checker-title">Checker Certification</h2>

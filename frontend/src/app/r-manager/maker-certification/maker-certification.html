@@ -440,29 +440,42 @@
       <!-- Form section -->
       <form class="form-body">
         <div class="form-row">
-          <label>Client Instruction</label>
-          <input type="text" disabled />
+          <label style="height: 60px">Client Instruction</label>
+          <textarea style="height: 60px" disabled></textarea>
         </div>
+
         <div class="form-row">
-          <label style="height: 235px">Business Justification</label>
-          <input type="text" style="height: 235px; background-color: #e1effb" />
+          <label style="height: 60px">Client Instruction Ref. No.</label>
+          <textarea style="height: 60px" disabled>
+{{ delayedDataMap[3]?.['Client_Instruction_Ref_No'] }}
+    </textarea
+          >
         </div>
+
         <div class="form-row">
-          <label>Client Instruction Ref. No.</label>
-          <input
-            type="text"
-            [value]="delayedDataMap[3]?.['Client_Instruction_Ref_No']"
-            disabled
-          />
+          <label style="height: 60px">Risk Assessment</label>
+          <textarea style="background-color: #e1effb; height: 60px">
+{{ delayedDataMap[3]?.riskAssessment }}
+    </textarea
+          >
         </div>
+
         <div class="form-row">
-          <label>Recurring Transaction Flag</label>
-          <input
-            type="text"
-            [value]="delayedDataMap[3]?.['Recurring_Transaction_Flag']"
-            style="background-color: #e1effb"
-          />
+          <label style="height: 60px">Pricing Confirmation</label>
+          <textarea style="background-color: #e1effb; height: 60px">
+{{ delayedDataMap[3]?.pricingConfirmation }}
+    </textarea
+          >
         </div>
+
+        <div class="form-row">
+          <label style="height: 60px">Internet Approval</label>
+          <textarea style="background-color: #e1effb; height: 60px">
+{{ delayedDataMap[3]?.internetApproval }}
+    </textarea
+          >
+        </div>
+
         <button
           type="button"
           class="submit-btn"
@@ -587,19 +600,18 @@
           />
         </div>
         <div class="form-row">
-          <label style="height: 50px">Notes for checker</label>
-          <input
-            type="text"
-            [value]="delayedDataMap[5]?.notes"
-            style="height: 50px; background-color: #e1effb"
-          />
+          <label style="height: 70px">Notes for checker</label>
+          <textarea style="height: 70px; background-color: #e1effb">
+{{ delayedDataMap[5]?.notes }}
+</textarea
+          >
         </div>
         <div class="form-row">
-          <label style="height: 71px">Four-Eyes Confirmation Requirement</label>
+          <label style="height: 50px">Four-Eyes Confirmation Requirement</label>
           <input
             type="text"
             [value]="delayedDataMap[5]?.fourEyes"
-            style="height: 71px; background-color: #e1effb"
+            style="height: 50px; background-color: #e1effb"
           />
         </div>
         <button

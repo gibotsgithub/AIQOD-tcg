@@ -38,12 +38,12 @@
           <td class="text-center">
             {{ client["AUM_SGD"] | currency:'':'':'1.0-0' }}
           </td>
-          <td class="text-center">{{ client["QoQ Growth"] }}</td>
+          <td class="text-center">{{ client["QoQ_Growth"] }}</td>
           <td
             class="client-sat-cell text-center"
-            [ngClass]="getClientSatClass(client['Client Sat'])"
+            [ngClass]="getClientSatClass(client['Client_Sat'])"
           >
-            {{ client['Client Sat'] }}
+            {{ client['Client_Sat'] }}
           </td>
         </tr>
       </tbody>

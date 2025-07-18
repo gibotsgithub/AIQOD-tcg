@@ -14,45 +14,5 @@
   </head>
   <body>
     <app-root></app-root>
-
-    <!-- 🛡️ Recovery fallback if Angular fails to bootstrap -->
-    <script>
-      setTimeout(() => {
-        // If Angular hasn't bootstrapped within 5 seconds
-        if (!window.ng) {
-          document.body.innerHTML = `
-            <div style="padding:2rem;font-family:sans-serif;max-width:600px;margin:auto;text-align:center">
-              <h2>⚠️ Oops! Something went wrong while loading the app.</h2>
-              <p>This may be caused by a browser caching issue.</p>
-              <button onclick="forceFix()" style="margin-top:1rem;padding:0.75rem 1.5rem;border:none;border-radius:8px;background:#6366f1;color:white;font-size:1rem;cursor:pointer">
-                🔄 Fix and Reload
-              </button>
-              <p style="margin-top:1rem;color:gray">You can also try pressing <strong>Ctrl + Shift + R</strong></p>
-            </div>
-          `;
-        }
-      }, 5000);
-
-      async function forceFix() {
-        try {
-          if ('caches' in window) {
-            const keys = await caches.keys();
-            for (const key of keys) await caches.delete(key);
-          }
-          if ('serviceWorker' in navigator) {
-            const regs = await navigator.serviceWorker.getRegistrations();
-            for (const reg of regs) await reg.unregister();
-          }
-          localStorage.clear();
-          indexedDB.databases && indexedDB.databases().then(dbs => {
-            dbs.forEach(db => indexedDB.deleteDatabase(db.name));
-          });
-        } catch (e) {
-          console.warn("Fix attempt failed", e);
-        } finally {
-          location.reload(true);
-        }
-      }
-    </script>
   </body>
 </html>

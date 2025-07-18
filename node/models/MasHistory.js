@@ -35,6 +35,10 @@ const masHistorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  query: {
+    type: String,
+    required: true,
+  },
   input_document: String,
   compliance_score: Number,
   total_checks: Number,

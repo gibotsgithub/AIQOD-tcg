@@ -8,12 +8,11 @@ app.use(cors());
 app.use(express.json());
 
 const PORT = process.env.PORT || 8080;
-const DB_NAME = process.env.MONGO_DB_NAME;
 
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log(`✅ Connected to MongoDB: ${DB_NAME}`);
+    console.log(`✅ Connected to MongoDB`);
 
     app.listen(PORT, () => {
       console.log(`🚀 Express server listening on port ${PORT}`);
@@ -22,6 +21,57 @@ const connect = async () => {
     console.error("❌ MongoDB connection error:", err);
   }
 };
+
+app.get("/db-info", async (req, res) => {
+  try {
+    const db = mongoose.connection.db;
+
+    const dbName = db.databaseName;
+    const collections = await db
+      .listCollections({}, { nameOnly: true })
+      .toArray();
+    const collectionNames = collections.map((c) => c.name);
+
+    console.log("📂 Connected to Database:", dbName);
+    console.log("📄 Collections:");
+    collectionNames.forEach((name) => console.log("  -", name));
+
+    res.json({
+      database: dbName,
+      collections: collectionNames,
+    });
+  } catch (err) {
+    console.error("❌ Error retrieving DB info:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/sample-data/:collectionName", async (req, res) => {
+  const { collectionName } = req.params;
+
+  try {
+    const db = mongoose.connection.db;
+
+    // Fetch first 10 documents for preview
+    const sampleDocs = await db
+      .collection(collectionName)
+      .find()
+      .limit(10)
+      .toArray();
+
+    res.json({
+      collection: collectionName,
+      count: sampleDocs.length,
+      documents: sampleDocs,
+    });
+  } catch (err) {
+    console.error(
+      `❌ Failed to fetch data from ${req.params.collectionName}:`,
+      err
+    );
+    res.status(500).json({ error: err.message });
+  }
+});
 
 connect();
 

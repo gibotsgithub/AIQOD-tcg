@@ -36,6 +36,16 @@ class UserController {
     }
   }
 
+  static async getRMs(req, res) {
+    try {
+      const users = await User.find({ role: "RM" });
+      res.status(200).json(users);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+      res.status(500).json({ error: "Failed to fetch users" });
+    }
+  }
+
   static async login(req, res) {
     try {
       const { user_name, password } = req.body;

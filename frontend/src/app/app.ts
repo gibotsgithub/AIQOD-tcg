@@ -9,4 +9,15 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'frontend';
+  ngOnInit(): void {
+    this.clearSession();
+  }
+
+  clearSession() {
+    localStorage.clear();
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c.replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+  }
 }

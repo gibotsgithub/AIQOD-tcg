@@ -10,3 +10,5 @@ if ('serviceWorker' in navigator) {
 }
 
 bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+
+

@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected title = 'frontend';
@@ -14,10 +14,16 @@ export class App {
   }
 
   clearSession() {
-    //localStorage.clear();
-    document.cookie.split(";").forEach((c) => {
-      document.cookie = c.replace(/^ +/, "")
-        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    // localStorage.clear();
+    const backup = sessionStorage.getItem('transaction_id');
+    if (backup) {
+      localStorage.setItem('transaction_id', backup);
+      sessionStorage.clear();
+    }
+    document.cookie.split(';').forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, '')
+        .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
     });
   }
 }

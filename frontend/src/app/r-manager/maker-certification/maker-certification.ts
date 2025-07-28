@@ -18,7 +18,6 @@ export class MakerCertification {
   delayedDataMap: Record<number, any> = {};
 
   formatDate(input: string | Date): string {
-    console.log('formatDate input:', input); // 🔍 Debug log
     if (!input) return '';
 
     const date = new Date(input);

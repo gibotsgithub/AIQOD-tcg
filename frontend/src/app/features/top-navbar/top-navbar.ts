@@ -75,11 +75,10 @@ export class TopNavbar implements OnInit {
     if (role !== 'checker') {
       const t_id = localStorage.getItem('transaction_id');
       localStorage.clear();
-      localStorage.setItem('transaction_id', t_id || '');
+      sessionStorage.setItem('transaction_id', t_id || '');
     } else {
       localStorage.clear();
     }
-    sessionStorage.clear();
     // Optionally clear any in-memory state here
     this.router.navigate(['/login']);
   }

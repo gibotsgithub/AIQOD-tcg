@@ -19,16 +19,16 @@ export class Login implements OnInit {
   errorMessage: string = '';
 
   constructor(private router: Router, private http: HttpClient) {}
-clearSession() {
-  localStorage.clear();
-  // Clear all cookies
-  document.cookie.split(";").forEach((c) => {
-    document.cookie = c.replace(/^ +/, "")
-      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-  });
-}
+  clearSession() {
+    // Clear all cookies
+    document.cookie.split(';').forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, '')
+        .replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+    });
+  }
   ngOnInit(): void {
-     this.clearSession();
+    this.clearSession();
     const loggedIn = localStorage.getItem('isLoggedIn');
     if (loggedIn === 'true') {
       this.router.navigate(['/mas-policy-watch']);

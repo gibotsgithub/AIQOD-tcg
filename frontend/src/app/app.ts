@@ -14,12 +14,11 @@ export class App {
   }
 
   clearSession() {
-    // localStorage.clear();
-    const backup = sessionStorage.getItem('transaction_id');
-    if (backup) {
-      localStorage.setItem('transaction_id', backup);
-      sessionStorage.clear();
-    }
+    // const backup = sessionStorage.getItem('transaction_id');
+    // if (backup) {
+    //   localStorage.setItem('transaction_id', backup);
+    //   sessionStorage.clear();
+    // }
     document.cookie.split(';').forEach((c) => {
       document.cookie = c
         .replace(/^ +/, '')
@@ -27,5 +26,3 @@ export class App {
     });
   }
 }
-
-

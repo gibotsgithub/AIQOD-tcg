@@ -70,14 +70,24 @@ export class TopNavbar implements OnInit {
     this.showProfileMenu = !this.showProfileMenu;
   }
 
+  localStorageClear() {
+    localStorage.removeItem('RM_ID');
+    localStorage.removeItem('isImpersonating');
+    localStorage.removeItem('user_name');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('showChatbot');
+    localStorage.removeItem('role');
+  }
+
   logout() {
     const role = localStorage.getItem('role');
     if (role !== 'checker') {
       const t_id = localStorage.getItem('transaction_id');
-      localStorage.clear();
-      sessionStorage.setItem('transaction_id', t_id || '');
+      this.localStorageClear();
+      // sessionStorage.setItem('transaction_id', t_id || '');
     } else {
-      localStorage.clear();
+      this.localStorageClear();
+      localStorage.removeItem('transaction_id');
     }
     // Optionally clear any in-memory state here
     this.router.navigate(['/login']);
@@ -108,5 +118,3 @@ export class TopNavbar implements OnInit {
     window.location.reload();
   }
 }
-
-

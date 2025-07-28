@@ -25,7 +25,7 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
   @Input() showBothSections = true;
   @Input() showGoBack = true;
   @Input() showAcra = true;
-  t_id = sessionStorage.getItem('transaction_id');
+  t_id = localStorage.getItem('transaction_id');
   role = localStorage.getItem('role');
 
   constructor(private router: Router, private http: HttpClient) {
@@ -195,6 +195,3 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
     this.lines.forEach((line) => line.position());
   };
 }
-
-
-

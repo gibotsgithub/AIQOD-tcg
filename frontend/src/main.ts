@@ -21,3 +21,5 @@ if ('serviceWorker' in navigator) {
 
 // ✅ Step 4: Bootstrap the Angular app
 bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+
+

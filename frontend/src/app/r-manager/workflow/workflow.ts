@@ -195,3 +195,6 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
     this.lines.forEach((line) => line.position());
   };
 }
+
+
+

@@ -808,3 +808,5 @@ export class MakerCertification {
     return this.sanitizer.bypassSecurityTrustHtml(svg);
   }
 }
+
+

@@ -35,6 +35,8 @@ export class Login implements OnInit {
     }
   }
 
+  credentials: string[] = ['Manager', 'RM', 'admin'];
+
   login() {
     const loginData = {
       user_name: this.username,
@@ -60,7 +62,11 @@ export class Login implements OnInit {
           // console.log(res.user.RM_ID);
           if (temp_role === 'checker') {
             this.router.navigate(['workflow']);
-          } else this.router.navigate(['dashboard']);
+          } else if (this.credentials.includes(temp_role))
+            this.router.navigate(['dashboard']);
+          else {
+            this.errorMessage = 'Login failed. Try again.';
+          }
         },
         error: (err) => {
           this.errorMessage = err.error?.error || 'Login failed. Try again.';

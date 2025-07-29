@@ -51,6 +51,21 @@ export class TopNavbar implements OnInit {
     //       path.startsWith('/dashboard')
     //     );
     //   });
+
+    this.impersonateInterval = setInterval(() => {
+      const current = localStorage.getItem('role');
+      if (current !== this.previousImpersonation) {
+        this.role = current;
+        console.log('🔁 isImpersonating changed:', current);
+        // Trigger any updates if needed here
+      }
+    }, 1000); // every second
+  }
+
+  ngOnDestroy(): void {
+    if (this.impersonateInterval) {
+      clearInterval(this.impersonateInterval);
+    }
   }
 
   // fixed dropdown
@@ -77,6 +92,7 @@ export class TopNavbar implements OnInit {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('showChatbot');
     localStorage.removeItem('role');
+    localStorage.removeItem('Impersonator');
   }
 
   logout() {
@@ -97,17 +113,17 @@ export class TopNavbar implements OnInit {
     localStorage.setItem('role', 'Manager');
     const Impersonator = localStorage.getItem('Impersonator');
     localStorage.setItem('user_name', Impersonator || '');
+    localStorage.removeItem('Impersonator');
     localStorage.setItem('isImpersonating', 'false');
     this.router.navigate(['/dashboard']);
-    window.location.reload();
   }
   get isImpersonating(): boolean {
     return localStorage.getItem('isImpersonating') === 'true';
   }
   onRmClick(userName: string) {
     const manager = localStorage.getItem('user_name');
+    this.localStorageClear();
     localStorage.setItem('Impersonator', manager || '');
-    console.log('Clicked RM:', userName);
     localStorage.setItem('user_name', userName);
     localStorage.setItem(
       'RM_ID',
@@ -115,9 +131,9 @@ export class TopNavbar implements OnInit {
     );
     localStorage.setItem('role', 'RM');
     localStorage.setItem('isImpersonating', 'true');
-    window.location.reload();
+    this.router.navigate(['/dashboard']);
   }
+
+  private impersonateInterval: any;
+  previousImpersonation: string | null = null;
 }
-
-
-

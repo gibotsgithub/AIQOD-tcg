@@ -123,6 +123,7 @@ export class TopNavbar implements OnInit {
   onRmClick(userName: string) {
     const manager = localStorage.getItem('user_name');
     this.localStorageClear();
+    localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('Impersonator', manager || '');
     localStorage.setItem('user_name', userName);
     localStorage.setItem(
@@ -137,3 +138,5 @@ export class TopNavbar implements OnInit {
   private impersonateInterval: any;
   previousImpersonation: string | null = null;
 }
+
+

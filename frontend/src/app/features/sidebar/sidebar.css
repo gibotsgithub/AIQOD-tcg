@@ -81,6 +81,12 @@
   margin: 0 auto;
 }
 
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Tablet screens */
 @media (max-width: 1024px) {
   .sidebar {

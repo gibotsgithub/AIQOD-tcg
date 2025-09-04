@@ -59,11 +59,7 @@ class UserController {
 
       res.status(200).json({
         message: "Login successful",
-        user: {
-          user_name: user.user_name,
-          role: user.role,
-          avatar_url: user.avatar_url,
-        },
+        user,
       });
     } catch (err) {
       console.error("Login error:", err);

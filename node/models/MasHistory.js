@@ -28,6 +28,10 @@ const nonComplianceSchema = new mongoose.Schema({
   severity_level: String,
   regulation: String,
   confidence_percentage: Number,
+  reference_document: String,
+  non_compliant_text: String,
+  explanation: String,
+  remedy_recommendation: String,
 });
 
 const masHistorySchema = new mongoose.Schema({

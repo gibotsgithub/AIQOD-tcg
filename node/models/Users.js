@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema(
       enum: ["admin", "RM", "Manager"], //restrict roles
       default: "user",
     },
+    RM_ID: {
+      type: String,
+      default: null,
+    },
     avatar_url: {
       type: String,
       default: null,

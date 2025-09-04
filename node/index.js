@@ -66,10 +66,10 @@ app.get("/sample-data/:collectionName", async (req, res) => {
       documents: sampleDocs,
     });
   } catch (err) {
-    console.error(`
-      ❌ Failed to fetch data from ${req.params.collectionName}:,
+    console.error(
+      `❌ Failed to fetch data from ${req.params.collectionName}:`,
       err
-    `);
+    );
     res.status(500).json({ error: err.message });
   }
 });
@@ -91,7 +91,7 @@ app.get("/transaction-intelligence/:rm_id", async (req, res) => {
       documents: matchingDocs,
     });
   } catch (err) {
-    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:, err`);
+    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:`, err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -114,7 +114,7 @@ app.get("/customer_profile/:rm_id", async (req, res) => {
       documents: matchingDocs,
     });
   } catch (err) {
-    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:, err`);
+    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:`, err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -134,7 +134,7 @@ app.get("/workflow-cards", async (req, res) => {
       documents: matchingDocs,
     });
   } catch (err) {
-    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:, err`);
+    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:`, err);
     res.status(500).json({ error: err.message });
   }
 });

@@ -26,7 +26,7 @@ export class TIntelligence implements OnInit {
   ngOnInit(): void {
     this.http
       .get<any>(
-        `https://tcg-node.onrender.com/transaction-intelligence/${this.rm_id}`
+        `https://aiqod-tcg.onrender.com/transaction-intelligence/${this.rm_id}`
       )
       .subscribe({
         next: (res) => {

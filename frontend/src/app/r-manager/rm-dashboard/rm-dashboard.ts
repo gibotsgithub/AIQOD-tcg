@@ -32,7 +32,7 @@ export class RmDashboard {
 
     if (rm_id) {
       this.http
-        .get<any>(`https://tcg-node.onrender.com/customer_profile/${rm_id}`)
+        .get<any>(`https://aiqod-tcg.onrender.com/customer_profile/${rm_id}`)
         .subscribe({
           next: (res) => {
             // console.log('✅ Fetched data:', res);

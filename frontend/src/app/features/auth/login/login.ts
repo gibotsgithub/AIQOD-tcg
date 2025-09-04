@@ -46,7 +46,7 @@ export class Login implements OnInit {
     // console.log(loginData);
 
     this.http
-      .post<any>('https://tcg-node.onrender.com/api/users/login', loginData)
+      .post<any>('https://aiqod-tcg.onrender.com/api/users/login', loginData)
       .subscribe({
         next: (res) => {
           // console.log('logged in', res.user.role);

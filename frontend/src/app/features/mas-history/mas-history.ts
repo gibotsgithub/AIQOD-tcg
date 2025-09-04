@@ -21,7 +21,7 @@ export class MasHistoryComponent implements OnInit {
     if (userName) {
       this.http
         .get<any[]>(
-          `https://tcg-node.onrender.com/api/mas-history/user/${userName}`
+          `https://aiqod-tcg.onrender.com/api/mas-history/user/${userName}`
         )
         .subscribe({
           next: (data) => {
@@ -54,7 +54,7 @@ export class MasHistoryComponent implements OnInit {
     const confirmDelete = window.confirm('Are you sure you want to delete this entry?');
     if (!confirmDelete) return;
     this.http
-      .delete(`https://tcg-node.onrender.com/api/mas-history/${tx._id}`)
+      .delete(`https://aiqod-tcg.onrender.com/api/mas-history/${tx._id}`)
       .subscribe({
         next: () => {
           // Remove the deleted transaction from the local array

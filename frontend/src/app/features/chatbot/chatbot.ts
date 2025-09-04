@@ -107,7 +107,7 @@ export class Chatbot implements AfterViewInit {
     // 🔍 PRE-CHECK before uploading
     this.http
       .post<{ exists: boolean; result?: any }>(
-        'https://tcg-node.onrender.com/api/mas-history/check-if-exists',
+        'https://aiqod-tcg.onrender.com/api/mas-history/check-if-exists',
         {
           user_name,
           input_document: fileName,
@@ -212,7 +212,7 @@ export class Chatbot implements AfterViewInit {
               // Save to Node backend
               this.http
                 .post(
-                  'https://tcg-node.onrender.com/api/mas-history/save',
+                  'https://aiqod-tcg.onrender.com/api/mas-history/save',
                   resultWithUser
                 )
                 .subscribe({

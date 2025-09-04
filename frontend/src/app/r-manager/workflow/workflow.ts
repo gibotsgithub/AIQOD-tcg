@@ -42,7 +42,7 @@ export class Workflow implements AfterViewInit, OnDestroy, AfterViewChecked {
 
   ngOnInit() {
     this.http
-      .get<any>('https://tcg-node.onrender.com/workflow-cards')
+      .get<any>('https://aiqod-tcg.onrender.com/workflow-cards')
       .subscribe({
         next: (res) => {
           // console.log('✅ Workflow Cards:', res.documents);

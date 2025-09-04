@@ -26,7 +26,7 @@ export class TopNavbar implements OnInit {
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.http
-      .get<any[]>('https://tcg-node.onrender.com/api/users/getRms')
+      .get<any[]>('https://aiqod-tcg.onrender.com/api/users/getRms')
       .subscribe({
         next: (data) => {
           this.rmList = data;

@@ -46,6 +46,28 @@ app.get("/db-info", async (req, res) => {
   }
 });
 
+app.get("/transaction-intelligence/:rm_id", async (req, res) => {
+  const { rm_id } = req.params;
+
+  try {
+    const db = mongoose.connection.db;
+
+    const matchingDocs = await db
+      .collection("transaction_details") // fixed collection name
+      .find({ RM_ID: rm_id }) // filter by RM_ID
+      .toArray();
+
+    res.json({
+      collection: "transaction_details",
+      count: matchingDocs.length,
+      documents: matchingDocs,
+    });
+  } catch (err) {
+    console.error(`❌ Failed to fetch data for RM_ID ${rm_id}:, err`);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get("/sample-data/:collectionName", async (req, res) => {
   const { collectionName } = req.params;
 
